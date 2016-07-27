@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -150px;
+            width: 300px;
+            height: 300px;
+            border: 5px dashed #37C7D4;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" style="background-color: red;"></div>
+
+<script type="text/javascript">
+    //分析需求：
+    //1、获取当前的这个盒子，让盒子可以点击
+    //2、点击的时候获取当前盒子的背景颜色，然后根据背景颜色进行相关的判断：红-->黄-->蓝-->绿-->紫-->橙色-->红
+    var oDiv = document.getElementById("div1");
+    oDiv.onclick = function () {//给当前的元素绑定点击事件
+        var bg = oDiv.style.backgroundColor;
+        switch (bg) {
+            case "red":
+                oDiv.style.backgroundColor = "yellow";
+                break;
+            case "yellow":
+                oDiv.style.backgroundColor = "blue";
+                break;
+            case "blue":
+                oDiv.style.backgroundColor = "green";
+                break;
+            case "green":
+                oDiv.style.backgroundColor = "purple";
+                break;
+            case "purple":
+                oDiv.style.backgroundColor = "orange";
+                break;
+            default:
+                oDiv.style.backgroundColor = "red";
+        }
+    }
+
+    //通过id获取一个元素:getElementById("元素的id");
+    //因为需要在整个文档中获取，所以需要指定获取的范围-->我们获取的范围称之为上下文(context)，在这里上下文是document
+    //document.getElementById("div1");
+
+    //var oDiv = document.getElementById("div1");//在整个文档中获取一个id等于div1的div元素，然后把获取的内容保存在我们的变量oDiv中
+    //console.log(typeof oDiv);//==>"object" 我们获取的元素是一个对象数据类型的，每一个对象数据类型都是由属性名和属性值组成的，在oDiv中也有自己的属性名和属性值
+    //console.dir(oDiv);
+    //console.log(oDiv.style);//获取oDiv这个对象中的style属性对应的值,这个值代表的是当前元素所有的"行内样式"，非行内上写的是获取不到的
+    //console.log(oDiv.style.backgroundColor);//""，因为没有在行内上写我们的背景颜色
+
+
+    //获取样式表中的样式
+    //window.getComputedStyle(oDiv,null)["backgroundColor"]
+    //oDiv.currentStyle["backgroundColor"] IE6~8下的
+</script>
+</body>
+</html>

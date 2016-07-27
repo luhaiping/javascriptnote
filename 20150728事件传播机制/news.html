@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新闻列表</title>
+    <link type="text/css" rel="stylesheet" href="css/news.css"/>
+</head>
+<body>
+<div class="con">
+    <h2>新闻资讯</h2>
+    <ul></ul>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    function kbs_sports(data) {
+        //分析获取到的json数据，找到我们想要的newslist新闻列表数据
+        console.log(data);
+        var ary = data[1].idlist[0].newslist;
+
+        //根据数据获取对应的html字符串
+        var str = getHTML(ary);
+
+        //绑定数据
+        $(".con>ul").html(str);
+
+        //绑定点击事件，点击的时候实现页面的跳转
+        $(".con li").click(function () {
+            var linkURL = $(this).attr("linkURL");
+            if (linkURL) {
+                //window.location.href = linkURL;
+                window.open(linkURL);
+            }
+        });
+
+        imgLoad();
+    }
+
+    $(window).scroll(imgLoad);
+
+    function getHTML(data) {
+        var str = "";
+        for (var i = 0; i < data.length; i++) {
+            var cur = data[i];
+            var trueImg = cur.thumbnails_qqnews && cur.thumbnails_qqnews.length > 0 ? cur.thumbnails_qqnews[0] : null;
+            var linkURL = cur.url;
+
+
+            if (i === data.length - 1) {
+                str += "<li class='last' linkURL='" + linkURL + "'>";
+            } else {
+                str += "<li linkURL='" + linkURL + "'>";
+            }
+            str += "<div class='newsLeft' trueImg='" + trueImg + "'></div>";
+            str += "<div class='newsRight'>";
+            str += "<p class='tit' title='" + cur.title + "'>" + cur.title + "</p>";
+            str += "<p class='dec'>" + cur.abstract + "</p>";
+            str += "</div>";
+            str += "</li>";
+        }
+        return str;
+    }
+
+    function imgLoad() {
+        var winT = $(window).outerHeight() + $(document).scrollTop();
+        $(".con .newsLeft").each(function () {
+            var $that = $(this);
+            if (!$that.attr("isLoad")) {
+                var $t = $that.offset().top;
+                if ($t < winT) {
+                    var oImg = new Image;
+                    oImg.src = $that.attr("trueImg");
+                    oImg.onload = function () {
+                        if ($that.children("img").length <= 0) {
+                            $that.append(this).attr("isLoad", true);
+                            $(this).animate({opacity: 1}, 500, "linear");
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    //console.log($(".con>li")); 找的是儿子级li --> children("li")
+    //console.log($(".con li")); 找的是子子孙孙级的li --> find("li")
+    //console.log($(".con+li"));  console.log($(".con~li")); 找的是同级的li --->filter
+    //$(".con").children("ul").html(str);
+</script>
+<script type="text/javascript"
+        src="http://sportswebapi.qq.com/newsApp/matchDetail?appOS=ios&mid=208_794844&width=568&height=320&callback=kbs_sports"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale =1.0,maximum-scale=1.0,user-scalable=no">
+    <title></title>
+    <style>
+        body, div, span, p, strong {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-size:16px;
+        }
+
+        .wrap {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            background: #fff;
+            -webkit-box-sizing: border-box;
+            background: pink;
+        }
+
+        .animation {
+            display: block;
+            z-index: 5;
+            animation-name: ana;
+            -webkit-animation:ana .6s;
+        }
+        @-webkit-keyframes ana{
+            from{
+                -webkit-transform:scale(0.6) }
+            to{ -webkit-transform: scale(1) }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+    <div class="main animation">
+        <h2>个人介绍0</h2>
+        <p>百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁</p>
+    </div>
+    <div class="main" style="background:palegoldenrod">
+        <h2>专业技能1</h2>
+        <p>百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁</p>
+    </div>
+    <div class="main" style="background:powderblue">
+        <h2>工作经历2</h2>
+        <p>百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁</p>
+    </div>
+    <div class="main" style="background: #bce8f1">
+        <h2>联系我们3</h2>
+        <p>百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁百度校园倾听来自校园的声音，展开与校园师生的互动，是百度与学校沟通的桥梁</p>
+    </div>
+</div>
+</body>
+</html>
+<script language="javascript" >
+    var jobInfo ={
+        hasMus : false,
+        newClass: function(ele){
+            var ele = ele || {};
+            if(this.hasMus==false){
+                this.init.prototype = jobInfo;
+                this.hasMus = true;
+            }
+            return new this.init(ele);
+        },
+        init:function(ele){
+            this.item = 0;
+            this.wrap = ele.wrap;
+            this.len = ele.len;
+            this.main = ele.main;
+            this.bindTouch(ele);
+        },
+        bindTouch : function(ele){
+            var _this = this;
+            var page ={
+                x:0,
+                y:0
+            }
+            this.wrap.addEventListener('touchstart',function(e){
+                page.x = e.changedTouches[0].pageX;
+                page.y = e.changedTouches[0].pageY;
+            })
+            this.wrap.addEventListener('touchend',function(e){
+
+                var endPageX = e.changedTouches[0].pageX - page.x;
+                var endPageY = e.changedTouches[0].pageY - page.y;
+                if(Math.abs(endPageY)>50){
+                    endPageY>0?_this.prePage():_this.nextPage();
+                }
+
+            })
+        },
+        prePage : function(){
+            if(this.item == 0){
+                this.item = this.len-1;
+            }else{
+                this.item --;
+            }
+            this.addAnimation(this.item);
+        },
+        nextPage : function(){
+            this.item++;
+            if(this.item==this.len){
+                this.item=0
+            }
+            this.addAnimation(this.item);
+        },
+        addAnimation : function(item){
+            for(var i = 0; i<this.len;i++){
+                this.main[i].className = "main";
+            }
+            this.main[item].className='main animation';
+        }
+
+    };
+    var obj = {
+        wrap: document.getElementById('wrap'),
+        main : document.getElementsByClassName('main'),
+        len : document.getElementsByClassName('main').length
+    }
+    jobInfo.newClass(obj);
+</script>

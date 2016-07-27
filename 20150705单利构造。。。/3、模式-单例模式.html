@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式</title>
+</head>
+<body>
+<script type="text/javascript">
+    //把描述同一个事物的属性放在同一组中(分组)，避免使用全局变量时候的污染和覆盖
+    //单例模式-->就是我们的一个对象数据类型
+    //person1是我们的对象名，在单例模式中，相当于给新开辟的空间起了个名字，所以我们把对象名也叫作"命名空间"
+    //    var person1 = {
+    //        name: "魏娜",
+    //        age: 18
+    //    };
+    //    var person2 = {
+    //        name: "肖飞",
+    //        age: 48
+    //    };
+    //我们通常在项目中用单例模式做我们简单的 模块化开发
+    //我们项目中通常把一个页面按照功能模块进行拆分，由团队一起协作开发
+    //独立、相互调用
+
+    var util = {//这里面写的基本上都是各各模块公用的方法
+        sum: function () {
+
+        }
+    };
+    var loginRender = {
+        checkText: function () {
+            searchRender.submit();//调用别的命名空间下的方法
+            this.submit();//调用自己命名空间下的方法 建议大家使用this而不是我们的loginRender，防止命名空间一单改变，我们不用一个个在找到方法修改名字了
+        },
+        submit: function () {
+
+        }
+    };
+    loginRender.checkText();
+
+    var searchRender = {
+        submit: function () {
+            util.sum();
+        },
+        init: function () {
+
+        }
+    };
+
+
+    //单例模式相对于基本数据类型来说，实现了一次变革，但是单例模式也存在自己的不足--->单例模式是手工作业模式
+    var p1 = {
+        name: "申立莎",
+        age: 18,
+        writeJs: function () {
+            console.log("我的名字是:" + this.name + "，我会写js啦！");
+        }
+    };
+
+    var p2 = {
+        name: "张永帅",
+        age: 28,
+        writeJs: function () {
+            console.log("我的名字是:" + this.name + "，我会写js啦！");
+        }
+    };
+
+    //我们需要实现批量生产，提高我们的效率
+    //第二次变革：工厂模式
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, h2, input {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 24px;
+        }
+
+        body {
+            padding: 30px;
+        }
+
+        h2 {
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px dashed #ff0000;
+        }
+
+        #div1 {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border: 1px solid #37C7D4;
+            font-size: 36px;
+            border-radius: 10px;
+        }
+
+        input {
+            display: inline-block;
+            margin: 10px 10px 0 0;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<h2>问卷调查：蔡皓成同学长得是否丑，支持丑的加1，支持帅的减1？</h2>
+
+<div id="div1">0</div>
+<input type="button" value="长得丑" id="btn1"/>
+<input type="button" value="长得帅" id="btn2"/>
+
+<script type="text/javascript">
+    //window全局作用域在页面关闭前是不销毁的
+    //全局下声明定义的变量等是一直存在的
+
+    var oDiv = document.getElementById("div1");
+    var btnOne = document.getElementById("btn1");
+    var btnTwo = document.getElementById("btn2");
+    ~function () {
+        var count = 0;
+        btnOne.onclick = function () {
+            count++;
+            oDiv.innerHTML = count;
+        }
+        btnTwo.onclick = function () {
+            count--;
+            oDiv.innerHTML = count;
+        }
+    }();
+
+
+    //    btnOne.onclick = (function () {
+    //        var count = 0;
+    //        return function () {
+    //            count++;
+    //            oDiv.innerHTML = count;
+    //        }
+    //    })();//把自执行函数执行后返回的结果绑定给btnOne的click事件，返回的是一个function，所以当前自执行函数形成的这个私有的作用域不销毁了，里面的私有变量count也不销毁了
+    //btnOne.onclick=function(){
+    //      count++;
+    //      oDiv.innerHTML = count;
+    // }
+
+
+    //    var count = 0;
+    //    btnOne.onclick = function () {
+    //        count++;
+    //        oDiv.innerHTML = count;
+    //    }
+    //    //btnOne按钮手动点击的时候，执行我们给事件绑定的函数,执行函数就会形成私有的作用域(开始了预解释...)
+    //    btnTwo.onclick = function () {
+    //        count--;
+    //        oDiv.innerHTML = count;
+    //    }
+    //    //虽然全局的变量可以解决这个问题，但是真实项目中是避免使用全局变变量的，防止太多的全局变量造成我们变量的冲突(防止全局变量的污染)
+
+
+    //    function fn() {
+    //        var count = 0;
+    //        return function () {
+    //            count++;
+    //            console.log(count);
+    //        }
+    //    }
+    //    var f = fn();//f=function(){count++;console.log(count);}
+    //    f();//1
+    //    f();//2
+    //    f();//3
+
+
+    //如果在私有作用域中，我们返回了一个引用数据类型的值，并且在外面用一个变量接收了这个返回的值，那么当前的这个私有的作用域就不销毁了
+    //在一个私有作用域中，我们定义了一个引用数据类型的值，并且把这个地址给了元素的绑定事件，这样当前的这个作用域也不销毁
+
+
+    //如何看当前作用域的上一级作用域呢(跟函数在哪执行的没有关系)？
+    //就看当前函数对应的堆内存，是在哪个作用域下定义的，在谁下面的定义的它的上级作用域就是谁！
+
+
+</script>
+</body>
+</html>

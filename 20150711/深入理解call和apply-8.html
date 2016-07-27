@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+function fn1(){alert(1);}
+function fn2(){alert(2)}
+
+fn1.call.call.call.call.call.apply.call.apply.call
+//第一点：call是定义在Function类的原型上的，所以Function类的实例可以执行这个call方法，也就是说fn1.call是没有问题的.Function.prototype
+//第二点：call本身也是Function类型的，那么在fn1.call的__proto__上也会有一个call
+//fn1.call();
+//张三.二大爷.二大爷.二大爷.二大爷
+//小明.前女友.前男友.大舅哥.三叔.远房表妹.请吃饭()
+var fn3=fn1.call.call.call;//只是让fn3指向Function.prototype.call;
+fn3.call.call.call(fn2);
+fn1.call(fn2);//fn2.fn1();如果fn1里没有用到this,则这行代码只相当于fn1();
+
+fn();
+//Function.prototype.call.call(fn2);
+//提示一：一个方法里的this是谁，就相当于谁在执行这个方法
+//当后边的call在运行的时候，让前边的call执行了，并且还让前边的call里的this指向了fn2（见提示一）;相当于fn2.call();
+var a=[];
+a.push(3);
+
+
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //求出出现多次的单词
+    var str = "this is my book my is a boy";
+    var reg = /\b[a-zA-Z]+\b/g;
+    var obj = {};
+    str.replace(reg, function () {
+        var cur = arguments[0];
+        obj[cur] >= 1 ? obj[cur]++ : obj[cur] = 1;
+    });
+    for (var key in obj) {
+        if (obj[key] > 1) {
+            console.log(key);
+        }
+    }
+    obj = null;
+
+
+</script>
+</body>
+</html>

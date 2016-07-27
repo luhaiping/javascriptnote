@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 28px;
+            color: #ff0000;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -150px;
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border: 3px solid #37C7D4;
+            background: #faeb9e;
+            cursor: pointer;
+            letter-spacing: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    //实现一个包含大小写字母和数字的4位验证码？
+    var area = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    //索引0-61
+    //我们想要在这个范围中随机找到四个字符，也就是随机找到四个索引，也就是在0-61之间随机的取出4个数
+    var oDiv = document.getElementById("div1");
+    oDiv.innerHTML = getCode();
+    oDiv.onclick = function () {
+        oDiv.innerHTML = getCode();
+    }
+    function getCode() {
+        var str = "";
+        for (var i = 0; i < 4; i++) {
+            var ran = getRandom(0, 61);
+            str += area.charAt(ran);
+        }
+        return str;
+    }
+    function getRandom(n, m) {
+        n = Number(n);
+        m = Number(m);
+        if (isNaN(n) || isNaN(m)) {
+            return Math.random();
+        }
+        if (n > m) {
+            var k = n;
+            n = m;
+            m = k;
+        }
+        return Math.round(Math.random() * (m - n) + n);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //原型继承：把父类A的一个实例放在子类B的原型上，相当于把A中的私有的属性和公有的属性都当做B的公有属性
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    }
+    //    function B() {
+    //        this.y = 200;
+    //    }
+    //    B.prototype = new A;
+    //    var b = new B;
+
+
+    //call继承：在B的函数中执行A函数，并且让A中的this变为B的一个实例b，这样的话相当于让b拥有x这个属性-->只能继承父类中的私有的属性，父类公有的属性不能继承，并且继承过来的都是实例的私有的属性
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    }
+    //    function B() {
+    //        //this-->b
+    //        this.y = 200;
+    //        A.call(this);
+    //    }
+    //    var b = new B;
+    //    console.log(b.x);//100
+    //    b.getX();//Error:b.getX is not a function
+
+    //混合继承(就是把call和原型继承混合在一起使用)
+
+    //把A中私有的和公有的都当做B私有的继承过来--和原型继承正好相反
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    };
+    //    function B() {
+    //        //this-->b
+    //        this.y = 200;
+    //        var temp = new A;
+    //        for (var key in temp) {
+    //            this[key] = temp[key];
+    //        }
+    //        temp = null;
+    //    }
+    //    var b = new B;
+    //    console.log(b);
+
+    function fn() {
+        //借用数组的slice方法实现将类数组转化为数组(兼容所有的浏览器)-->转换完成后，就可以使用数组的sort方法实现排序了
+//        var ary = Array.prototype.slice.call(arguments, 0);
+//        ary.sort(function (a, b) {
+//            return a - b;
+//        });
+
+        //不管是否兼容，我只想让arguments直接的使用数组的方法，那么只需要让arguments.__proto__指向Array.prototype就可以了
+        //arguments.__proto__ = Array.prototype;
+        //arguments.forEach(function (item, index, input) {
+            //item：每一次遍历出来的数组中的当前项
+            //index：当前项的索引
+            //input：原始的数组
+            //forEach是顶替了我们自己写for循环
+        //});
+        //forEach:遍历数组中的每一项(在IE6~8下不兼容)，它可以传递两个参数forEach([function],[context]),[context]是指定[function]中的this关键字的，默认是this是window(一般情况下第二个参数不需要传)
+    }
+    //fn(1, 2, 3, 4, 5, 6, 7, 8, 9);
+</script>
+</body>
+</html>

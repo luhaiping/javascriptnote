@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详细页</title>
+</head>
+<body>
+<div class="box">
+
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    function queryURLParameter(url) {
+        var reg = /([^?&=]+)=([^?&=]+)/g, obj = {};
+        url.replace(reg, function () {
+            obj[arguments[1]] = arguments[2];
+        });
+        return obj;
+    }
+
+    //window.location.href=xxx.html是跳转页面
+    //window.location.href不赋值的话，是获取当前页面的url地址
+    var obj = queryURLParameter(window.location.href);
+
+    $.ajax({
+        url: "http://sportswebapi.qq.com/kbs/matchDetail?mid=" + obj.mid,
+        type: "get",
+        dataType: "jsonp",
+        success: function (data) {
+            if (data && data.code === 0) {
+                var cur = data.data.matchInfo;
+                var str = "";
+                str += "<img src='" + cur.leftBadge + "'/>" + cur.leftName;
+                str += "<img src='" + cur.rightBadge + "'/>" + cur.rightName;
+                $(".box").html(str);
+            }
+        }
+    });
+</script>
+</body>
+</html>

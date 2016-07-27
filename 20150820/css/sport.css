@@ -1,0 +1,57 @@
+body, div, span, img {
+    margin: 0;
+    padding: 0;
+    font-family: "Î¢ÈíÑÅºÚ";
+    font-size: 12px;
+    -webkit-user-select: none;
+}
+
+img {
+    border: none;
+}
+
+.box {
+    margin: 20px auto;
+    padding: 0 0 15px 15px;
+    width: 530px;
+    border: 1px solid red;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.box .list {
+    float: left;
+    margin: 15px 15px 0 0;
+    width: 250px;
+    height: 100px;
+    background: #ccc;
+    cursor: pointer;
+}
+
+.box .list .home, .box .list .away {
+    float: left;
+    width: 100px;
+}
+
+.box .list .away {
+    float: right;
+}
+
+.box .list .home img, .box .list .away img {
+    margin-left: 10px;
+    width: 80px;
+    height: auto;
+}
+
+.box .list .home span, .box .list .away span {
+    display: block;
+    text-align: center;
+}
+
+.box .list .score {
+    float: left;
+    width: 50px;
+    line-height: 100px;
+    font-size: 18px;
+    color: #fff;
+}

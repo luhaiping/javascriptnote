@@ -1,0 +1,1 @@
+[{"name":"杜慧杰","age":25,"score":99.5},{"name":"师鹏","age":28,"score":89},{"name":"杨建吉","age":24,"score":90},{"name":"杜慧杰","age":25,"score":99.5},{"name":"师鹏","age":28,"score":89},{"name":"杨建吉","age":24,"score":90},{"name":"杜慧杰","age":25,"score":99.5},{"name":"师鹏","age":28,"score":89},{"name":"杨建吉","age":24,"score":90}]

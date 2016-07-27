@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <style type="text/css">
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+
+        body, div, audio {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #audio1 {
+            display: none;
+        }
+
+        #playBtn {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -25px 0 0 -25px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: radial-gradient(#FFE0E9, #FFF38F, #FFCF78);
+            border-radius: 50%;
+            box-shadow: 0 0 30px 2px #ff00de;
+        }
+
+        .play {
+            -webkit-animation: play 1s linear 0s infinite;
+            animation: play 1s linear 0s infinite;
+        }
+
+        @-webkit-keyframes play {
+            0%, 100% {
+                box-shadow: 0 0 30px 2px #ff00de;
+            }
+            50% {
+                box-shadow: 0 0 60px 4px #ff00de;
+            }
+        }
+
+        @keyframes play {
+            0%, 100% {
+                box-shadow: 0 0 30px 2px #ff00de;
+            }
+            50% {
+                box-shadow: 0 0 60px 4px #ff00de;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="playBtn">暂停</div>
+<audio id="audio1" src="beyond.mp3" preload="none" loop></audio>
+
+<script type="text/javascript">
+    var playBtn = document.querySelector("#playBtn");
+    var oAudio = document.querySelector("#audio1");
+
+    playBtn.onclick = function () {
+        if (oAudio.paused) {
+            oAudio.play();
+            this.innerHTML = "暂停";
+            this.className = "play";
+        } else {
+            oAudio.pause();
+            this.innerHTML = "播放";
+            this.className = "";
+        }
+    };
+
+    window.onload = function () {
+        oAudio.preload = "auto";//首先让音频文件开始下载
+        //canplay：当前的音频文件可以播放了，但是中途可能因为网速的原因断断续续；canplaythrough：当前音频可以播放，并且不会出现卡顿；
+        oAudio.addEventListener("canplay", function () {
+            oAudio.play();//让音频文件开始播放
+            playBtn.style.display = "block";
+            playBtn.className = "play";
+        }, false);
+    }
+</script>
+<!--
+在没有H5之前我们想实现音视频用什么？--flash <embed></embed>
+
+H5中新增加了音视频:audio、video
+1、audio
+  我们支持三种音频格式：mp3(mpeg)、wav(wav)、ogg(ogg)
+  1)controls 是否显示浏览器默认的播放组件，默认是不显示的，true是显示,false是不显示
+  2)preload 开始加载页面的时候是否下载音频文件
+    auto：下载
+    metadata：只下载头部信息
+    none：什么都不下载
+    对于metadata和none只有在播放的时候，才开始下载我们的音频主体信息
+  3)autoplay 是否自动播放  true自动播放，false不自动播放，默认是false
+  4)loop 播放完成后是否自动循环播放 默认是false
+
+<audio>
+    --如果我们想要兼容主流的浏览器，需要准备三种常用的音频格式，按照如下的写法依次引入进来，浏览器支持哪一种就用哪一种--
+    <source src="beyond.mp3" type="audio/mpeg"/>
+    <source src="beyond.wav" type="audio/wav"/>
+    <source src="beyond.ogg" type="audio/ogg"/>
+    --对于以上三种都不支持的，我们可以不管，也可以采用传统的flash方案实现
+    your browser is not support audio~~~
+    <embed>采用传统的flash方案实现</embed>
+</audio>
+
+2、视频
+回去参考”移动端-第2讲 [HTML5元素].doc“，看最后的音视频处理
+-->
+</body>
+</html>

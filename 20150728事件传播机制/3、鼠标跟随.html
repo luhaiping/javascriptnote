@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标跟随</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            background: #ffff00;
+        }
+
+        #box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background: #22b909;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    oDiv.onmouseenter = function (e) {
+        e = e || window.event;
+        var oBox = document.getElementById("box");
+        if (!oBox) {
+            oBox = document.createElement("div");
+            oBox.id = "box";
+            oBox.style.top = e.clientY + 10 + "px";
+            oBox.style.left = e.clientX + 10 + "px";
+            this.appendChild(oBox);
+        }
+    }
+
+    oDiv.onmousemove = function (e) {
+        e = e || window.event;
+        var oBox = document.getElementById("box");
+        if (oBox) {
+            oBox.style.top = e.clientY + 10 + "px";
+            oBox.style.left = e.clientX + 10 + "px";
+        }
+    }
+
+    oDiv.onmouseleave = function (e) {
+        e = e || window.event;
+        var oBox = document.getElementById("box");
+        if (oBox) {
+            this.removeChild(oBox);
+        }
+    }
+
+    //onmouseenter和onmouseover的区别：onmouseenter不存在默认的事件传播机制
+</script>
+</body>
+</html>

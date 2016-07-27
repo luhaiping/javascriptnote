@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <style type="text/css">
+        body, div, span, p, h1, h2, img {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 12px;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box .box-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 5px;
+            height: 150px;
+        }
+
+        .box .box-top .match {
+            margin: 5px 15px 0 15px;
+            height: 90px;
+            border-bottom: 1px solid #0fb200;
+        }
+
+        .box .box-top .match .team {
+            height: 45px;
+        }
+
+        .box .box-top .match .team span {
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            font-size: 18px;
+        }
+
+        .box .box-top .match span.logo {
+            margin: 6px 5px 0 0;
+            width: 33px;
+            height: 33px;
+            border-radius: 50%;
+            background: url("human_skull.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .box .box-top .match span.score {
+            float: right;
+            color: red;
+        }
+
+        @media all and (min-width: 480px) {
+            .box-top {
+                height: 154px;
+            }
+
+            .box .box-top .match {
+                height: 94px;
+            }
+
+            .box .box-top .match .team, .box .box-top .match .team span {
+                height: 47px;
+                line-height: 47px;
+                font-size: 20px;
+            }
+
+            .box .box-top .match span.logo {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box-top">
+        <div class="tit"></div>
+        <div class="match">
+            <div class="team">
+                <span class="logo"></span>
+                <span class="name">美国洛杉矶湖人队</span>
+                <span class="score">128</span>
+            </div>
+            <div class="team">
+                <span class="logo"></span>
+                <span class="name">美国洛杉矶湖人队</span>
+                <span class="score">128</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+响应式布局：在不同的设备上进行符合当前设备的布局排列(DPI适配)
+
+高清屏(2倍屏幕)
+iphone：iphone5s及以下都是320宽度、iphone6是375宽度、iphone6 plus是414宽度(对应的效果图是1280)
+ipad、ipad mini：768*1024
+
+
+安卓手机：320、360、480、540、640、720...
+
+设计师给我们的效果图需要是 640 宽度的
+1、切图--效果图上的图片是多大的，你就给我切多大，比如：国家的logo在640下的尺寸是66*66，那么你就给我切一张66*66的图片
+2、所有外围做结构的大盒子宽度按照百分比设置，高度按照640效果图下面的一半设置，距离左右两边的margin也要除以一半...除了宽度以外，其余的都要按照当前效果图尺寸的一半进行设计
+3、如果屏幕的尺寸超过640，或者是在iphone6及iphone6 plus下，我们需要单独的把变模糊的图片，找设计师要更大的图，一般1280就可以满足了，如果单独做iphone6 plus的需要*2/3
+-->
+</body>
+</html>

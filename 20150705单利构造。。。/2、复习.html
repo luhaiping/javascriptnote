@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>面试题</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 16px;
+        }
+
+        div {
+            display: inline-block;
+            margin: 10px 0 0 20px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div name="color" style="background-color: red;">红</div>
+<div name="color" style="background-color: yellow;">黄</div>
+<div name="color" style="background-color: blue;">蓝</div>
+<div name="color" style="background-color: green;">绿</div>
+<div name="color" style="background-color: orange;">橙</div>
+<script type="text/javascript">
+    var ary = ["red", "yellow", "blue", "green", "orange"];
+    var oDivs = document.getElementsByName("color");
+
+    //1、问以下的代码能否实现我们的效果?不可以的话是为什么?你有什么办法可以解决?
+    //    for (var i = 0; i < oDivs.length; i++) {
+    //        oDivs[i].onmouseover = function () {
+    //            document.body.style.backgroundColor = ary[i];
+    //            //在执行的时候，里面的i不是私有的变量，用的是上级作用域window下的i，此时window下的i=5的，所以不能实现
+    //            //我之所以写i是因为想用的是每一个div的索引
+    //        }
+    //    }
+
+    //解决方案一：用自定义属性的方式存储我们每一个元素的索引
+    //    for (var i = 0; i < oDivs.length; i++) {
+    //        var oDiv = oDivs[i];
+    //        oDiv.index = i;
+    //        oDiv.onmouseover = function () {
+    //            document.body.style.backgroundColor = ary[this.index];
+    //        }
+    //    }
+
+
+    //解决方案二：在事件绑定函数执行和window中间添加一层不销毁的私有作用域，并且里面存储了我们需要的i的值
+    //    for (var i = 0; i < oDivs.length; i++) {
+    //        ~function (i) {
+    //            oDivs[i].onmouseover = function () {
+    //                document.body.style.backgroundColor = ary[i];
+    //            }
+    //        }(i);
+    //    }
+
+    //    for (var i = 0; i < oDivs.length; i++) {
+    //        oDivs[i].onmouseover = (function (i) {
+    //            return function () {
+    //                document.body.style.backgroundColor = ary[i];
+    //            }
+    //        })(i);
+    //    }
+
+    //    function fn(i) {
+    //        return function () {
+    //            document.body.style.backgroundColor = ary[i];
+    //        }
+    //    }
+    //    for (var i = 0; i < oDivs.length; i++) {
+    //        oDivs[i].onmouseover = fn(i);
+    //    }
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        li {
+            margin-top: 10px;
+            height: 30px;
+            line-height: 30px;
+            background: #faeb9e;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    console.log(oLis.length);
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].onclick = function () {
+            alert(this.innerHTML);
+        }
+    }
+    //5、模板引擎数据绑定（暂时先不讲）
+
+    //4、我如果用innerHTML，如果想不修改原有的三个，我不往ul1中添加即可
+    //    var u = document.createElement("ul");
+    //    var str = "";
+    //    for (var i = 3; i < 13; i++) {
+    //        str += "<li>" + (i + 1) + "</li>";
+    //    }
+    //    u.innerHTML = str;
+    //    document.body.appendChild(u);
+
+    //3、document.createDocumentFragment创建文档碎片：我们用DOM动态创建的方式创建10个li，但是不是每一次创建一个就添加到页面一个，而是创建一个就放在文档碎片中，都创建完，把文档碎片统一次添加到页面中,这样只重新渲染一次
+    //    var frg = document.createDocumentFragment();
+    //    for (var i = 3; i < 13; i++) {
+    //        var oLi = document.createElement("li");
+    //        oLi.innerHTML = i + 1;
+    //        oLi.onclick = function () {
+    //            alert(this.innerHTML);
+    //        }
+    //        frg.appendChild(oLi);
+    //    }
+    //    oUl.appendChild(frg);
+
+    //2、动态创建的方式：不改变原有的html元素，依次用DOM方法一个个的添加到我们的页面中,原来的元素不产生任何的影响，而且DOM本身存在映射的机制，不需要重新的获取，之前获取的自动会跟着改变
+    //优势：原有的html元素不需要改变
+    //弊端：添加一次就要重新渲染一次，非常的耗性能
+    //    for (var i = 3; i < 13; i++) {
+    //        var oLi = document.createElement("li");
+    //        oLi.innerHTML = i + 1;
+    //        oLi.onclick = function () {
+    //            alert(this.innerHTML);
+    //        }
+    //        oUl.appendChild(oLi);
+    //    }
+    //    console.log(oLis.length);//13 不需要重新的获取，也可以得到最新的数据-->DOM本身的映射机制
+
+    //1、innerHTML拼接字符串：首先把原有页面中的内容当做字符串拿出来，然后和我们最新的字符串进行拼接，最后把拼接完成的从新的放到页面中，浏览器开始重新解析我们有效的html标签
+    //弊端：之前给元素绑定的事件等内容，重新添加一次都消失了，需要重新的获取绑定
+    //优势：把所有数据拼接好后，整体添加到页面中，只重新渲染1次
+    //    var str = "";
+    //    for (var i = 3; i < 13; i++) {
+    //        str += "<li>" + (i + 1) + "</li>";
+    //    }
+    //    oUl.innerHTML += str;
+    //console.dir(oLis);//13 通过innerHTML增加新元素，之前获取的集合也会跟着改变
+
+    //在DOM中，我们开始有3个li，后面添加了10个li(不管用动态创建还是innerHTML的方式)，添加后我们都不需要重新的获取，就可以得到最新的13个li-->DOM的映射机制
+
+    //DOM中的回流、重绘
+    //回流：只要DOM结构发生改变(增加、删除、修改、位置调整...)，我们的浏览器都要重新渲染结构
+    //重绘：样式发生改变(颜色、字体...)
+
+
+</script>
+</body>
+</html>

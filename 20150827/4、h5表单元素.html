@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #txtEmail {
+            padding-left: 40px;
+            width: 300px;
+            height: 35px;
+            font-size: 15px;
+            border-radius: 5px;
+            background: url("img/logo.png") no-repeat left center;
+            outline: none;
+        }
+
+        /*--valid/invalid css进行验证，但是内容为空默认也是成功的，只有用户输入了内容，并且不符合格式才会验证出有问题,执行:invalid对应设置的样式--*/
+        #txtEmail:valid {
+            border: 1px solid #c5dbf2;
+        }
+
+        #txtEmail:invalid {
+            border: 1px solid #ff3333;
+        }
+
+        #div1 {
+            margin: 20px auto;
+            width: 500px;
+            height: 300px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<input type="email" id="txtEmail" placeholder="请输入邮箱~~"/>
+<input type="button" value="提交"/>
+
+<!--contenteditable应用h5新增加的这个属性实现简易的编辑器-->
+<div id="div1" contenteditable="true"></div>
+
+<script type="text/javascript">
+    var oBtn = document.querySelector("input[type='button']");
+    oBtn.onclick = function () {
+        var oEmail = document.querySelector("#txtEmail");
+        if (!oEmail.checkValidity()) {
+            console.log("输入的内容不符合格式~~");
+        }
+        //在js中，对于新增加的这几个类型，我们不需要编写正则进行验证，只需要使用自带的checkValidity()这个方法即可，如果返回格式，返回的true，不符合格式返回的是false
+    }
+</script>
+<!--
+H5中新增加了一些input表单的类型:
+//优势：
+//1、不同的类型可以默认调出当前手机中对应的物理虚拟键盘(例如：tel调出的就是数字键盘)，方便用户的输入操作~~
+//2、内置了对应格式的表单验证(我们可以用三种方式来验证：css:invalid验证、js:checkValidity()验证、正则验证)
+//3、对于表单元素新增加 placeholder='' 默认提示的效果(面试题：在不兼容的浏览器下，我们想用原生的js实现我们的placeholder效果如何的实现?)
+
+<input type="search"/>
+<input type="email"/>
+<input type="tel"/>
+<input type="url"/>
+<input type="number" max="100" min="10" value="10" step="10"/>
+<input type="range" max="100" min="0" value="25" step="5"/>
+<input type="date"/>
+<input type="time"/>
+
+传统的表单元素:
+<form>
+    <input type="text"/>
+    <input type="password"/>
+    <input type="checkbox"/>
+    <input type="radio"/>
+    <input type="button"/>
+    <input type="submit"/>
+    <input type="reset"/>
+    <input type="file"/>
+    <textarea></textarea>
+    <select>
+        <option>地区</option>
+        <option>北京</option>
+    </select>
+    <label></label>
+</form>
+-->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">点我啊</div>
+<script type="text/javascript">
+    //获取当前页页面的url地址
+    //var url = window.location.href;
+    //console.log(url);//http://localhost:63342/teacher/%E7%AC%AC%E5%9B%9B%E6%9C%9F/20150716/2%E3%80%81%E6%AD%A3%E5%88%99.html?name=zhufeng&age=6&student=35 (url中会把中文汉字进行默认的编码)
+
+    //点击div1的时候跳转到百度页面
+    //var oDiv = document.getElementById("div1");
+    //oDiv.onclick = function () {
+    //实现页面的跳转-->百度
+    //window.location.href在当前页面跳转:当前页面关闭，打开新的页面
+    //window.location.href = "https://www.baidu.com/";
+
+    //window.open：打开一个新的浏览器窗口实现页面跳转，原有的页面不关闭
+    //window.open("https://www.baidu.com/");
+    //}
+
+    //获取地址栏中URL地址问号后面的参数
+    //    function queryURLParameter(url) {
+    //        url = url || window.location.href;
+    //        var obj = {}, reg = /([^?=&]+)=([^?=&]+)/g;
+    //        var res = reg.exec(url);
+    //        while (res) {
+    //            obj[res[1]] = res[2];
+    //            res = reg.exec(url);
+    //        }
+    //        return obj;
+    //    }
+    function queryURLParameter(url) {
+        url = url || window.location.href;
+        var obj = {}, reg = /([^?=&]+)=([^?=&]+)/g;
+        url.replace(reg, function () {
+            var arg = arguments;
+            obj[arg[1]] = arg[2];
+        });
+        return obj;
+    }
+    var par = queryURLParameter();
+    console.log(par);
+
+    //http://localhost:63342/teacher/%E7%AC%AC%E5%9B%9B%E6%9C%9F/20150716/2%E3%80%81%E6%AD%A3%E5%88%99.html?name=zhufeng&age=6&student=35
+    //name=zhufeng
+    //age=6
+    //{name:"zhufeng",age:6,student:35}
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var num = 10;
+    var obj = {
+        num: 10,
+        fn: (function () {
+            this.num += 10;
+            num += 10;
+            var num = 10;
+            return function () {
+                this.num += 10;
+                num += 10;
+                console.log(num);
+            }
+        })()
+    };
+    var f = obj.fn;
+    f();
+    obj.fn();
+    console.log(num);
+    console.log(obj.num);
+</script>
+</body>
+</html>

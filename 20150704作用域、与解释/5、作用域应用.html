@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var name = "china", age = 5000;
+    //    ~function (name, age) {
+    //        console.log(name);//函数里面的name和age是私有的变量,虽然目前的值和window下一样，但是和window下的name和age没有半毛钱的关系
+    //        console.log(age);
+    //        name = "zhufeng";
+    //        console.log(name);//"zhufeng"
+    //    }(name, age);//给函数的两个形参在传值-->把window下的name和age的值传给私有作用域中的私有变量name和age
+    //    console.log(name);//"china"
+
+    //Zepto(移动端小jQuery类库) 的实现原理
+    //    var name = "小宝";
+    //    name = function (name) {
+    //        name = "大宝";
+    //        return name;
+    //    }(name);
+    //    console.log(name);
+
+    //jQuery的实现原理
+    //    var name = "小宝";
+    //    ~function (name) {
+    //        name = "大宝";
+    //        window.name="大宝";
+    //    }(name);
+    //    console.log(name);
+
+    //    ;(function(){
+    //        var jQuery=function(){}
+    //        window.jQuery=window.$=jQuery;
+    //    })();
+
+
+
+
+
+
+
+
+    //window下的预解释:a=function...
+    //    function a(x) {
+    //        return x * 2;
+    //    }
+    //    var a;//这一步没有赋值，var a;只是在声明
+    //    alert(a);
+    //alert() 首先把要输出的内容转换为字符串，然后在输出
+    //alert([1, 2, 3, 4, 5]);//调用了数组的toString方法
+    //alert({name: "zhufeng"});//toString ==>"[object Object]"
+
+
+    //函数：实名函数和匿名函数
+    //匿名函数:
+    //1、函数表达式：把函数定义的部分给一个变量或者一个事件
+    //var fn=function(){}
+    //oDiv.onclick=function(){}
+    //2、自执行函数：定义和执行一起完成了
+    //;(function(){})();
+    //~function(){}();
+    //!function(){}();
+    //+function(){}();
+    //-function(){}();
+
+
+    //window下的预解释：没有
+    //    f = function () {return true;}
+    //    g = function () {return false;}
+    //    ~function(){
+    //        //私有作用域下的预解释：g=function(){-->true}
+    //        if(g()&&[]==![]){
+    //            f=function(){return false;}//window下的f修改了
+    //            function g(){return true;}//私有的g 和外面没有半毛钱关系
+    //        }
+    //    }();
+    //    alert(f());//false
+    //    alert(g());//false
+    //自执行函数不参加我们window下的预解释
+
+    //在if条件中，不管条件写的多复杂，我们首先按照&& || 将大条件拆分成小条件
+    //if(g()&&[]==![]) ==>true 条件成立
+    //1、g() -->true
+    //2、[]==![]
+    //如果是两个值比较，首先按照==拆分左右的两部分
+    //1)[]
+    //2) ![] --> false
+    //[]==false -->true
+</script>
+</body>
+</html>

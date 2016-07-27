@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+//不支持JSON.parse和eval
+var strJSON='[{"name":"rose","age":22,"attr1":null,"attr2":false,"ary":[{},{}]},{"name":"rose","age":22,"attr1":null,"attr2":false},{"name":"rose","age":22,"attr1":null,"attr2":false},{"name":"rose","age":22,"attr1":null,"attr2":false}]';
+
+var str="a=9";
+eval(str);
+
+var obj={};
+{var a=0;var b=3;}//这个代码块
+{name:"rose"};//这不是定义对象，在一个代码块里，定义了一种"标签"的格式
+//{name:"rose",age:22};//这是错误
+//花括号有时候表示代码块，有时候表示数据（对象）
+//有两种情况，表示的是数据,在等号的右边，
+obj={};
+//第二种是：放在小括号里
+({}),(1,2,3,4,5)
+i=0;
+(i++,i++,i++)
+
+var obj=eval("("+"{name:'rose',age:22}"+")");
+</script>
+<script>
+({name:'rose',age:22})
+
+</script>

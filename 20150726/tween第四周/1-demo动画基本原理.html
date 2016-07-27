@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; background:red; position:absolute; top:100px; left:150px;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+//按时间比例运动
+/*时间在900ms，从现在的位置运动到1000px的终点，运动的距离是1000-150=850
+90ms，90/900*850+150
+180==170 + 150
+270，
+450
+当前的位置=消耗的时间/规定的总时间*需要运动的总路程+起始位置
+单步消耗的时间 15ms
+window.setInterval(step,15);
+*/
+var ele=document.getElementById("div1");
+var begin=ele.offsetLeft;//起点
+var target=1000;//终点
+var change=target-begin;//需要运动的总距离
+var duration=900;//规定的总时间
+var times=0;//当前消耗的时间
+var interval = 11;//单步时间间隔,就是每走一步的时间间隔
+
+function step(){	
+	//这个方法是负责一步步的往向走，step每执行一次，则动画往向动一步
+	times+=interval;
+	if(times<duration)//不到规定的时间，则继续走
+		ele.style.left=times/duration*change+begin+"px";
+	else{
+		ele.style.left=target+"px";//如果超时或正好到了指定的时间，则让ele停在终点
+		clearInterval(timer);
+	}
+}
+var timer=window.setInterval(step,interval);
+</script>

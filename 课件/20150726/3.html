@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--通过屏幕尺寸引入不同的样式文件，但是基本不这样用：不管你的media设定的条件是否成立，浏览器都会把两个样式文件下载下来，然后在根据条件选择合适的样式进行渲染-->
+    <!--<link type="text/css" rel="stylesheet" href="css/animate.css" media="all (min-width:320px) and (max-width:640px)"/>-->
+    <!--<link type="text/css" rel="stylesheet" href="css/news.css" media="all (min-width:641px)"/>-->
+    <script type="text/javascript">
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+            var oMetaV = document.createElement("meta");
+            oMetaV.name = "viewport";
+            oMetaV.content = "width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no";
+            document.head.appendChild(oMetaV);
+
+            var oMetaF = document.createElement("meta");
+            oMetaF.name = "format-detection";
+            oMetaF.content = "telephone=no";
+            document.head.appendChild(oMetaF);
+
+            var oMetaA = document.createElement("meta");
+            oMetaA.name = "apple-mobile-web-app-capable";
+            oMetaA.content = "yes";
+            document.head.appendChild(oMetaA);
+        }
+    </script>
+    <style type="text/css">
+        body, div, ul, li, img, p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            -webkit-user-select: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        img {
+            border: none;
+        }
+
+        .con {
+            padding-top: 20px;
+        }
+
+        .con .list li {
+            float: left;
+            width: 33.3333%;
+        }
+
+        .con .list li img {
+            display: block;
+            margin: 0 auto;
+            width: 92%;
+        }
+
+        .con .list li p {
+            margin: 0 auto;
+            width: 92%;
+        }
+
+        .con .list li p.one {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .con .list li p.two {
+            font-size: 14px;
+            line-height: 24px;
+        }
+
+        @media all and (max-width: 760px) {
+            .con .list li {
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+
+        .con .banner {
+            margin: 15px 10px;
+        }
+
+        .con .banner img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <div class="list">
+        <ul>
+            <li>
+                <img src="img/1.jpg"/>
+
+                <p class="one">全联接城市</p>
+
+                <p class="two">高性能的政务专网，实现政务、交警、消防等信息综合化指挥调度，为南京撑起安全无忧的保护伞。</p>
+            </li><li>
+                <img src="img/2.jpg"/>
+
+                <p class="one">全联接城市</p>
+
+                <p class="two">高性能的政务专网，实现政务、交警、消防等信息综合化指挥调度，为南京撑起安全无忧的保护伞。</p>
+            </li><li>
+                <img src="img/3.jpg"/>
+
+                <p class="one">全联接城市</p>
+
+                <p class="two">高性能的政务专网，实现政务、交警、消防等信息综合化指挥调度，为南京撑起安全无忧的保护伞。</p>
+            </li>
+        </ul>
+    </div>
+    <div class="banner">
+        <img src="img/1.png"/>
+    </div>
+    <div class="list">
+        <ul>
+            <li>
+                <img src="img/4.jpg"/>
+
+                <p class="one">全联接城市</p>
+
+                <p class="two">高性能的政务专网，实现政务、交警、消防等信息综合化指挥调度，为南京撑起安全无忧的保护伞。</p>
+            </li><li>
+                <img src="img/5.jpg"/>
+
+                <p class="one">全联接城市</p>
+
+                <p class="two">高性能的政务专网，实现政务、交警、消防等信息综合化指挥调度，为南京撑起安全无忧的保护伞。</p>
+            </li><li>
+                <img src="img/6.jpg"/>
+
+                <p class="one">全联接城市</p>
+
+                <p class="two">高性能的政务专网，实现政务、交警、消防等信息综合化指挥调度，为南京撑起安全无忧的保护伞。</p>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

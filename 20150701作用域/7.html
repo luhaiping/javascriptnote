@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function fn() {
+        var i = 0;
+        return function (n) {
+            console.log(n + (++i));
+        }
+    }
+    var f = fn();
+    f(5);
+    f(6);
+    fn()(5);//fn()() 意思是先让fn执行，返回了一个function，紧接着让返回的function继续执行
+    fn()(6);
+//window下的预解释：
+    //fn=xxxfff000; var f;
+//window下的代码执行：
+    //f=fn（）=xxxfff111;
+    //fn执行，形成一个私有作用域，
+    //fn下的预解释：
+      //var i;
+    //fn下的代码执行：
+       //i=0;
+    //返回的function会形成一个堆内存xxxfff111；
+
+  //执行函数function，传值f（5），返回的function形成一个私有作用域，
+    //返回的function的私有作用域预解释:
+    //无
+    //返回的function的私有作用域下的代码执行：
+    //console.log（5+（++0））--->console.log（6）;
+    //函数执行完成，这个私有作用域销毁。
+
+  //i++和++i：都是自身数值累加1
+    //只在于和其他的值进行运算的时候有区别
+    //i++:先拿i的值个其他值相加，完成后在执行我们的i的累加操作
+    //++i:先让i累加1，然后在让累加后的值个其他的值运算
+    //例如：
+    // n+i++ ==> n+i  i+1
+    // n+(++i) ==> i+1 n+i
+
+    //    var i = 12;
+    //    console.log(5 + i++);//17
+    //    console.log(i);//13
+
+    //    console.log(5 + (++i));//18
+    //    console.log(i);//13
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+     //实例创建个字面量创建的区别:
+     //1、实例创建的方式需要多转译一次，把具有特殊意思并且带\的都要多转译一次
+     //var reg = /\d/;
+     //var reg = new RegExp("\\d");
+
+     //2、在字面量方式中，用"//"包起来的都是我们的元字符，有具有特殊意义的元字符、代表出现次数的量词元字符、就代表本身意思的普通元字符
+     //字面量方式无法识别变量，实例创建的方式可以
+     //var c = "w100";
+     //var reg = /^"+c+"$/;//以"开头，出现一到多次，然后是c出现一到多次，最后以"结尾，而不是我们认为字符串拼接
+     //var reg = new RegExp("^" + c + "$");//只能包含w100的 /^w100$/
+     */
+
+    /*
+     //正则中还包含修饰符：i(ignoreCase 忽略大小写)、m(multiline 匹配换行)、g(global 全局匹配)
+     //var reg = /^[a-z]$/i;
+     //var reg = new RegExp("^[a-z]$", "i");
+     //console.log(reg.test("Z"));
+     */
+
+    /*
+     //exec:正则捕获的方法
+     //1、首先拿我们的字符串个正则进行匹配，如果不匹配，捕获的结果是null
+     //2、只有匹配才按照我们的规则进行捕获
+
+     //正则的捕获是贪婪的，默认按照匹配最长的捕获，例如：捕获的是2015而不是2
+     //如何取消正则的贪婪性：在量词元字符后面加?即可，?出现在普通元字符后面代表出现0-1次、如果出现在量词元字符后面代表取消正则的贪婪性
+
+     //正则的捕获是懒惰的，默认只捕获第一个匹配到的，例如：只得到了2015但是没有获取2014
+     //1)可以加一个全局的修饰符g，需要捕获几次我们就执行几次，这样就能都捕获到了
+     //    var reg = /\d+?/g;
+     //    var str = "zhufeng2015peixun2014";
+     //    var ary = [];
+     //    var res = reg.exec(str);
+     //    while (res) {
+     //        ary.push(res[0]);
+     //        res = reg.exec(str);
+     //    }
+     //    console.log(ary);
+
+     //通过exec如果可以获取到内容的话是一个数组(跟平时的长得不是很一样)
+     //例如：["2015", index: 7, input: "zhufeng2015peixun2014"]
+     //第一项是捕获到的内容；index是捕获开始的索引；input我们捕获的那个原始的字符串
+     */
+
+    /*
+     //分组：用小括号包起来的就是一个分组，也是大正则中的一个小的正则
+     //1、改变默认优先级
+     //2、可以进行分组捕获
+     //捕获到的是一个数组：第一项是大正则捕获的内容，接下来分别是每一个小分组捕获的内容，index是大正则捕获的开始索引
+     //var reg=/(\d+)([a-z]+)/;
+     //console.log(reg.exec("zhufeng2015peixun2014"));
+     //var ary=["2015peixun", "2015", "peixun", index: 7, input: "zhufeng2015peixun2014"]
+     //"2015peixun" 大正则捕获的内容 ary[0]
+     //"2015" 第一个分组捕获的内容 ary[1]
+     //"peixun" 第二个分组捕获的内容 ary[2]
+     //....
+
+     //我不想捕获第二个分组中的内容，只需要在小括号中加?:即可
+     //?: 在分组的最前面，只匹配不捕获
+     //var reg=/(\d+)(?:[a-z]+)/;
+     //console.log(reg.exec("zhufeng2015peixun2014"));
+     */
+
+    /*
+     //字符串中也有一个捕获的方法:match
+     //不加全局匹配符g的时候，和我们的exec一样，大正则和分组的内容都可以捕获到
+     //加g的时候，虽然执行一次就可以把所有大正则匹配的内容都捕获到了(而exec需要多次)，但是math在加上g的时候不能捕获小分组中的内容
+     //    var reg = /(\d+)/g;
+     //    var str = "zhufeng2015peixun2014";
+     //    console.log(str.match(reg));
+     //
+     //    console.log(reg.exec(str));
+     //    console.log(reg.exec(str));
+     */
+
+    /*
+     //分组引用:
+     //当我们发现正则中的某一部分需要和另外一部分匹配的内容的一模一样才可以，这样的情况下我们用分组引用来解决
+
+     //var reg = /(\d+)zhufeng\1/;//\1就是对第一个分组的引用
+     //\1代表的是和第一个分组(\d+)一模一样的内容
+     //console.log(reg.test("2015zhufeng2015"));//true
+     //console.log(reg.test("2015zhufeng2014"));//false
+
+     例如：foot wood good ... 中间两个字母需要一模一样
+     var reg = /^[a-zA-Z]([a-zA-Z])\1[a-zA-Z]$/;
+     console.log(reg.test("foot"));
+     */
+</script>
+</body>
+</html>

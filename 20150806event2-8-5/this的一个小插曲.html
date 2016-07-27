@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+function fn(){alert(this)}
+var a=[];
+a.push(fn);
+a[0]();//a["0"]();a.0();
+var b=a[0];
+b();
+var obj={abc:fn}
+obj.efg=fn;
+obj["abc"]();
+obj.efg();
+</script>

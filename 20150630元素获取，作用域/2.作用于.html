@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="按钮1"/><input type="button" value="按钮2"/><input type="button" value="按钮3"/><input
+        type="button" value="按钮4"/><input type="button" value="按钮5"/>
+
+<script type="text/javascript">
+    //    var ary = ["red", "yellow", "pink", "green", "blue"];
+    //    var oBtns = document.getElementsByTagName("input");
+    //    var oBody = document.body;
+    //    for (var i = 0; i < oBtns.length; i++) {
+    //        var oBtn = oBtns[i];
+    //        oBtn.index = i;
+    //        oBtn.onclick = function () {
+    //            oBody.style.backgroundColor = ary[this.index];
+    //        }
+    //    }
+    //自定义属性及作用(第一个项目编程技巧)
+    //我们把每一个元素当做一个对象，然后设置一个属性值，存储我们需要的信息，这样我们就把值存到这个对象里面了，不管在什么地方，当我们需要这个值的时候，只需要在自己本省上拿出来使用，而且这个值不会因为外界的变化而受到影响
+
+
+    /*
+     * 开辟一个新的空间，然后把函数体中的js代码当做字符串存起来的
+     * oBtns[0].onclick=function(){"alert(i);"}
+     * oBtns[1].onclick=function(){"alert(i);"}
+     * ...
+     * oBtns[4].onclick=function(){"alert(i);"}
+     * 循环绑定事件，给五个按钮绑定的，五个按钮事件绑定完，说明循环也完成了，循环的i=5
+     * 当页面加载完成，我们点击第二个按钮执行绑定的function，执行函数体中的代码，遇到了一个变量i，此时的i=5
+     */
+
+
+
+    //    var obts = document.getElementsByTagName("input");
+    //    function fn(ary) {
+    //        for (var i = 0; i < ary.length; i++) {
+    //            obts[i].onclick = (function (i) {
+    //                return function () {
+    //                    document.body.style.backgroundColor = ary[i];
+    //                }
+    //            })(i);
+    //        }
+    //    }
+    //    fn(ary);
+
+</script>
+
+
+</body>
+</html>

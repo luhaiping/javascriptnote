@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>面试题</title>
+</head>
+<body>
+    <input type="button"/>
+    <input type="button"/>
+    <input type="button"/>
+    <input type="button"/>
+    <input type="button"/>
+
+    <script type="text/javascript">
+        var oBtns = document.getElementsByTagName("input");
+        for (var i = 0; i < oBtns.length; i++) {
+            oBtns[i].onclick = function () {
+                alert("我是当前页面中的第" + (i + 1) + "个按钮！");
+            }
+        }
+        //上述想实现的是当点击页面中的某一个按钮的时候，弹出当前按钮在页面中是第几个，请问上述这名开发工程师的代码能否实现？如果不能请说明原因？那你的实现方式都会有哪些？
+        //不能
+        //原因：函数的定义和运行的机制(作用域和闭包)、异步编程思想
+        //解决方案：至少写出三种
+
+        //不管大小公司都必考的问题
+    </script>
+</body>
+</html>

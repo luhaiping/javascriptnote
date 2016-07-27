@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div{ width:100px; height:100px; position:absolute; top:0; left:0; overflow:hidden; cursor:move;}
+div img{ width:100px; height:100px; border:none; display:block;}
+</style>
+</head>
+
+<body>
+<div ><img src="img.png">1</div>
+<div style="left:100px; top:100px;"  ><img src="img2.png">2</div>
+<div style="top:150px;" ><img src="img3.png">3</div>
+<div style="left:200px; top:250px;" ><img src="img4.png">4</div>
+</body>
+</html>
+<script src="event2.js"></script>
+<script src="drag.js"></script>
+<script>
+
+var eles=document.getElementsByTagName("div");
+for(var i=0;i<eles.length;i++){
+	on(eles[i],"mousedown",down);	
+	on(eles[i],"selfDragEnd",drop);
+	on(eles[i],"selfDragStart",increaseIndex);
+	on(eles[i],"selfDragging",getSpeed);
+	on(eles[i],"selfDragEnd",fly);
+	on(eles[i],"selfDragEnd",changeBg);
+	on(eles[i],"selfDragStart",clearEffect);
+}
+function changeBg(){
+	this.innerHTML="";	
+	this.style.background="red";
+}
+function clearEffect(){
+	clearTimeout(this.dropTimer);
+	clearTimeout(this.flyTimer);	
+}
+function getSpeed(e){
+	if(!this.prevPosi){
+		this.prevPosi=this.offsetLeft;
+	}else{
+		this.speed=this.offsetLeft-this.prevPosi;
+		this.prevPosi=this.offsetLeft;	
+	}	
+}
+var index=1;
+function increaseIndex(){
+	this.style.zIndex=index++;
+}
+var flyTimer=null;
+var dropTimer=null;
+function fly(){//先要计算出速度来
+	this.speed*=.97;
+	var maxR=document.documentElement.clientWidth-this.offsetWidth;
+	var val=this.offsetLeft+this.speed;
+	if(val>=maxR){
+		this.style.left=maxR+"px";
+		this.speed*=-1;	
+	}else if(val<=0){
+		this.style.left=0;
+		this.speed*=-1;
+	}else{
+		this.style.left=val+"px";
+	}
+	if(Math.abs(this.speed)>=0.5){
+		this.flyTimer=window.setTimeout(processThis(fly,this),20);
+	}
+}
+
+var num=0;
+function drop(){
+	if(!this.dropSpeed){
+		this.dropSpeed=9;
+	}else{
+		this.dropSpeed+=9;
+	}
+	this.dropSpeed*=.97;
+	var maxB=document.documentElement.clientHeight-this.offsetHeight;
+	var val=this.offsetTop+this.dropSpeed;
+	if(val>=maxB){
+		this.style.top=maxB+"px";
+		this.dropSpeed*=-1;
+		num++;
+	}else{
+		this.style.top=val+"px";
+		num=0;
+	}
+	if(num<2){
+		this.dropTimer=window.setTimeout(processThis(drop,this),20);
+		//this.dropSpeed=null;
+	}else{
+		this.dropSpeed=null;
+		this.dropTimer=null;
+	}
+}
+</script>

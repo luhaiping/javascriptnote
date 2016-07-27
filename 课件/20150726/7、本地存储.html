@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+    //cookie和Web Storage都是明文存储，所以重要的信息不要存储到本地，及时存储到本地了，我们也要进行加密(md5.js)
+
+//    controlCookie.set("name","cindy");
+//    console.log(controlCookie.get("name"));
+//    controlCookie.clear("name");
+//    console.log(controlCookie.get("name"));
+
+    localStorage.setItem("name","cindy");
+    localStorage.setItem("age","18");
+    console.log(localStorage.getItem("name"));
+    //localStorage.removeItem("name");
+    //console.log(localStorage.getItem("name"));
+    localStorage.clear();
+
+
+
+
+
+
+</script>
+</body>
+</html>

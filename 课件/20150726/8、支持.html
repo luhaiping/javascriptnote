@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, h2, span {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        .con {
+            position: relative;
+            margin: 10px auto 0;
+            width: 300px;
+        }
+
+        .con h2 {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed #ff0000;
+            font-size: 20px;
+        }
+
+        .con div {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #37C7D4;
+            font-size: 20px;
+            border-radius: 3px;
+        }
+
+        .cc {
+            cursor: pointer;
+        }
+
+        #chou {
+            left: 100px;
+        }
+
+        .con div span {
+            margin-left: 2px;
+            color: #ff0000;
+        }
+
+        .c1 {
+            background: #37C7D4;
+        }
+
+        .c2 {
+            background: #c5dbf2;
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <h2>崔国伟帅吗？</h2>
+
+    <div id="shuai" class="cc">
+        帅<span>( 0 )</span>
+    </div>
+    <div id="chou" class="cc">
+        丑<span>( 0 )</span>
+    </div>
+</div>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/storage.js"></script>
+<script type="text/javascript">
+    var tool = new Tool;
+    var oCon = tool.getElementsByClass("con")[0];
+    var oDivs = tool.getChildren(oCon, "div");
+    var isClick = storage.get("isClick"), num = storage.get("num");
+    if (isClick != "null" && isClick != null) {
+        oDivs.myForEach(function (item, index) {
+            var siblings = tool.getSiblings(item), sibling = null;
+            for (var i = 0; i < siblings.length; i++) {
+                if (siblings[i].nodeName.toLowerCase() === "div") {
+                    sibling = siblings[i];
+                    break;
+                }
+            }
+            var id = item.getAttribute("id");
+            if (id === isClick) {
+                tool.addClass("c1", item);
+                tool.addClass("c2", sibling);
+            }
+            tool.removeClass("cc", item);
+            tool.removeClass("cc", sibling);
+
+            tool.getChildren(oDivs[0], "span")[0].innerHTML = "( " + num.split(",")[0] + " )";
+            tool.getChildren(oDivs[1], "span")[0].innerHTML = "( " + num.split(",")[1] + " )";
+        });
+    } else {
+        oDivs.myForEach(function (item, index) {
+            item.onclick = function () {
+                //数字累加
+                var oSpan = tool.getChildren(this, "span")[0];
+                var oSpanIn = oSpan.innerHTML, reg = /^\( (\d+) \)$/, oSpanNum = reg.exec(oSpanIn)[1];
+                oSpan.innerHTML = "( " + (Number(oSpanNum) + 1) + " )";
+                //样式操控
+                var siblings = tool.getSiblings(this), sibling = null;
+                for (var i = 0; i < siblings.length; i++) {
+                    if (siblings[i].nodeName.toLowerCase() === "div") {
+                        sibling = siblings[i];
+                        break;
+                    }
+                }
+                tool.removeClass("cc", this);
+                tool.removeClass("cc", sibling);
+                tool.addClass("c1", this);
+                tool.addClass("c2", sibling);
+                this.onclick = sibling.onclick = null;
+                //记录数据
+                var num1 = reg.exec(tool.getChildren(oDivs[0], "span")[0].innerHTML)[1];
+                var num2 = reg.exec(tool.getChildren(oDivs[1], "span")[0].innerHTML)[1];
+                storage.set("isClick", this.getAttribute("id"));
+                storage.set("num", "" + num1 + "," + num2 + "");
+            }
+        });
+    }
+</script>
+</body>
+</html>

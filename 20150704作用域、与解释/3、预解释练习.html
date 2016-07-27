@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    console.log(num);//undefined
+    //    var num = 13;
+    //    console.log(num);//13
+
+    //console.log(num);//Error:num is not defined：num没有定义(num在当前作用域下不存在)
+    //num = 13;//没有加var window.num=13; (非严格模式下) 以后定义变量var必加
+    //console.log(num);
+
+
+    //window下的预解释：var a;
+    //    if (!("a" in window)) {
+    //        var a = 13;
+    //    }
+    //    console.log(a);//undefined
+    //不管条件是否成立都要进行预解释
+    //in：检测某一个属性名是否属于这个对象，是的话返回true，不是的话返回false 例如："a" in window 检测a是否为window这个对象的一个属性
+
+
+    //    fn();//1
+    //    function fn(){
+    //        console.log(1);
+    //    }
+
+    //函数表达式
+    //    fn();//undefined() Error:fn is not a function (当前的fn不是一个有效的函数)
+    //    var fn=function(){
+    //        console.log(1);
+    //    }
+    //预解释的时候只对=左边的进行预解释，右边的不管(因为右边是值,我们不对值进行预解释)
+
+    //预解释的时候，如果发现重名了(不管是函数的还是变量的，名字一样也是重名)，不重复的声明，但是如果预解释的时候还需要定义的话，是需要重新的定义
+    //window下的预解释： fn=function(){2}
+    //    fn();//2
+    //    function fn() {
+    //        console.log(1);
+    //    }
+    //    fn();//2
+    //    var fn = 13;//fn=13
+    //    fn();//13() Error:fn is not a function
+    //    function fn() {
+    //        console.log(2);
+    //    }
+    //    fn();
+
+
+    //预解释是一种毫无节操的机制
+</script>
+</body>
+</html>

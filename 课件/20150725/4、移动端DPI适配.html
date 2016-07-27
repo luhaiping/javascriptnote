@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+                                                                   content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
+
+        .tit {
+            margin: 0 16px;
+            height: 35px;
+            line-height: 35px;
+            background: #efe8ca;
+        }
+
+        .tit span {
+            display: inline-block;
+        }
+
+        .tit span:nth-child(2) {
+            width: 35px;
+            height: 35px;
+            float: right;
+            background: url("img/1.png") no-repeat center center;
+            background-size: 50% 50%;
+        }
+
+        /*
+            媒体类型：all、screen、print....
+            媒体特性：指定的条件
+        */
+        @media all and (min-width: 480px) and (max-width: 639px) {
+            .tit {
+                height: 37px;
+                line-height: 37px;
+                font-size: 15px;
+            }
+        }
+
+        @media all and (min-width: 640px) and (max-width: 719px) {
+            .tit {
+                height: 39px;
+                line-height: 39px;
+                font-size: 16px;
+            }
+        }
+
+        @media all and (min-width: 720px) {
+            .tit {
+                height: 41px;
+                line-height: 41px;
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <div class="tit">
+        <span>苹果手机是2倍高清屏幕</span>
+        <span></span>
+    </div>
+</div>
+<script type="text/javascript">
+    //苹果手机是2倍高清屏幕，例如：一张100*100的图片，其实它是用200*200的图片在100*100的区域内显示出来的
+
+    //设计师给我们的效果图都是640px宽度的效果图，接下来我们在制作过程中：
+    //1、在切图的时候，效果图上有多大，我就切多大，比如：一个图片A是64*64，那么我切下来的图就是64*64
+    //2、在做静态页面的时候，我们外面的盒子(都是外层大的)宽度都自适应，接下来遇到的小盒子的宽度、高度、padding、margin、字体大小等都按照效果图标注尺寸的一半进行处理，例如：图片A是64*64，我们在处理的时候做成32*32的
+    //3、手机的尺寸会大于640,我们发现一些图片变大后会失真，在让设计师帮忙设计几张1280下的图片
+
+
+    //严格来说：(目前没人愿意这么做，要麻烦了)
+    //准备两张图片 32*32 a.png   64*64 a@2x.png
+    //默认显示a.png  在css或者js中都提供了检测当前是否为而被屏幕的方式，如果是2倍屏幕的话，我们让图片变为a@2x.png
+
+
+
+
+
+    //320(iphone5s及以下)  375(iphone6)  414(iphone6plus)
+    //360  480  540  640  (720  960  1080)
+
+
+</script>
+</body>
+</html>

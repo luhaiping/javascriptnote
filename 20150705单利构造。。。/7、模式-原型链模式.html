@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>原型链模式</title>
+</head>
+<body>
+<script type="text/javascript">
+    //原型链模式-->属性公有
+    //我们在类的原型链(prototype)上定义公有的属性
+
+    function Fn() {
+        this.a = function () {
+            console.log("a");
+        }
+        this.c = function () {
+            console.log(this);
+        }
+    }
+    Fn.prototype.b = function () {
+        console.log("b");
+    }
+    Fn.prototype.c = function () {
+        console.log(this);
+    }
+    var f1 = new Fn;
+    var f2 = new Fn;
+    //console.log(f1.a == f2.a);//false  a是私有的属性
+    //console.log(f1.b == f2.b);//true b是公有的属性
+
+    //console.dir(Fn.prototype.constructor);//Fn本身
+    //console.dir(Fn.prototype);
+
+    //查找的机制：首先在自己私有的属性上找，有的话就是私有的；没有的话，通过__proto__找到所属类的prototype上(这个是公有的)，如果有就是公有的属性；如果还没有，在通过所属类的prototype上的__proto__找到Object基类的prototype上，如果还没有就报错了！
+    //f1.a();
+    //f1.b();
+    //f1.hasOwnProperty();
+
+    //f1.a == f2.a;//false
+    //f1.b == f2.b;//true
+    //f1.__proto__.b==f2.__proto__.b;//true
+    //f1.c==f2.c;//false
+    //f1.__proto__.c==f2.__proto__.c;//true
+    //f1.b==Fn.prototype.b;//true
+    //f1.__proto__==Fn.prototype; //true
+    //f1.__proto__.b==Fn.__proto__.b;//false
+
+    //在原型模式上的this问题：方法执行，方法名前面有点，点前面的是谁this就是谁
+    //f1.c(); //this-->f1
+    //f1.__proto__.c();//this-->f1.__proto__或者Fn.prototype
+    //Fn.prototype.c();//this-->Fn.prototype
+
+    //原型模式中的新增加属性
+    //f1.d=function(){}//给f1新增加一个私有的属性d
+    //f2.d(); //f1增加的私有属性 f2并没有
+    //f1.__proto__.m=function(){}//在f1所属类的原型上增加一个公有的属性m
+    //f2.m(); //f1往公有里面增加的属性 f2也能用
+
+    //console.log(f1.__proto__.__proto__.hasOwnProperty("c"));//false  当前hasOwnProperty方法中的this是Object.prototype，而hasOwnProperty中查找的是当前this里面是否有"c"，而Object.prototype没有c，所以是false
+
+
+    //用constructor来检测数据类型：
+    //var ary=[];
+    //console.log(ary.constructor==Array);//true
+
+
+    //从下面开始，每一句话都是规定，不要问我为什么
+
+    //1、
+    //类(Fn)是一个函数数据类型，在js中函数即使函数数据类型也是对象数据类型
+    //function f() {}
+    //说它是函数数据类型，因为它可以执行:f() 而且形成私有的作用域、arguments、return、形参...
+    //说它是对象数据类型，因为它可以像我们的对象一样增加属性名和属性值，例如：
+    //f.zhuFeng = "我虽然是一个函数，我也是一个对象！";
+    //console.log(f.zhuFeng);
+    //这个属性和我们之前讲函数中的变量等没有半毛钱的关系
+
+    //2、每一个函数(类也是函数)都有一个天生自带的属性:prototype，这个属性存储的是一个对象数据类型的值，并且这个对象数据类型是浏览器天生给它开的空间
+    //在prototype属性对应的堆内存中，有一个天生自带的属性constructor，这个属性指向函数本身
+
+    //3、每一个对象数据类型也有一个天生自带的属性：__proto__，这个属性指向所属类的prototype
+    //在IE下不支持__proto__
+
+</script>
+</body>
+</html>

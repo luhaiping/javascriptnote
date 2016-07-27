@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="http://www.zhufengpeixun.cn" id="a1" >珠峰培训</a>
+事件兼容性问题总结
+1、事件对象本身：标准浏览器是一个自动传入的参数；IE是window.event;
+2、事件源e.target,e.srcElement;
+3、阻止事件默认行为
+4、阻止事件传播
+5、DOM2级事绑定的方法不同
+6、DOM2级事件绑定的方法，执行顺序问题
+7、DOM2级事件绽定的方法，this关键字不同
+8、e.pageX,e.pageY;
+</body>
+</html>
+<script>
+var ele=document.getElementById("a1");
+function fn1(e){
+	e.preventDefault();
+	e.stopPropagation();
+	//e=e||event;
+	/*if(e.preventDefault){
+		e.preventDefault();
+	}else{
+		e.returnValue=false;	
+	}
+	if(e.stopPropagation){
+		e.stopPropagation();
+	}else{
+		e.cancelBubble=true;
+	}*/
+	alert(this===ele);
+	//return false;
+}
+function fn2(){alert(2);}
+var n=0;
+function fn3(){
+	n++;
+	if(n===3){
+		unbind(ele,"click",fn2);
+		unbind(ele,"click",fn3);
+		unbind(ele,"click",fn4);	
+	}
+	alert(3);
+
+}
+function fn4(){alert(4);}
+function fn5(){alert(5);}
+function fn6(){alert(6);}
+function fn7(){alert(7);}
+function fn8(){alert(8);}
+function fn9(){alert(9);}
+function fn10(){alert(10);}
+function fn11(){alert(11);}
+function fn12(){alert(12);}
+
+function bind(ele,type,fn){
+	if(ele.addEventListener){
+		ele.addEventListener(type,fn,false);
+	}else if(ele.attachEvent){
+		//在JS里，那一个方法是用来强制改变this指向的：call和apply
+		
+		
+		
+		if(!ele["aEvent"+type]){
+			ele["aEvent"+type]=[];
+		}
+		
+		var a=ele["aEvent"+type];
+		
+		for(var i=0;i<a.length;i++){//循环判断fn是否已经被绑定过
+			if(a[i].photo==fn)return;//如果此方法被处理，则直接退出
+		}
+		function fnTemp(){fn.call(ele)}
+		fnTemp.photo=fn;
+		a.push(fnTemp)
+		ele.attachEvent("on"+type,fnTemp);
+		
+	}
+}
+
+
+function unbind(ele,type,fn){
+	if(ele.removeEventListener){
+		ele.removeEventListener(type,fn,false);
+	}else if(ele.detachEvent){
+		var a=ele["aEvent"+type];
+		if(a&&a.length){
+			for(var i=0;i<a.length;i++){
+				if(a[i].photo==fn){
+					ele.detachEvent("on"+type,a[i]);
+					a.splice(i,1);
+				}
+			}
+		}
+		
+	}
+	//在移除绑定的时候，IE是当下一次轮询程序池的时候再起作用
+}
+/*bind(ele,"click",fn1);
+bind(ele,"click",fn1);
+bind(ele,"click",fn1);
+bind(ele,"click",fn2);
+bind(ele,"click",fn3);
+bind(ele,"click",fn4);*/
+
+function on(ele,type,fn){//登记记录
+	if(!ele["myOnEvent"+type]){
+		ele["myOnEvent"+type]=[];	
+	}
+	var a=ele["myOnEvent"+type];
+	for(var i=0;i<a.length;i++){
+		if(a[i]==fn)return;//如果fn这个方法在数组里存在，则不要再重复保存了	
+	}
+	a.push(fn);
+	bind(ele,type,run);//注意：真正和事件约定的方法是run
+}
+
+function run(e){
+	e=e||window.event;
+	if(!e.target){//这些都是处理IE不支持以下方法的问题
+		e.target=e.srcElement;
+		e.stopPropagation=function(){e.cancelBubble=true;}	
+		e.preventDefault=function(){e.returnValue=false}
+		e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+e.clientX;
+		e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+e.clientY;
+		
+	}
+	var a=this["myOnEvent"+e.type];
+	if(a&&a.length){
+		for(var i=0;i<a.length;i++){
+			a[i].call(this,e);
+			//a[i]();	
+		}
+	}	
+}
+
+function off(ele,type,fn){
+	
+}
+on(ele,"click",fn1);
+on(ele,"click",fn2);
+on(ele,"click",fn3);
+on(ele,"click",fn4);
+on(ele,"click",fn5);
+on(ele,"click",fn6);
+on(ele,"click",fn7);
+on(ele,"click",fn8);
+on(ele,"click",fn9);
+on(ele,"click",fn10);
+on(ele,"click",fn11);
+on(ele,"click",fn12);
+</script>

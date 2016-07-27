@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -75px 0 0 -75px;
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            background: -webkit-radial-gradient(#c5dbf2 20%, #FFE0E9 50%, #FFCF78);
+            box-shadow: 0 0 50px 5px #ff3333;
+            cursor: pointer;
+            /*-webkit-transition: all 1s linear 0s;*/
+            /*transition: all 1s linear 0s;*/
+            /*-webkit-animation: zhaoying 2s linear 0s infinite;*/
+            /*animation: zhaoying 2s linear 0s infinite;*/
+        }
+
+        /*#div1:hover {*/
+        /*-webkit-transform: translate3D(100px, 100px, 0);*/
+        /*transform: translate3D(100px, 100px, 0);*/
+        /*}*/
+
+        /*@-webkit-keyframes zhaoying {*/
+        /*0% {*/
+        /*top: 50%;*/
+        /*}*/
+        /*25% {*/
+        /*top: 60%;*/
+        /*}*/
+        /*50% {*/
+        /*top: 50%;*/
+        /*}*/
+        /*75% {*/
+        /*top: 40%;*/
+        /*}*/
+        /*100% {*/
+        /*top: 50%;*/
+        /*}*/
+        /*}*/
+    </style>
+    <link type="text/css" rel="stylesheet" href="css/animate.css"/>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    oDiv.onclick = function () {
+        this.className = "animated hinge";
+        var that = this;
+        var timer = window.setTimeout(function () {
+            window.clearTimeout(timer);
+            that.className = "";
+        }, 2000);
+    }
+</script>
+<!--
+http://caniuse.com/ 检测兼容的网站
+
+border-radius 盒子圆角
+box-shadow 盒子阴影
+text-shadow 文本阴影
+-webkit-gradient 背景颜色渐变 linear radial
+
+transition 属性(all整体变、width只有宽度变)、运动时间、运动方式(ease | linear | ease-in | ease-out | ease-in-out)、延迟时间
+transform：rotate、translate、scale、skew、matrix
+
+animation 动画名称(@-webkit-keyframes设置的)、运动时间、运动方式(ease | linear | ease-in | ease-out | ease-in-out)、延迟时间、运动的次数(infinite无限次运动)
+
+transition和animation的一个非常重要的区别：transition是真实改变了元素的位置信息来实现动画的，animation是模拟来实现，元素的样式并没有真实的发生改变，所以当元素运动完成后，样式还在第一帧的位置，所以我们通常使用animation来实现动画
+
+animation-fill-mode:设置动画完成后保留在哪一贞的位置
+none：默认值。不设置对象动画之外的状态
+forwards：设置对象状态为动画结束时的状态
+backwards：设置对象状态为动画开始时的状态
+both：设置对象状态为动画结束或开始的状态
+
+http://daneden.github.io/animate.css/  --animate.css 用animation来实现的css3动画库
+-->
+</body>
+</html>

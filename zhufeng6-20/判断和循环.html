@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>判断和循环</title>
+    <link rel="stylesheet" href="css/common.css"/>
+</head>
+<body>
+    <ul>
+        <li>黑龙江</li>
+        <li>辽宁</li>
+        <li>吉林</li>
+    </ul>
+
+</body>
+</html>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    //判断和循环
+    //判断可分为三种1 if else判断 switch case判断 3三元运算符  并且&& 或者||
+
+    var num = 88;
+    switch (num){
+
+    }
+    if(num < 0 || num>80){  //小括号内是循环的条件
+        //alert("正数");
+    }else if(num ===0){
+        //alert("零")
+    }else if(num ===0){
+        //alert("零")
+    }else if(num ===0){
+        //alert("零")
+    }else if(num ===0){
+        //alert("零")
+    }else if(num ===0){
+        //alert("零")
+    }else{
+       prompt("负数");
+    }
+
+    //switch case判断
+    switch (true){
+        case "":
+            break;
+        case "":
+            break;
+        //default都不符合执行
+    }
+
+    var num = 9;
+    switch (num){
+        case 9:
+            console.log(9);
+            break;
+        case 0:
+            console.log(0)
+            break;
+    }
+
+    //三元运算符
+    var numbe = "1000";
+    //(条件0 ? 条件为真要执行的代码 :条件为假要执行的代码
+    //(条件) ? 条件为真要执行的代码 :条件为假要执行的代码
+//    numbe === 1000 ? console.log(true) : console.log(false);
+    numbe == 1000 && console.log("这个是什么");
+    //if(){}
+
+    var a = 1>2 ? false :true;
+    //var a = true;
+
+    //var _this = this;
+    //js循环
+    //1 for(){}  2for in循环  3、while循环
+    //for(var i=0; i<5; i++){
+        //i=0 声明了初始值 循环开始的地方
+        //i<5 循环的条件   循环停止的条件
+        //i++ 单次循环后执行
+        //console.log(i);
+       // break; //终止循环
+       // continue; //跳出本次循环
+    //}
+
+    for(var i=0; i<10; i++){
+        if(i<8){
+            i+=2;
+            continue;
+        }
+        i+=3;
+        break;
+        console.log(i);
+    }
+    console.log(i);
+    //for in 循环  对象类型{"name":"zhufeng",age:8}
+    var person = {
+        "name":"tianxi",
+        "qq":121170784,
+        "age":29,
+        "adress":"辽宁省铁岭市"
+
+    }
+    for(var attr in person){
+        console.log(attr+"&&&&"+person[attr]);
+    }
+    //while循环
+    var num = 5;
+    while(num>0){ //循环的条件
+        console.log(num);
+        num--;
+    }
+    //console.log(num)
+
+
+</script>

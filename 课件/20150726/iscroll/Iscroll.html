@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title></title>
+    <style type="text/css">
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html,body{
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -webkit-text-size-adjust: none;
+        }
+
+        body,div,ul,li {
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        body {
+            font-size: 12px;
+            font-family: ubuntu, helvetica, arial;
+            overflow: hidden;
+          }
+
+        ul,li{
+            list-style: none;
+        }
+
+        #wrapper {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            bottom:0;
+            left: 0;
+            width: 100%;
+            background: #ccc;
+        }
+
+        #scroller {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            background-color: #a00;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        #scroller ul {
+            width: 100%;
+        }
+
+        #scroller li {
+            width: 120%;
+            height: 30px;
+            border-bottom: 1px solid #ccc;
+            background-color: #fafafa;
+            font-size: 14px;
+            line-height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="scroller">
+            <ul>
+                <li>开始</li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li class="last">结束</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="iscroll.js"></script>
+    <script type="text/javascript">
+        //在移动端如果想使用iscroll需要禁掉我们的touchmove事件
+        document.addEventListener('touchmove',function(e){e.preventDefault();},false);
+        var myScroll=null;
+        //myScroll=new IScroll("#wrapper");//默认纵向滚动,滚动区域有缓冲
+        //myScroll=new IScroll("#wrapper",{mouseWheel:true,scrollbars:true});//是否支持鼠标滚动、是否显示滚动条
+        //myScroll=new IScroll("#wrapper",{useTransform:true,useTransition:true});//使用的是css来设置动画
+        //myScroll=new IScroll("#wrapper",{bounce:true});//到边缘否有缓冲
+        //myScroll = new IScroll('#wrapper',{eventPassthrough:false,scrollX:true,scrollY: false,preventDefault:false});//横向跑马灯
+        //myScroll=new IScroll("#wrapper",{momentum:false});//在用户快速触摸屏幕时，你可以开/关势能动画。关闭此功能将大幅度提升性能。
+        //myScroll=new IScroll("#wrapper",{startX:0,startY:100});//默认情况下iScroll从0, 0 (top left)位置开始，通过此属性可以让滚动条从不同的位置开始滚动。
+        /*
+        myScroll=new IScroll("#wrapper",{tap:true});
+        document.querySelector("#wrapper").addEventListener("tap",function(e){
+            console.log(e.target);
+        },false);
+        */
+        //myscroll=new IScroll("#wrapper",{bounceEasing:'elastic',bounceTime:1200});
+
+        myScroll=new IScroll("#wrapper",{tap:true,mouseWheel:true,scrollbars:true});
+        myScroll.scrollToElement(
+                document.querySelector('#scroller li:last-child'),
+                0
+        );//null, null, IScroll.utils.ease.elastic
+        document.querySelector("#wrapper").addEventListener("tap",function(e){
+            console.log(e.target);
+        },false);
+        
+        window.setTimeout(function(){
+            document.querySelector("ul").innerHTML+="<li><li><li><li><li><li><li><li><li><li><li><li><li>增加<li>";
+            myScroll.refresh();
+            myScroll.scrollToElement(
+                    document.querySelector('#scroller li:last-child'),
+                    1000
+            );
+        },2000);
+
+
+    </script>
+</body>
+</html>

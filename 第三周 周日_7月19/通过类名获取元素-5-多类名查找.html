@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li>no class</li>
+            	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li>no class</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        
+        <li>no class</li>
+        <li>no class</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li class="tab promoted a b c">选项四</li>
+        <li class="a tab b promoted c ">选项四</li>
+        <li class="tab-abc">tab-abc</li>
+    </ul>
+</body>
+</html>
+<script>
+function byClass(strClass,eles){
+	var a=[];
+	var reg=new RegExp("(^| )"+strClass+"( |$)");
+	//var eles=document.getElementsByTagName("*");
+	for(var i=0;i<eles.length;i++){
+		var ele=eles[i];
+		if(reg.test(ele.className)){
+				a.push(ele);
+		}		
+	}
+	return a;
+}
+
+
+var str="  a b tab    promoted    ";
+var regTrim=/^ +| +$/g;
+str=str.replace(regTrim,"");
+
+var aClass=str.split(/ +/);
+console.log(aClass);
+var eles=document.getElementsByTagName("*");
+/*eles=byClass(aClass[0],eles);
+eles=byClass(aClass[1],eles);
+eles=byClass(aClass[2],eles);
+eles=byClass(aClass[3],eles);
+ */
+ for(var i=0;i<aClass.length;i++){
+	 eles=byClass(aClass[i],eles);
+ }
+ var result=eles;
+//验证结果是否正确
+for(var i=0;i<result.length;i++){
+	result[i].style.backgroundColor="red";
+	result[i].style.margin="10px";
+}
+</script>

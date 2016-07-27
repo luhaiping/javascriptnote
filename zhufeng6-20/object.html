@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>引用数据类型</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    //引用数据类型
+    //1 对象数据类型 2、函数
+    //{"属性名"：'属性值'} 由一组或多组属性名和属性值（键值对 key value）
+    var obj = {  //字面量创建方式
+        "name":"zhufeng",
+        "age": 6,
+        "teacher":"laogeng"
+    };
+
+    obj.student = "all"; //添加一对键值对
+    delete obj.student; //删除属性
+    obj.student = null;
+    delete obj['age'];
+    console.log(obj)
+   // console.log(obj.name); //方式固定不利于扩展
+   // console.log(obj["name"]) //中括号内可以用变量的值
+
+
+
+  //  var obj1 = new Object(); //实例创建方式
+
+    var a = new Array(); //数组
+    var date = new Date(); //时间
+    var reg = new RegExp(""); //正则
+    // ....
+
+
+</script>

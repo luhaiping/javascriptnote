@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+//JSON只是数据格式，只是一种约定的形式
+obj={name:"rose",age:22}
+obj={};
+obj={"name":"rose","age":22}//是JSON格式的JS对象
+//JavaScript严格对象表示法
+var str='{"name":"rose","age":22}';//JSON格式的字符串
+//关联数组
+//如果想把JS对象转变JSON字符串，传给后台或其它的编程语言
+//ECMA5,HTML5
+JSON.parse//把JSON格式的字符串转为JS对象
+JSON.stringify//和上面相反，把JS对象转化为JSON字符串
+
+var obj={name:"rose",age:22,gender:undefined,step:function(){},attr1:null,attr2:false}
+//试验一下看把一个对象转化为JSON字符串后，还能留下什么 
+console.log(JSON.stringify(obj));
+
+var str='{"name":"rose","age":22,"attr1":null,"attr2":false}';
+
+JSON.parse(str);
+//Unexpected token 不可预知的格式，不可预知的口令
+
+//复合的JSON格式
+var strJSON='[{"name":"rose","age":22,"attr1":null,"attr2":false,"ary":[{},{}]},{"name":"rose","age":22,"attr1":null,"attr2":false},{"name":"rose","age":22,"attr1":null,"attr2":false},{"name":"rose","age":22,"attr1":null,"attr2":false}]';
+var obj=JSON.parse(strJSON);
+for(var i=0;i<obj.length;i++){
+	console.log("第"+(i+1)+"行");
+	for(var attr in obj[i]){
+		console.log("属性名："+attr+",属性值:"+obj[i][attr])
+	}
+}
+
+</script>

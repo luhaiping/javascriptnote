@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="http://www.zhufengpeixun.cn" id="a1" >珠峰培训</a>
+事件兼容性问题总结
+1、事件对象本身：标准浏览器是一个自动传入的参数；IE是window.event;
+2、事件源e.target,e.srcElement;
+3、阻止事件默认行为
+4、阻止事件传播
+5、DOM2级事绑定的方法不同
+6、DOM2级事件绑定的方法，执行顺序问题
+7、DOM2级事件绽定的方法，this关键字不同
+8、e.pageX,e.pageY;
+</body>
+</html>
+<script>
+var ele=document.getElementById("a1");
+function fn1(e){
+	e=e||event;
+	if(e.preventDefault){
+		e.preventDefault();
+	}else{
+		e.returnValue=false;	
+	}
+	if(e.stopPropagation){
+		e.stopPropagation();
+	}else{
+		e.cancelBubble=true;
+	}
+	alert(this===ele);
+	return false;
+}
+function fn2(){alert(2);}
+var n=0;
+function fn3(){
+	n++;
+	if(n===3){
+		unbind(ele,"click",fn2);
+		unbind(ele,"click",fn3);
+		unbind(ele,"click",fn4);	
+	}
+	alert(3);
+
+}
+function fn4(){alert(4);}
+function fn5(){alert(5);}
+function fn6(){alert(6);}
+function fn7(){alert(7);}
+function fn8(){alert(8);}
+function fn9(){alert(9);}
+function fn10(){alert(10);}
+function fn11(){alert(11);}
+function fn12(){alert(12);}
+
+function bind(ele,type,fn){
+	if(ele.addEventListener){
+		ele.addEventListener(type,fn,false);
+	}else if(ele.attachEvent){
+		//在JS里，那一个方法是用来强制改变this指向的：call和apply
+		
+		function fnTemp(){fn.call(ele)}
+		//ele.fnTemp=fnTemp;
+		if(!ele["aEvent"+type]){
+			ele["aEvent"+type]=[];//定义一个数组，规则是：以aEvent为前缀，以事件类型为区分符。为什么要以type为区别符
+		}
+		/*ele.onclick
+		ele.onmouseover=fn
+		如果没有前缀，这个数组就是ele.click,ele.click是它固定的一个方法。这样我们自己定义的属性和原生的属性冲突了，则无效。就是为了最大可能的避免和原生的属性冲突，才加前缀
+		*/
+		var a=ele["aEvent"+type];
+		fnTemp.photo=fn;//photo属性是用来识别fnTemp是那个fn“化妆”而来的标识
+		a.push(fnTemp)
+		ele.attachEvent("on"+type,fnTemp);
+		//ele.attachEvent("on"+type,fn.call(ele));
+	}
+}
+
+
+function unbind(ele,type,fn){
+	if(ele.removeEventListener){
+		ele.removeEventListener(type,fn,false);
+	}else if(ele.detachEvent){
+		var a=ele["aEvent"+type];
+		if(a&&a.length){
+			for(var i=0;i<a.length;i++){
+				if(a[i].photo==fn){
+					ele.detachEvent("on"+type,a[i]);
+					a.splice(i,1);
+				}
+			}
+		}
+		
+	}
+	//在移除绑定的时候，IE是当下一次轮询程序池的时候再起作用
+}
+bind(ele,"click",fn1);
+bind(ele,"click",fn2);
+bind(ele,"click",fn3);
+bind(ele,"click",fn4);
+</script>

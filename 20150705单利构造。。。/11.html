@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    //console.dir(Object.prototype);//hasOwnProperty、toString、propertyIsEnumerable...
+    //console.dir([]);
+    //console.dir(String.prototype);
+
+    Array.prototype.myDistinct = function () {
+        //this-->ary
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            var cur = this[i];
+            if (obj[cur] == cur) {
+                this[i] = this[this.length - 1];
+                this.length = this.length - 1;
+                i--;
+                continue;
+            }
+            obj[cur] = cur;
+        }
+        obj = null;
+        return this;
+    }
+    var ary = [12, 23, 23, 12, 24, 34, 12];
+
+    //链式写法
+    //ary.sort(function(a,b){return a-b;}).reverse();
+    //console.log(ary);
+
+    //ary.myDistinct();
+    //console.log(ary);//[12, 23, 34, 24 , "myDistinct"] 正常的，把我们操作原型的方法在数组后面跟着，起到提示的作用
+
+    //实现链式写法很简单：方法执行完成一般来说返回一个this就搞定
+    //    ary.myDistinct().sort(function (a, b) {
+    //        return a - b;
+    //    });
+    //    console.log(ary);
+
+    //    console.dir(document.getElementById("div1"));
+    //    console.dir(document);
+    //    console.dir(window);
+</script>
+</body>
+</html>

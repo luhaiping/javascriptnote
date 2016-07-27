@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:0; left:0; background:green;}
+</style>
+</head>
+
+<body>
+<div id="div1"><img src="../event/img/smallPeony.jpg" width="100" height="100"></div>
+</body>
+</html>
+<script src="event4.js"></script>
+<script src="drag.js"></script>
+<script>
+alert(Math.ceil((Math.random()*7)));
+var oDiv=document.getElementById("div1");
+on(oDiv,"mousedown",down);
+on(oDiv,"selfDragging",getSpeed);//"selfDragging"叫事件标识符，move这个方法的发生
+on(oDiv,"selfDragEnd",drop);
+on(oDiv,"selfDragEnd",fly);
+
+function getSpeed(){
+	if(!this.prevPosi){
+		this.prevPosi=this.offsetLeft;
+	}else{
+		this.speed=this.offsetLeft-this.prevPosi;
+		this.prevPosi=this.offsetLeft;
+	}
+}
+
+var flyTime = null;
+function fly(){
+	this.speed*=0.95;
+	var val = this.offsetLeft+this.speed;
+	var l = document.documentElement.clientWidth - this.offsetWidth;
+	if(val>l){
+		this.style.left = l+"px";
+		this.speed*=-1;
+		}
+		else if(val<=0){
+			this.style.left = 0;
+			this.speed *=-1;
+			}
+		else{
+			this.style.left = val +"px";
+			}
+	if(Math.abs(this.speed)>=0.5){
+		flyTimer=window.setTimeout(processThis(fly,this),20);}
+}
+ function  processThis(fn,obj){
+	 return function(e){
+		 fn.call(obj,e);
+		 }
+	 }
+//宋晓双,张虎
+
+var flag=0;
+var dropTimer=null;
+function drop(){
+	if(!this.dropSpeed){
+		this.dropSpeed=9;	
+	}else{
+		this.dropSpeed+=9;	
+	}
+	this.dropSpeed*=.97;
+	var b=document.documentElement.clientHeight-this.offsetHeight;
+		
+	var val=this.offsetTop+this.dropSpeed;
+	//val = this.style.top+this.dropSpeed;	
+	if(val>=b){
+		this.style.top=b+"px";
+		this.dropSpeed*=-1;
+		flag++;//如果一直连续的到达边界，则flag会累加，则说明已经到达目的地了
+	}else{
+		this.style.top=val+"px";
+		flag=0;	
+	}
+	if(flag<2){
+		dropTimer=window.setTimeout(processThis(drop,this),20);
+	}
+}
+
+</script>

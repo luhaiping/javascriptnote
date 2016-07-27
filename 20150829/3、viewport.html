@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+            var oMeta = document.createElement("meta");
+            oMeta.name = "viewport";
+            oMeta.content = "width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no";
+            document.head.appendChild(oMeta);
+        }
+    </script>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            margin: 10px auto;
+            width: 300px;
+            height: 300px;
+            background: -webkit-radial-gradient(#c5dbf2, #FFE0E9);
+            -webkit-border-radius: 50%;
+            -webkit-box-shadow: 0 0 30px 1px #ff3333;
+        }
+    </style>
+</head>
+<body>
+<!--
+<meta name='viewport'/>
+viewport:告诉当前的浏览器按照多大的宽度来渲染我们的页面，在pc端viewport不需要加，当前浏览器有多宽就按照多宽来渲染；但是在移动端，viewport是系需要加的，如果不添加的话，默认的渲染的宽度是980；
+
+所以做移动端页面，下述需要添加：
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+除了viewport以外，我们通常在加上以下两个meta标签:
+<meta name="format-detection" content="telephone=no"/> 禁止浏览器默认让页面中的数字当做电话号码，如果某一个数字就是电话，我们想实现，点击数字，自动拨号：
+    <a href='tel:13041086186'>13041086186</a> 打电话
+    <a href='sms:13041086186'>13041086186</a> 发短信
+
+<meta name="apple-mobile-web-app-capable" content="yes"/> 在safari浏览打开的时候，我们把浏览器自带的工具条隐藏
+
+
+UC和QQ浏览器中自己私有的meta标签：http://devework.com/uc-qq-brower-meta.html#733669-qzone-1-9869-756ee583fe22f0b012d740fae39f1d87
+-->
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+li{ list-style:none;}
+#menu span{ background:green; margin:10px; }
+#menu span.close::before{
+	line-height:24px;
+	content:"+";
+	font-size:24px;}
+#menu span.open::before{ content:"-"; font-size:24px; line-height:24px;}
+</style>
+</head>
+
+<body>
+<div id="menu">
+	<ul>
+        <li><span>第一级一一一一一</span>
+        	<ul>
+            <li><span>第二级一一一一一</span></li>
+            <li><span>第二级二二二二二</span></li>
+            <li><span>第二级三三三三三</span>
+            <ul>
+                <li><span>第三级一一一一一</span></li>
+                <li><span>第三级二二二二二</span></li>
+                <li><span>第三级三三三三三</span></li>
+                <li><span>第三级四四四四四</span></li>
+                <li><span>第三级五五五五五</span>
+                <ul>
+        <li><span>第一级一一一一一</span></li>
+        <li><span>第一级二二二二二</span>
+        <ul>
+        <li><span>第一级一一一一一</span></li>
+        <li><span>第一级二二二二二</span>
+        	<ul>
+        <li><span>第一级一一一一一</span></li>
+        <li><span>第一级二二二二二</span></li>
+        <li><span>第一级三三三三三</span></li>
+        <li><span>第一级四四四四四</span></li>
+        <li><span>第一级五五五五五</span></li>    
+    </ul>
+        
+        </li>
+        <li><span>第一级三三三三三</span></li>
+        <li><span>第一级四四四四四</span></li>
+        <li><span>第一级五五五五五</span></li>    
+    </ul>
+        
+        </li>
+        <li><span>第一级三三三三三</span></li>
+        <li><span>第一级四四四四四</span></li>
+        <li><span>第一级五五五五五</span></li>    
+    </ul>
+                </li>    
+            </ul>
+            
+            
+            </li>
+            <li><span>第二级四四四四四</span></li>
+            <li><span>第二级五五五五五</span></li>    
+        </ul>
+        
+        </li>
+        <li><span>第一级二二二二二</span>
+        	<ul>
+                <li><span>第一级一一一一一</span></li>
+                <li><span>第一级二二二二二</span></li>
+                <li><span>第一级三三三三三</span></li>
+                <li><span>第一级四四四四四</span></li>
+                <li><span>第一级五五五五五</span></li>    
+            </ul>
+        </li>
+        <li><span>第一级三三三三三</span>
+        <ul>
+                <li><span>第一级一一一一一</span></li>
+                <li><span>第一级二二二二二</span></li>
+                <li><span>第一级三三三三三</span></li>
+                <li><span>第一级四四四四四</span></li>
+                <li><span>第一级五五五五五</span></li>    
+            </ul>
+        </li>
+        <li><span>第一级四四四四四</span>
+        <ul>
+            <li><span>第一级一一一一一</span></li>
+            <li><span>第一级二二二二二</span></li>
+            <li><span>第一级三三三三三</span></li>
+            <li><span>第一级四四四四四</span></li>
+            <li><span>第一级五五五五五</span></li>    
+        </ul>
+        </li>
+        <li><span>第一级五五五五五</span></li>    
+    </ul>
+</div>
+</body>
+</html>
+<script src="../script/DOM.js"></script>
+<script>
+//先用JS初始化：默认只保留一级菜单项，下级菜单统统闭合。
+//把"终极菜单"用红背景，和"非终极菜单"区分开用绿色
+//已经关闭的“非终极菜单”要标识出来，用+,打开的非终极菜单用-来标识
+var oLis=document.getElementById("menu").getElementsByTagName("li");
+for(var i=0;i<oLis.length;i++){
+	var oLi=oLis.item(i);
+	var uls=oLi.getElementsByTagName("ul");
+	if(uls.length===0){//如果这个Li下没有ul了,则说明它是终极菜单
+		oLi.getElementsByTagName("span").item(0).style.backgroundColor="red";	
+	}else{
+		var oSpan=DOM.children(oLi,"span")[0];
+		DOM.addClass(oSpan,"close");
+		DOM.children(oLi,"ul")[0].style.display="none";
+	}
+}
+
+document.getElementById("menu").onclick=function(e){
+	e=e||window.event;
+	var t=e.target||e.srcElement;
+	if(t.tagName=="SPAN"){
+		var oUl=DOM.next(t);
+		if(oUl){
+			if(oUl.style.display=="none"){
+				oUl.style.display="block";	
+				t.className="open";
+			}else{
+				oUl.style.display="none";	
+				t.className="close";
+				//以下是：把当前这一级下的所有的子菜单项都找到，然后关闭
+				var oUls=oUl.getElementsByTagName("ul");
+				for(var i=0;i<oUls.length;i++){
+					var u=oUls[i];
+					u.style.display="none";
+					DOM.prev(u).className="close";	
+				}
+			}
+		}
+	}
+	
+		
+}
+</script>

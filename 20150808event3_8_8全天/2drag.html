@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div{ width:100px; height:100px; position:absolute; top:0; left:0; overflow:hidden; cursor:move;}
+div img{ width:100px; height:100px; border:none; display:block;}
+</style>
+</head>
+
+<body>
+<div ><img src="img.png">1</div>
+<div style="left:100px; top:100px;"  ><img src="img2.png">2</div>
+<div style="top:150px;" ><img src="img3.png">3</div>
+<div style="left:200px; top:250px;" ><img src="img4.png">4</div>
+</body>
+</html>
+<script src="event1.js"></script>
+<script>
+function down(e){
+	this.x=this.offsetLeft;
+	this.y=this.offsetTop;
+	this.mx=e.pageX;
+	this.my=e.pageY;
+	if(this.setCapture){
+		this.setCapture();
+		on(this,"mousemove",move);
+		on(this,"mouseup",up);
+		}else{
+			var that=this;
+			this.MOVE=function(e){move.call(that,e)};
+			this.UP=function(e){up.call(that,e)};
+			on(document,"mousemove",this.MOVE);
+			on(document,"mouseup",this.UP);
+			}
+			e.preventDefault();
+}
+function move(e){
+	this.style.left=e.pageX-this.mx+this.x+"px";
+	this.style.top=e.pageY-this.my+this.y+"px";
+}
+function up(e){
+	if(this.releaseCapture){
+		this.releaseCapture()
+		off(this,"mousemove",move)
+		off(this,"mouseup",up)
+	}else{
+		off(document,"mousemove",this.MOVE)
+		off(document,"mouseup",this.UP)
+	}
+}
+var eles=document.getElementsByTagName("div");
+for(var i=0;i<eles.length;i++){
+	on(eles[i],"mousedown",down);	
+}
+</script>

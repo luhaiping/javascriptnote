@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //思考题(基本数据类型和引用数据类型的本质区别)：
+    var num1 = 12;
+    var num2 = num1;//把num1代表的值赋值给num2这个变量
+    num2++;//num2=num2+1  num2+=1 在自身值的基础上加1
+    console.log(num1);
+
+    var obj1 = {age: 18};
+    var obj2 = obj1;
+    obj2.age = 20;
+    console.log(obj1.age);
+
+    //? 加""和不加""的区别
+    //personInfo["age"]=17;
+    //personInfo[age]=17;
+</script>
+</body>
+</html>

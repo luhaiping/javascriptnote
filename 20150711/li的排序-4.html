@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+//collection 集合
+//NodeList 节点列表
+var eles=document.getElementsByTagName("li");
+alert(eles.length);
+
+//可以把eles看成是DOM树的影射
+var a=[];
+
+a.length;
+</script>
+</head>
+
+<body>
+<ul>
+	<li>78</li>
+    <li>73</li>
+    <li>69</li>
+    <li>88</li>
+    <li>54</li>
+    <li>70</li>
+    <li>48</li>
+    
+</ul>
+	
+    
+   
+   
+</body>
+</html>
+<script>
+var eles2=document.getElementsByTagName("li");
+var a2=[1,2,3,4,5,6,7];
+a2.unshift(a2.pop());
+
+a==a2;
+eles==eles2
+
+alert(eles.length);
+a.length;
+//DOM集合的特点：第一、它是活的有生命的，随着文档结构的变化而变化
+//第二点、每次运行相同的表达式得到的集合是相同的DOM结构“影射”
+//第三点、DOM树的变化会树（DOM结构）会自动影响DOM集合（和第一个是相同的意思），但DOM集合不能被修改
+var parent=eles.item(0).parentNode;
+/*for(var i=0;i<eles.length;i++){
+	parent.insertBefore(ele[eles.length-1],parent.firstChild);
+}
+*/
+/*for(var i=eles.length-1;i>=0;i--){
+	parent.appendChild(eles[i]);
+	alert(i);//暂停的作用
+}*/
+//eles.sort();
+var a=[];
+//先把eles的元素转存到数组里，目的是可以进行排序
+for(var i=0;i<eles.length;i++){
+	a.push(eles[i]);//	
+}
+var a=[].slice.call(eles,0);
+//eles.slice(0)
+//用数组的sort方法时行排序
+a.sort(function(a,b){
+	return a.innerHTML-b.innerHTML;
+});
+//排序后DOM结构仍未发生变化
+//如果想让DOM结构发生变化，我们需要按着数组里的顺序重新排列DOM结构
+var parent=a[0].parentNode;
+for(var i=0;i<a.length;i++){
+	//a[i].parentNode.appendChild(a[i]);
+	parent.appendChild(a[i]);
+	alert(i);	
+}
+</script>

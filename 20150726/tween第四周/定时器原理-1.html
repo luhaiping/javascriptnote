@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ height:40px; background:black; color:white; text-align:center} 
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+var ele=document.getElementById("div1");
+function step(){
+	var n=new Date();
+	var m=n.getTime();
+	ele.innerHTML=m;
+	//timer=setTimeout(step,1000);
+	
+	//ele.onclick=step
+}
+	var timer=null;
+	ele.onclick=function(){
+		if(!timer){//没有运行的时候，让step隔1秒运行一次
+			timer=window.setInterval(step,1000);
+		}else{//如果运行，则让其停止
+			window.clearInterval(timer);//不但停止这个编号为timer的定时器队列
+			timer=null;//还要把定时器变量清空，以便下次判断
+		}
+		
+	}
+	//执于我见
+	
+</script>

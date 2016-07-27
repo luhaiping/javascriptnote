@@ -1,0 +1,36 @@
+html,body,div,ul,li,span{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#warp {
+    width: 900px;
+    height: 270px;
+    padding: 10px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: azure;
+
+}
+#warp ul li span{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: darkblue;
+    box-sizing: border-box;
+}
+.c1{
+    background: indianred;
+}
+.c2{
+    background: wheat;
+}
+.c3{
+    background: plum;
+}

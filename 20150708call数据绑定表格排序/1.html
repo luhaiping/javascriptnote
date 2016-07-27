@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var obj = {
+        x: 10,
+        moveX: function () {
+            //this-->obj
+            var that = this;
+            function setX(n) {
+                //this-->window
+                that.x = n;
+                //this.x = n;
+            }
+            setX(100);
+            //setX.call(obj, 100);
+            //setX.apply(obj, [100]);
+        }
+    };
+    obj.moveX();
+    console.log(obj.x);
+</script>
+</body>
+</html>

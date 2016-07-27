@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+
+    10、DOM库 insertAfter prepend hasClass 格式化时间 isType检测数据类型 setCss
+-->
+<script type="text/javascript">
+    //window.navigator.userAgent  获取浏览器的版本信息
+
+
+    //在一段字符串中取出重复的字符
+    //分析：什么样的算重复？出现两次及以上就算重复了--->我要计算字符串中每一个字符出现的次数，然后在把两次及以上的获取到
+    var str = "zhufengpeixunhuanyingnin";
+    //    var obj = {};
+    //    for (var i = 0; i < str.length; i++) {
+    //        var cur = str.charAt(i);
+    //        if (obj[cur] >= 1) {//已经存储过了，再出现的时候让出现的次数累加了
+    //            obj[cur] += 1;
+    //            continue;
+    //        }
+    //        obj[cur] = 1;
+    //    }
+    //    var ary = [];
+    //    for (var key in obj) {
+    //        if (obj[key] >= 2) {
+    //            ary.push(key);
+    //        }
+    //    }
+    //    obj = null;
+    //    console.log(ary);
+
+    //    var obj = {};
+    //    var reg = /./g;
+    //    var res = reg.exec(str);
+    //    while (res) {
+    //        var cur = res[0];
+    //        if (obj[cur] >= 1) {
+    //            obj[cur] += 1;
+    //        } else {
+    //            obj[cur] = 1;
+    //        }
+    //        res = reg.exec(str);
+    //    }
+    //    console.log(obj);
+
+    //    var obj = {}, reg = /./g;
+    //    str.replace(reg, function () {
+    //        var cur = arguments[0];
+    //        if (obj[cur] >= 1) {
+    //            obj[cur] += 1;
+    //        } else {
+    //            obj[cur] = 1;
+    //        }
+    //    });
+    //    console.log(obj);
+
+    //瀑布流实现的原理?
+    //1、有五个并排的div，宽度设置为固定值，高度自适应
+    //2、我们获取了多组图片数据，第一次我们拿出前五条数据，分别依次插入到五个div中，并且记录当前五个div的offsetHeight值(把这个五个值存储到数组中，然后数组按照由小到大排序)
+    //[{e:"div1",h:350},{e:"div2",h:400}...]
+    //3、我们在拿出五个数据，本次按照offsetHeight存储的值的由小到大的顺序依次的插入(循环数组，依次插入即可)，插入完成后，我们在重新的计算当前的高度，替换原有数组的数据
+    //4、以后重复操作即可
+
+    /*
+     请写出完整的验证函数，验证用户名合法性，要求：
+     a.长度不小于6位；
+     b.首字符必须是字母；
+     c.合法字符只能是数字，字母下划线。
+     */
+    //var reg = /^[a-zA-Z]\w{5,}$/;
+
+    //思考必须练习题：input属性type为password实现placeholder属性.
+
+
+    //    var foo = {a: 1, b: 2}, bar = [1, 2, 3];
+    //    var foo2 = foo, bar2 = bar;
+    //    foo2.a = 3;
+    //    bar2[0] = 4;
+    //    console.log(foo, bar);
+
+
+    //alert机制:把要输出的内容调用toString方法，转换为字符串，然后在输出
+    //alert({}) -->"[object Object]"
+    // {}.toString()  找到Object原型上的toString，而这个不是转换为字符串，而是检测数据类型的
+    //alert([]) -->""
+    // [].toString() 找到Array原型上的toString，有toString方法，将数组转换为字符串，假设没有的话，才会在继续找Object原型上的
+
+    //Function instanceof Object----》true
+    //Object instanceof Function----》true
+</script>
+
+
+
+</body>
+</html>

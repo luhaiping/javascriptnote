@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新闻列表实现隔行变色</title>
+    <style type="text/css">
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+            font: 14px "微软雅黑";
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #newList {
+            margin: 20px auto 0;
+            padding: 15px;
+            width: 500px;
+            border: 1px dashed #37C7D4;
+        }
+
+        #newList li {
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .color0 {
+            background: #faeb9e;
+        }
+
+        .color1 {
+            background: #37C7D4;
+        }
+
+        .color2 {
+            background: #22b909;
+        }
+
+        .color3 {
+            background: #BB3BD9;
+        }
+
+        .color4 {
+            background: #B00000;
+        }
+
+
+    </style>
+</head>
+<body>
+<ul id="newList">
+    <li>习近平：中美要从大处着眼 避免战略误判</li>
+    <li>十八大以来中央巡视首次触及铁路系统</li>
+    <li>刘姝威:乐视盈利能力下降 “烧钱”模式难持续</li>
+    <li>中缅天然气昆明东支线发生泄露事故 投产仅13天</li>
+    <li>Beats耳机百元成本引质疑 硬件厂商如何闷声赚大钱</li>
+    <li>习近平：中美要从大处着眼 避免战略误判</li>
+    <li>十八大以来中央巡视首次触及铁路系统</li>
+    <li>刘姝威:乐视盈利能力下降 “烧钱”模式难持续</li>
+    <li>中缅天然气昆明东支线发生泄露事故 投产仅13天</li>
+    <li>Beats耳机百元成本引质疑 硬件厂商如何闷声赚大钱</li>
+    <li>习近平：中美要从大处着眼 避免战略误判</li>
+    <li>十八大以来中央巡视首次触及铁路系统</li>
+    <li>刘姝威:乐视盈利能力下降 “烧钱”模式难持续</li>
+    <li>中缅天然气昆明东支线发生泄露事故 投产仅13天</li>
+    <li>Beats耳机百元成本引质疑 硬件厂商如何闷声赚大钱</li>
+    <li>习近平：中美要从大处着眼 避免战略误判</li>
+    <li>十八大以来中央巡视首次触及铁路系统</li>
+    <li>刘姝威:乐视盈利能力下降 “烧钱”模式难持续</li>
+    <li>中缅天然气昆明东支线发生泄露事故 投产仅13天</li>
+    <li>Beats耳机百元成本引质疑 硬件厂商如何闷声赚大钱</li>
+</ul>
+
+<script type="text/javascript">
+    //需求分析：
+    //1、获取所有的li，然后让每一个li按照一定的规则显示不同的背景颜色
+    //2、规则：奇数行只要让li的class值等于color0，让偶数行的li的class值等于color1就可以了
+
+    var newList = document.getElementById("newList");
+    var oLis = newList.getElementsByTagName("li");
+    for (var i = 0; i < oLis.length; i++) {
+        var cur = oLis[i];
+        cur.className = "color" + (i % 5);
+//        switch (i % 3) {
+//            case 0:
+//                cur.className="color0";
+//                break;
+//            case 1:
+//                cur.className="color1";
+//                break;
+//            default:
+//                cur.className="color2";
+//        }
+    }
+
+    //    for (var i = 0; i < oLis.length; i++) {
+    //        var cur = oLis[i];
+    //        //i % 2 === 0 ? cur.className = "color0" : cur.className = "color1";
+    //        //cur.className = i % 2 === 0 ? "color0" : "color1";
+    //        cur.className = "color" + (i % 2);
+    //    }
+
+
+    //    for (var i = 0; i < oLis.length; i++) {
+    //        //i=0 i是偶数 第一个li 奇数行  oLis[0]
+    //        //i=1 i是奇数 第二个li 偶数行  oLis[1]
+    //        //i是偶数代表的是奇数行，i是奇数代表的是偶数行
+    //        var cur = oLis[i];//把i当做我们的索引，获取每一次循环时候的li
+    //        //i%2  i/2取余数
+    //        var n = i % 2;
+    //        if (n === 0) {//i是偶数 奇数行
+    //            cur.className = "color0";//元素.className是设置元素的class属性值的
+    //        } else {//i是奇数 偶数行
+    //            cur.className = "color1";
+    //        }
+    //    }
+
+
+    //通过元素的标签名获取一组元素：getElementsByTagName
+    //console.dir(oLis);//HTMLCollection元素集合
+    //typeof oLis ==>"object"这个元素集合也是对象数据类型的
+    //属性是由规律的：
+    //length:代表获取这个集合的长度，oLis.length代表获取元素集合的长度
+    //数字属性名，从0开始逐级递增：每一个数字代表当前是第几个li，例如：0代表是的第一个li，1代表的是第二个li... 我们把代表位置的数字称之为”索引“  oLis[索引] 获取指定索引位置的li元素，例如：oLis[2]就是获取第3个li
+    //我们把拥有上述两个规律的集合叫做类数组
+
+
+</script>
+</body>
+</html>

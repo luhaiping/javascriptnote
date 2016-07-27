@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="div1">我是div1</div>
+</body>
+</html>
+<script>
+//call和apply方法：这两个方法是方法上的方法，是定义在Function.prototype上的方法，它由方法（每一个方法都是Function类的实例）来执行
+var a=[];
+a.unshift(0);
+function fn(){alert(this.innerHTML);}
+fn.call(document);//首先明确的是：是call在执行，call的执行的时候使fn也执行了，并且让fn执行的时候this指向call的第一个参数。call和fn里的this不一样
+//call和apply的作用：让执行它的方法执行并且让执行它的方法里的this关键字指向它的第一个参数
+//张三.eat();
+var innerHTML="我是全局变innerHTML";
+var obj={inerHTML:"我是obj的innerHTML"}
+fn.call(obj);
+fn.call(div1);
+fn.call();//如果一个方法运行的时候，不能确定this是谁，则系统认为this是window,这句代码相当于fn.call(window);
+fn.call(1);
+[].sort.call(eles)
+//call和apply功能相同，参数有区别
+
+</script>

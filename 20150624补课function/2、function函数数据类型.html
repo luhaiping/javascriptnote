@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>function运行机制</title>
+</head>
+<body>
+<script type="text/javascript">
+    //function在js中的学名叫做函数，他是数据类型中的一种
+    //而我们通常把function称之为一个方法或者一个功能
+
+    //一个function个其他的数据类型不太一样，它是由两部分组成的：
+    //定义一个功能
+    //function fn() {//fn是函数名字
+    //是功能实现的js代码，函数体
+    //}
+    //执行这个功能
+    //fn 代表的是这个函数本身
+    //fn(); 代表的是执行这个函数
+
+    //只定义一个函数，不执行的话，函数本身没有任何的意义
+    function sum() {
+        var total = 0;
+        total = 1 + 1;
+        console.log(total);
+    }
+    sum();
+    console.log(total);//total is not defined：total在这里没有定义，说明外面是拿不到函数里面的total的
+
+    //函数执行，其实就相当于让原先函数定义的时候，里面存储的代码字符串变成js代码，然后从上到下执行而已
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -150px;
+            width: 300px;
+            height: 300px;
+            border: 1px dashed #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    //通过三道腾讯面试题，复习我们的前两周知识
+
+    //第一道：
+    //    var num = Number("12.5px");//Number将其他的数据类型，"强制"转化为number数据类型，例如：如果转化的是字符串，要求所有的字符都必须是有效的数字,只要有一个不是结果就是NaN
+    //    if (num == 12.5) {
+    //        console.log(12.5);
+    //    } else if (num == NaN) {//NaN!=NaN
+    //        console.log(NaN);
+    //    } else if (typeof num == "number") {//typeof NaN="number"
+    //        console.log("number");
+    //    } else {
+    //        console.log("num is not a number");
+    //    }
+    //    console.log(typeof []);//"object"
+    //    console.log(typeof typeof typeof []);//"string"
+
+    //第二道：
+    //console.dir(oDiv);
+    //typeof oDiv="object" 获取的这个元素是一个对象数据类型
+    //typeof oDiv.style="object" 元素的style属性值是一个新的对象数据类型
+    var oDiv=document.getElementById("div1");
+    oDiv.style.backgroundColor="red";//ok
+
+    var oDivSty=document.getElementById("div1").style;
+    oDivSty.backgroundColor="green";//ok
+
+    var oDivStyBg=document.getElementById("div1").style.backgroundColor;
+    oDivStyBg="orange";//no
+
+
+
+</script>
+</body>
+</html>

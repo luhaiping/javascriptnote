@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数据类型检测</title>
+</head>
+<body>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //一、typeof
+    //用typeof检测数据类型返回的首先是一个字符串，然后包含我们的数据类型信息，例如："number"、"string"、"boolean"、"undefined"、"object"、"function"
+    //局限性：
+    //1、typeof null ==> "object"
+    //2、typeof [] ==> "object" 不能具体检测对象数据类型细分的那几个(数组、正则...)
+
+
+    //二、instanceof 检测某一个实例是否属于这个类
+    //var ary = [1, 2, 3];
+    //console.log(ary instanceof Array);//如果是true，说明ary是Array的一个实例，也就是ary是一个数组，反之，返回false则不是一个数组
+    //console.log(ary.constructor == Array);//通过constructor也可以
+    //局限性:
+    //1、在关于类之间通过原型链的方式实现继承的时候，我们的instanceof检测出来的结果是不准确的,例如：下面代码，Fn继承了Array这个类，但是f却不是一个数组，用f instanceof Array返回的结果却是true
+    //    function Fn() {}
+    //    Fn.prototype = new Array;//Fn继承Array这个类
+    //    var f = new Fn();
+    //    console.log(f instanceof Array);//true
+    //    console.log(f.constructor);//Array
+
+    //三：toString检测数据类型
+    //Array --> toString  将数组转换为字符串
+    //RegExp --> toString 将正则转换为字符串
+    //Date --> toString 将时间格式的数据转换为字符串
+    //......
+
+    //toString检测数据类型的原理：执行Object原型上的toString方法，让这个方法中的this变为我们要检测的那个值，就是实现了我们的数据类型检测
+    //    Object.prototype.toString = function () {
+    //        return "[object "+this.constructor+"]";
+    //    }
+
+    //Object --> toString 不是将对象转换为字符串，而是返回当前检测数据所对应的类的信息
+    //"[object 所属的类]"，例如："[object Number]"、"[object String]"、"[object Boolean]"、"[object Null]"、"[object Undefined]"、"[object Object]"、"[object Array]"、"[object RegExp]"、"[object Date]"、"[object Function]".....
+    //var obj = {name: ""};
+    //console.log(obj.toString());//不是"{name:''}" 而是"[object Object]"
+
+    //var num = 1;
+    //console.log(Object.prototype.toString.call(num));
+    //console.log({}.toString.call([]));
+
+    //    var ary = [];
+    //    var res = utils.isType(ary, "array");
+    //    console.log(res);
+</script>
+</body>
+</html>

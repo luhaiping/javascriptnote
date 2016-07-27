@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>js中常用的继承方式</title>
+</head>
+<body>
+<script type="text/javascript">
+    //1、原型链继承
+    //B继承A的私有的和公有的属性方法：B的原型链等于A的一个实例即可
+    //B把A的私有的和公有的属性方法都放在了B的公有属性上
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    }
+    //    function B() {
+    //        this.x = 200;
+    //    }
+    //    B.prototype = new A;
+    //    B.prototype.constructor = B;
+    //    var b = new B;
+    //    b.getX();//this -->b  console.log(b.x)
+
+
+    //2、call继承
+    //B的私有作用域中，我们执行A方法，把里面的this改变成B的一个实例即可
+    //只能继承A中私有的属性和方法，公有的不可以，并且把继承过来的属性和的方法当做B的私有的属性和方法
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    }
+    //    function B() {
+    //        A.call(this);//this-->b  执行A方法，把this改成B的一个实例b，A中代码执行的时候，this.x=100，就相当于b.x=100;
+    //        // 换个思路，我们执行A的时候，让里面的this变成了B的一个实例，也就是A中写的所有的this.xxx=xxx都是相当于给B的实例增加了
+    //    }
+    //    var b = new B;
+    //    console.log(b.x);//A的私有的可以继承
+    //    //b.getX();//公有的不能继承 Error
+
+
+    //3、混合继承模式：原型和call同时使用
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    }
+    //    function B() {
+    //        A.call(this);
+    //    }
+    //    B.prototype = new A;
+    //    B.prototype.constructor = B;
+    //    //会存在A的私有的在B的私有中存在，也在B的公有中存在
+    //    //一般项目中不需要解决这个问题，如果你要解决如何的处理
+    //    //    var a = new A;
+    //    //    for (var key in B.prototype) {
+    //    //        if (a.hasOwnProperty(key)) {
+    //    //            delete B.prototype[key];
+    //    //        }
+    //    //    }
+    //    var b = new B;
+    //    console.dir(b);
+
+
+    //4、和原型链正好相反，把A的私有和公有的都变为B的私有的
+    //    function A() {
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function () {
+    //        console.log(this.x);
+    //    }
+    //    function B() {
+    //        this.method = new A;
+    //        for (var key in this.method) {
+    //            this[key] = this.method[key];
+    //        }
+    //        delete this.method;
+    //    }
+    //    var b = new B;
+    //    console.dir(b);
+</script>
+</body>
+</html>

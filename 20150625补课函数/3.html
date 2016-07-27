@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数组的冒泡排序</title>
+</head>
+<body>
+<script type="text/javascript">
+    //冒泡排序的思想：当前项大于后一项，我们让两者交换位置
+    //var ary = [12, 8, 13, 6, 1];
+    /*
+     第一轮比较:
+     [8, 12, 13, 6, 1]
+     [8, 12, 13, 6, 1]
+     [8, 12, 6, 13, 1]
+     [8, 12, 6, 1, 13]
+     第一轮完成后，并没有达到最终的结果，但是我们发现最大的那个数到最后的位置了
+     第一轮比较了4次，因为不用和自己去比，五个数最多4次
+
+     第二轮比较：
+     [8, 12, 6, 1, 13]
+     [8, 6, 12, 1, 13]
+     [8, 6, 1, 12, 13]
+     第二轮比较3次，不用和自己比-1，第一轮已经放后面一个最大的了-1
+
+     第三轮比较：
+     [6, 8, 1, 12, 13]
+     [6, 1, 8, 12, 13]
+     第三轮比较2次，不用和自己比-1，前两轮放后面两个数了-2
+
+     第四轮比较:
+     [1, 6, 8, 12, 13]
+     第四轮比较1次，不用和自己比-1，前面三轮放了三个数-3
+
+
+     规律1：每一轮的比较都是将当前的最大数放在末尾的位置，一共有5个数，我最多需要将4个最大数分别放在末尾就实现排序了--->最多比较的轮数：ary.length-1轮
+     规律2：每一轮比较的次数也有规律，首先不用和自己比，所以最大比较ary.length-1次，还要把之前放后面的去掉
+     假如我用i代表轮数，j代表每轮的次数
+     i=0 第一轮  j=ary.length-1-0
+     i=1 第二轮  j=ary.length-1-1
+     i=2 第三轮  j=ary.length-1-2
+     ....
+     j=ary.length-1-i 这就是每一轮需要比较的次数
+
+     每一次都是让当前项和后一项进行比较的，如果当前项比后一项大的话，我们让两者交换位置：
+     var a=12;
+     var b=3; 如何让a和b交换位置
+
+     拿一个空瓶子就可以了
+     var c=a;
+     a=b;
+     b=c;
+     */
+    //    function sortAry(ary) {
+    //        for (var i = 0; i < ary.length - 1; i++) {//i是控制轮
+    //            for (var j = 0; j < ary.length - 1 - i; j++) {//j是控制每一轮比较的次数
+    //                if (ary[j] > ary[j + 1]) {//当前项大于后一项
+    //                    var temp = null;
+    //                    temp = ary[j];
+    //                    ary[j] = ary[j + 1];
+    //                    ary[j + 1] = temp;
+    //                }
+    //            }
+    //        }
+    //        return ary;
+    //    }
+    //    var ary = [12, 8, 13, 6, 1];
+    //    var newAry = sortAry(ary);
+    //    console.log(newAry);
+
+    //冒泡排序的原理：
+    //    ary.sort(function (a, b) {
+    //        //a:当前项
+    //        //b:后一项
+    //        return a - b;//当前项-后一项=大于0(当前项和后一项调换位置即可实现排序) 小于等于0
+    //        //console.log(a + "====" + b);
+    //    });
+
+
+    //type:不传或者传0代表升序，传1代表的是降序
+    function sortAry(ary, type) {
+        var newAry = ary.slice(0), temp = null;
+        for (var i = 0; i < newAry.length - 1; i++) {
+            for (var j = 0; j < newAry.length - 1 - i; j++) {
+                ary[j] > ary[j + 1] ? (temp = ary[j], ary[j] = ary[j + 1], ary[j + 1] = temp) : void 0;
+            }
+        }
+        newAry = !type ? newAry.reverse() : newAry;
+        return newAry;
+    }
+    var ary = [12, 8, 13, 6, 1];
+    var newAry = sortAry(ary);
+    console.log(newAry);
+
+
+    //不使用第三方变量，实现位置的交换
+    var a = 12;
+    var b = 13;
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    console.log(a);
+    console.log(b);
+</script>
+</body>
+</html>

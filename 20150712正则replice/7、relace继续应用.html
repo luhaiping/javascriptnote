@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+   // 2、将小写的数字转大写
+//        var str = "8872840";
+//        var ary = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+//        str = str.replace(/\d/g, function () {
+//            console.log(arguments);
+//            //var cur = arguments[0];
+//            //cur=8 ==> ary[8] "捌"
+//            //cur=7 ==> ary[7] "柒"
+//            //cur=2 ==> ary[2] "贰"
+//            return ary[arguments[0]];
+//        });
+//        console.log(str);
+   console.dir(String.prototype.replace);
+
+    //3、把{数字}替换成数组中的每一项对应的值，例如：{0}替换成 "珠峰培训"，这个也是我们以后用到的模板引擎实现的基本原理
+//        var str = "My name is{0}.I am{1} years old.I am in class{2} grade{3}.";
+//        var ary = ["珠峰培训", 38, 4, 6];
+//        var reg = /{(\d)}/g;
+//        str = str.replace(reg, function () {
+//            console.log(arguments);
+//            return " " + ary[arguments[1]];
+//        });
+//        console.log(str);
+
+
+    //获取URL中的参数值
+    var url = "http://www.zhufengpeixun.cn?course1=js&course2=css";
+    var reg = /([^?=&]+)=([^?=&]+)/g;
+    var obj = {};
+    url.replace(reg, function () {
+        obj[arguments[1]] = arguments[2];
+    });
+    console.log(obj);
+    //{
+    //  course1:'js',
+    //  course2:'css'
+    //}
+
+    //course1=js
+    //course1
+    //js
+    //course2=css
+    //course2
+    //css
+
+
+    //5、getElementsByClassName兼容处理
+    function getElementsByClass(cName, context) {
+        context = context || document;
+        var ary = [];
+        if (document.getElementsByClassName) {
+            return context.getElementsByClassName(cName);
+        }
+        var allNode = context.getElementsByTagName("*"), reg = new RegExp("(?:^| +)" + cName + "(?: +|$)");
+        for (var i = 0; i < allNode.length; i++) {
+            var cur = allNode[i];
+            if (reg.test(cur.className)) {
+                ary.push(cur);
+            }
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>

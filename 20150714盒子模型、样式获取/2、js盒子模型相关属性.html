@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS盒子模型</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            margin: 100px;
+            padding: 30px;
+            width: 200px;
+            height: 200px;
+            border: 10px solid red;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    站在台风口上，猪都能飞起来！学习的好坏和自身基础、自身接受能力没有必然的关系，学不好的话跟自己说你太懒了！想想自己的钱包，想想自己未来的媳妇老公，想想自己未来是否要做家务，想完了就去拼吧！站在台风口上，猪都能飞起来！站在台风口上，猪都能飞起来！
+    站在台风口上，猪都能飞起来！学习的好坏和自身基础、自身接受能力没有必然的关系，学不好的话跟自己说你太懒了！想想自己的钱包，想想自己未来的媳妇老公，想想自己未来是否要做家务，想完了就去拼吧！站在台风口上，猪都能飞起来！站在台风口上，猪都能飞起来！
+</div>
+<script type="text/javascript">
+    //js盒子模型：通过js可以获取我们css盒子模型中关于盒子的相关的样式
+
+
+    //1、通过style获取盒子的样式：
+    // 元素.style.样式属性，例如：oDiv.style.width
+    // 但是只能获取写在元素的行内样式上的样式属性的值，如果行内上没有写这个样式，获取的就是空
+    //只有这样写在行内上才可以获取到width的值 <div id="div1" style="width: 200px;">
+    //var oDiv = document.getElementById("div1");
+    //console.log(oDiv.style.width); ==> "200px"
+
+
+    //2、通过浏览器提供好的属性和方法获取我们的样式信息
+    var oDiv = document.getElementById("div1");
+
+    //console.log(oDiv.clientWidth);//width+左右padding
+    //console.log(oDiv.clientHeight);//height+上下padding
+    //console.log(oDiv.clientTop);//上边框的高度
+    //console.log(oDiv.clientLeft);//左边框的宽度
+
+    //console.log(oDiv.offsetWidth);//clientWidth+左右边框的宽度
+    //console.log(oDiv.offsetHeight);//clientHeight+上下边框的高度
+
+    //console.log(oDiv.scrollWidth);
+    //console.log(oDiv.scrollHeight);
+    //1)在没有内容溢出的情况下：
+    // 和我们的clientWidth/clientHeight值相等
+    //2)在有内容溢出的情况下:
+    // 不管是否隐藏了溢出的内容(overflow: hidden)，我们的计算是这样处理的:
+    // scrollWidth 约等于 实际内容的真实宽度(被内容撑开后的宽度)+左padding
+    // scrollHeight 约等于 实际内容的真实高(被内容撑开后的高度)+上padding
+
+    //在真实项目中我们通常用scrollHeight获取当前HTML页面的总高度(不管有几屏的内容我们都算上)
+    //console.log(document.documentElement.scrollHeight||document.body.scrollHeight);
+    //只获取当前浏览器一屏的高度
+    //document.documentElement.clientHeight||document.body.clientHeight
+    //先写document.documentElement在写document.body，这样就可以完全的兼容了
+
+    //    function getWin(attr) {
+    //        return document.documentElement[attr] || document.body[attr];
+    //    }
+    //    var allH = getWin("scrollHeight");
+    //    var cliH = getWin("clientHeight");
+
+
+    //oDiv.scrollTop 竖向滚动条卷去的高度
+    //oDiv.scrollLeft 横向滚动条卷去的宽度
+</script>
+</body>
+</html>

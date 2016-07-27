@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#container{ margin:20px auto; position:relative; width:980px; height:318px; background:#FC6}
+</style>
+</head>
+
+<body>
+<img style="margin:0 auto; border:none; display:block"  src="img/slider1.jpg" height="318" width="980">
+<div id="container"></div>
+</body>
+</html>
+<script>
+var rows=6;
+var cols=10;//每一列的数目
+var w=container.offsetWidth/cols;//计算出每个小盒子的宽
+var h=container.offsetHeight/rows//计算出每个小盒子的高
+for(var i=0;i<rows*cols;i++){
+	var ele=document.createElement("div");
+	with(ele.style){
+		position="absolute";	
+		width=w+"px";
+		height=h+"px";
+		
+		/*
+		//先按列算出它们各自的left：索引号*它本身的宽
+		
+		//算行号和列号来
+		
+		0，1，2，3，4，5，6，7，8，9
+		10，11，12，13，14
+		20，21，22              29
+		//这是列号：i%cols，然后再乘以本身的宽，则是它应该的左坐标
+		//这个就是行号：Math.floor(i/cols)，它乘以高度，则是应该上坐标
+		*/
+		var l=i%cols*w;
+		left=l+"px";
+		var t=Math.floor(i/cols)*h;
+		top=t+"px";
+		//以上把每一个小盒子的坐标计算好了
+		backgroundImage="url(img/slider1.jpg)";
+		backgroundPosition="-"+l+"px -"+t+"px";
+		container.appendChild(ele);
+	}
+}
+
+</script>

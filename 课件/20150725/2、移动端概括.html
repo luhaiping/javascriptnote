@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+            //条件成立代表当前是移动端
+            //window.location.href="xxx.html"
+//            if (/Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+//
+//            } else if (/iPad/i.test(navigator.userAgent)) {
+//
+//            }
+        } else {
+            //当前是pc端浏览器，我们就跳转到pc端页面
+        }
+    </script>
+</head>
+<body>
+<!--
+    html+css+javascript+html5+css3
+    我们要做什么
+    1、用html5+css3新增加的东西做pc端，不兼容的处理："优雅降级"--用其他的方式来做一下不兼容处理，例如：用js动画来解决css3动画；不管，对于不影响用户使用的，我们可以不做处理;
+    2、做移动端页面：
+    1)我们用移动端的浏览器·输入网址打开的页面
+    如果是打开pc端页面，我们一般都是做两套(三套)项目：pc、手机端(ipad)，这就需要我们处理浏览器检测，检测是pc还是移动，pc的话跳转到pc端页面，移动端的话跳转到移动端页面
+    移动端我们还要根据不同设备的尺寸，进行简单的调整---响应式布局 @media
+    有个别项目，移动端pc端一套，我们还需要重点处理一下
+
+    2)微信内部打开一个页面来查看，或者是公司内部的app里面有一个页面是h5开发的---hBird模式：app中嵌入h5页面
+    //自己app，我们需要了解h5如何的跟我们的app进行交互--jsBridge、伪URL协议
+    //第三方平台(微信)：别人的规则、别人提供的接口
+
+    //节省用户流量，优化资源加载，方便团队开发
+-->
+</body>
+</html>

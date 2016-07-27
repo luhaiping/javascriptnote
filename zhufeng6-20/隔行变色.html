@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        #wrap{
+
+            margin: 30px auto;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: goldenrod;
+        }
+        #wrap ul{
+            list-style: none;
+        }
+        #wrap ul li{
+            text-align: center;
+        }
+        #wrap ul li:hover{
+           /* background:gray;*/
+            cursor: pointer;
+        }
+        .c1{ background: red;}
+        .c2{background: yellow;}
+        .c3{background: gray;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li class="c1">1111111111111111111111111111111111111111111111</li>
+            <li class="c2">2222222222222222222222211111111111111111111111</li>
+            <li>3333333333333333333331111111111111111111111133</li>
+            <li>4444444444444444411111111111111111111111444444</li>
+            <li>5555555555555555551111111111111111111111155555</li>
+            <li>6666666666666666661111111111111111111111166666</li>
+            <li>7777777777777777777771111111111111111111111177</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    //隔行变色
+    var oLis = document.getElementById("wrap").getElementsByTagName("li");
+    //console.log(oLis);
+    for(var i=0; i<oLis.length; i++){ //length =7
+        var ojb = {}
+        ojb.laogeng = "laogegn";
+        if(i%2===0){
+            oLis[i].className = "c1";
+            oLis[i]["selfClass"] = "c1";
+
+        }else{
+            oLis[i].className = "c2";
+            oLis[i].selfClass = "c2";
+        }
+
+        oLis[i].onmouseover = function (){
+            this.className = "c3";
+        }
+        oLis[i].onmouseout = function (){
+            this.className = this.selfClass;
+        }
+    }
+
+    document.get
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Date时间对象</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            font-family: "微软雅黑";
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            margin: 20px auto 0;
+            width: 500px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 3px dashed #37C7D4;
+            background: #faeb9e;
+            letter-spacing: 3px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    //获取当前本机电脑的时间:获取的是一个标准的时间格式的数据
+    //如果要求以时间为重要参考依据的不能使用本机的时间(例如：秒杀)
+    //var nowTime = new Date();
+    //Sun Jun 28 2015 12:19:41 GMT+0800 (中国标准时间)
+    //美国西五区 UTC-0500
+
+    //js中提供了一系列的操作标准时间格式数据的方法：
+    //不足10补充0
+    function addZero(value) {
+        return Number(value) < 10 ? "0" + value : value;
+    }
+    //将指定时间格式的字符串变成我们想要的格式(如果timeStr没有传，默认获取的是当前自己电脑的时间)
+    function formatTime(timeStr) {
+        var nowTime = new Date();
+        if (typeof timeStr !== "undefined") {
+            nowTime = new Date(timeStr.replace(/-/g, "/"));
+        }
+        var year = nowTime.getFullYear();//获取四位年
+
+        var month = nowTime.getMonth() + 1;//0-11代表1-12月
+        var day = nowTime.getDate();
+        var weekStr = "日一二三四五六", week = "星期" + weekStr.charAt(nowTime.getDay());
+        var hours = nowTime.getHours();
+        var minutes = nowTime.getMinutes();
+        var seconds = nowTime.getSeconds();
+        var mSeconds = nowTime.getMilliseconds();
+        return year + "年" + addZero(month) + "月" + addZero(day) + "日 " + week + " " + addZero(hours) + "时" + addZero(minutes) + "分" + addZero(seconds) + "秒";
+    }
+    var oDiv = document.getElementById("div1");
+    oDiv.innerHTML = formatTime();
+    var timer = window.setInterval(function () {
+        oDiv.innerHTML = formatTime();
+    }, 1000);
+
+
+    //var str = "2015/6/28 12:49:30";
+    //如果想向上面一样用那些方法操作，必须先把字符串变成标准的时间格式数据
+    //要求时间格式的字符串要符合一定的规则，中间用-分隔的在IE6~8下不兼容，想要兼容需要把-替换成我们的/
+    //var time = new Date(str);
+    //console.log(time);
+
+    //    var week = nowTime.getDay();//0-6代表周日-周六
+    //    var weekStr = "日一二三四五六";//索引0-6正好和我们week相同
+    //    var str = "星期" + weekStr.charAt(week);
+</script>
+</body>
+</html>

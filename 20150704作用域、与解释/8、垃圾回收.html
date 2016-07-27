@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //垃圾回收机制
+    //谷歌：
+    //当前的内存被别人引用着就不能销毁
+    //var obj = {};//obj引用了这个堆内存的地址
+    //obj = null;//现在没人在引用这个地址了，浏览器在空闲的时候会把我们的内存释放
+
+    //火狐和IE和谷歌不是很一样
+    //采用计数器的原理实现的，被引用计数器+1，移除引用计数器-1，当计数器为0的时候，浏览器把这个内存销毁
+    //IE下浏览器反应慢--->内存泄露
+</script>
+</body>
+</html>

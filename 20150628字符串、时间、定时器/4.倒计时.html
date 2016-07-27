@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            font-family: "微软雅黑";
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            margin: 20px auto 0;
+            width: 500px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 3px dashed #37C7D4;
+            background: #faeb9e;
+            letter-spacing: 3px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    function addZero(value) {
+        return Number(value) < 10 ? "0" + value : value;
+    }
+    function getSpanTime() {
+        var nowTime = new Date();
+        var tarTime = new Date("2015/7/28 15:24:00");
+        var spanTime = tarTime.getTime() - nowTime.getTime();
+        var tarStr = "距离秒杀剩余 [ 00:00:00 ]";
+        if (spanTime >= 0) {
+            var hour = Math.floor(spanTime / (1000 * 60 * 60));
+            var time = spanTime - (hour * 60 * 60 * 1000);
+            var minute = Math.floor(time / (1000 * 60));
+            time = time - (minute * 60 * 1000);
+            var second = Math.floor(time / 1000);
+            tarStr = "距离秒杀剩余 [ " + addZero(hour) + ":" + addZero(minute) + ":" + addZero(second) + " ]";
+        }
+        return tarStr;
+    }
+    var oDiv = document.getElementById("div1");
+    oDiv.innerHTML = getSpanTime();
+    var timer = window.setInterval(function () {
+        oDiv.innerHTML = getSpanTime();
+    }, 1000);
+
+
+    //getTime:获取时间距离1970-1-1 00:00:00的毫秒差
+    //console.log(time.getTime());//1435467651652
+    //当前时间-->距离1970年毫秒差 n
+    //目标时间-->距离1970年毫秒差 m
+    //m-n:目标时间和当前时间之间相差的毫秒数
+    //处理 这么多毫秒中包含了多少个小时，多少分钟，多少秒
+    //小时 分钟 秒
+</script>
+</body>
+</html>

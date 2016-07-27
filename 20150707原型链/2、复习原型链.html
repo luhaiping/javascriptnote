@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function Fn() {
+        this.a = function () {
+
+        }
+    }
+    Fn.prototype.b = function () {
+
+    }
+    //Fn.zhuFeng = "我是Fn作为对象数据类型时候，Fn的私有属性！";
+    //console.log(Fn.zhuFeng);
+    var f = new Fn;
+
+    //函数有两面：它既是函数数据类型也是对象数据类型
+
+
+    //只有写在this或者是prototype上的才是实例继承的属性和方法,这里面的b只是Fn这个函数的一个私有的变量而已
+    //f.a();
+    //f.b
+    //f.c();
+
+    //f instanceof Fn;//true f是Fn这个类的一个实例
+    //f instanceof Object;//true f是一个对象数据类型，所有的对象数据类型都是Object这个基类的一个实例
+
+    //in：检测某一个属性是否属于这个对象(既可以是公有的也可以是私有的)
+    //console.log(document.getElementsByClassName); 在兼容的浏览器中获取的是一个函数，在IE6~8中，不兼容，说明document这个实例上没有这个属性，返回的结果是undefined
+
+    //"getElementsByClassName" in document 判断getElementsByClassName这个属性是否属于我们的document，兼容这个方法的返回true，不兼容的返回false
+
+    //document.getElementsByClassName 如果是兼容的浏览器，返回的是一个函数，说明document可以访问getElementsByClassName这个属性方法
+    //document是HTMLDocument这个类的一个实例
+    //document-->HTMLDocument-->Document(getElementsByClassName这个属性就是定义在这个类的原型上的)
+    //document.getElementsByClassName
+    //document.__proto__.__proto__.getElementsByClassName
+
+    //hasOwnProperty：检测一个属性是否为这个对象的私有的属性
+    //var obj = {name: "珠峰"};
+    //console.log("name" in obj);
+    //console.log(obj.name); 如果不存在是undefined
+    //console.log(obj.hasOwnProperty("name"));//检测name是否为obj的私有的属性
+</script>
+</body>
+</html>

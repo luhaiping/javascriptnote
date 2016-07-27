@@ -1,0 +1,18 @@
+#div1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    background: #ffff00;
+}
+/*
+    面试题：用css将一个宽高都是100的盒子放在屏幕正中间的位置
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; //往左偏移盒子的一般宽度
+    margin-top: -50px; //往上偏移盒子的一半高度
+
+    思考：如果我不知道盒子的宽高，如何放在中间位置
+    http://tieba.baidu.com/p/2743929001
+*/

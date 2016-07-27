@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+object,以复合数据类型为编程方式的编程思想
+1+1;
+承载数据--复合数据体
+var obj={};
+obj.name="rose";
+obj.age=23;
+obj.attr=10;
+//不需要有复杂管理
+//单例：基于对象
+var DOM={};//起一个分类作用
+DOM.insertAfter=function(){};
+DOM.offset=function(){};
+var animate={};
+animate.slideDown=function(){}
+var ajax={};
+
+//这些模式（方式）都是在构建承载复合数据体的方式
+//都是在解决批量生产
+//JS prototype  构造函数
+//原型链
+function Class1(){}
+
+function Class2(){}
+Class2.prototype=new Class1;
+Class2.prototype.__proto__=Class1.prototype;//更安全的继承方式
+
+
+//面向对象和继承对管理代码的意思
+
+
+
+</script>

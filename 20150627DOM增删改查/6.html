@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+<h2>珠峰培训的课程体系</h2>
+<ul id="tabUl">
+    <li name="zhufeng">CSS免费课1-2周</li>
+    <li name="zhufeng">JavaScript免费课2-3周</li>
+    <li name="zhufeng">第一周:预解释、作用域、闭包、this、面试题、单例模式、工厂模式、构造函数模式、原型链模式、继承、数组高级</li>
+    <li class="w100">第二周:原型链深入、call和apply及应用、表格排序、RegExp正则、高级正则应用</li>
+    <li class="w100">第三周:DOM深入、DOM盒子模型、延迟加载、异步编程、DOM库、选项卡高级应用</li>
+    <li>第四周:简单动画、高级动画、Tween算法动画库、高级轮播图、jQuery基础应用和jQuery实现的原理</li>
+    <li>第五周:jQuery深入应用、DOM2级事件、DOM2级事件库、事件委托、拖拽、放大镜</li>
+    <li>第六周:事件高级之拖拽照片墙、观察者模式及应用</li>
+    <li>第七周:简单的node.js应用、Ajax理论和实战、jsonp跨域及实战</li>
+    <li>第八周:移动端实战</li>
+    <li>第九周:移动端实战、就业知道、js高阶编程的技巧</li>
+    <!--以上内容完成后，你们变成了高级前端开发工程师，如果感觉没有满足你们的求知的欲望-->
+    <li>node.js为你准备着 全栈开发工程师</li>
+</ul>
+<script type="text/javascript">
+    //DOM:document object model 文档对象模型:里面提供了操作DOM元素的相关方法和属性
+    //document:文档对象
+    //BOM:browser object model 浏览器对象模型
+    //window:浏览器对象
+
+    //DOM
+    //DOM树指的就是我们的html面的结构
+
+    //var tabUl = document.getElementById("tabUl");
+    //tabUl.style.border = "1px solid red";
+    //document是他的上下文,getElementById这个方法的上下文只能是document
+    //如果ID重复了，只获取第一个
+    //在IE6、7下会把表单元素的name当做id，所有在项目中我们的name要和id区分开
+    //在IE6、7下不区分ID的大小写
+    //我们可以直接用元素的id代表这元素(仅作了解)
+
+    //var oLis = tabUl.getElementsByTagName("li");
+    //tabUl限定了我们的获取范围，我们把他称之为我们的上下文(context)
+    //console.dir(oLis);//HTMLCollection元素集合(类数组)
+
+    //var zhuFeng = document.getElementsByName("zhufeng");//通过元素的name属性的值获取一组元素
+    //获取的是一个NodeList节点集合(类数组)
+    //getElementsByName的上下文只能是document
+    //在所有的IE浏览器下，只对表单元素起作用
+    //console.dir(zhuFeng);
+
+    //var a = tabUl.getElementsByClassName("w100");//通过元素的class属性值获取一组元素
+    //HTMLCollection 元素集合(类数组)
+    //在IE6~8下不兼容
+    //console.dir(a);
+
+    //document.documentElement 获取整个HTML
+    //document.body 获取整个body
+    //获取当前屏幕的宽度和高度
+    //var cw = document.documentElement.clientWidth || document.body.clientWidth;
+    //var ch = document.documentElement.clientHeight || document.body.clientHeight;
+
+    //移动端经常用的两个方法：在IE6~8下不兼容
+    //document.querySelector();//根据选择器获取一个元素
+    //document.querySelectorAll();//根据选择器获取多个元素
+    //document.querySelector("#tabUl");
+    //document.querySelectorAll("li");
+    //document.querySelectorAll(".w100");
+</script>
+</body>
+</html>

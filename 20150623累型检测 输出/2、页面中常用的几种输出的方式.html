@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        .test {
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border: 1px dashed #ff0000;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="test" id="div1"></div>
+
+<script type="text/javascript">
+    //javascript中常用的几种输出的方式：
+    //1、在浏览器的控制台输出
+    // console.log("要输出的内容!");
+    // console.dir(); 在控制台输出一个对象的详细信息
+    // console.table(); 把一个数据(json)按照表格的形式输出，我们在查看结构的时候更加的清晰一些
+    //希望大家养成用谷歌浏览器进行我们的前端开发，使用控制台的习惯，你会发现一些意想不到的惊喜
+    /*
+     //浏览器F12打开我们的控制台
+     //例如谷歌浏览器(每一个前端开发必备的浏览器)：
+     //Elements:我们页面中的元素都在这个里面，我们经常用这个来调试我们的样式(在firefox浏览器中我们安装一个fireBug插件也可以实现)
+     //NetWork:包含了我们的所有的资源文件(css、js外链文件、html页面、所有的图片、我们向和后台请求的数据接口等)，并且告诉我们每一个文件加载完成的时间 ,对于时间过长的我们进行相关的优化
+     //Sources:包含了我们项目中的html、js、css所有的源代码，扒一个网站在这里可以找到所有的源码
+     //Resources:当前网站本地存储的数据都在这个里面(cookie、storage)
+     //Console：我们页面中在控制台输出的内容就在这里面
+     //有一个小手机的图片，单击后进入我们的手机端模拟器，我们以后的移动端开发就是在模拟器里面完成的
+     //我们还可以用控制台加断点进行页面bug调试
+     */
+    //console.log("欢迎大家来到珠峰培训!")
+
+    //2、给页面中的某一个元素添加我们的内容 innerText/innerHTML
+    //var oDiv=document.getElementById("div1");
+    //oDiv.innerHTML="<a href='http://www.zhufengpeixun.cn/'>珠峰培训</a>";
+    //innerText和innerHTML的区别：
+    //1、firefox浏览器中不支持innerText，而innerHTML不存在浏览器兼容问题
+    //2、innerHTML不仅可以添加文字，还可以添加html标签，而innerText不能识别有效的html标签的，他会把htm也当做文字添加进去
+    //项目中我们统一使用innerHTML,基本不使用innerText
+
+    //3、在页面中弹出对应的框显示我们的内容
+    //alert("要输出的内容"); 在浏览器中弹出一个框，<把我们要输出的内容先转化为字符串>，然后在输出
+    //confirm(); 是我们浏览器中确认选择弹出层，当用户选择的是确定，方法会返回true，如果点击的是取消，返回的是false，我们通过方法的返回值进行对应的相关操作即可！
+    //confirm("是否要学习珠峰培训的js呢？");
+
+    //4、在页面中输出内容 document.write()
+    //经常我们如果要在页面中添加一个广告的话，我们用这个来添加
+    //document.write("珠峰欢饮您！");
+</script>
+</body>
+</html>

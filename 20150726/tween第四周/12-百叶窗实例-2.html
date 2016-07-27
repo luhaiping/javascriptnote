@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#container{ margin:20px auto; position:relative; width:980px; height:318px; background:#FC6}
+</style>
+</head>
+
+<body>
+<img style="margin:0 auto; border:none; display:block"  src="img/slider1.jpg" height="318" width="980">
+<div id="container"></div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+var rows=3;
+var cols=10;//每一列的数目
+var w=container.offsetWidth/cols;//计算出每个小盒子的宽
+var h=container.offsetHeight/rows//计算出每个小盒子的高
+var a=[];
+for(var i=0;i<rows*cols;i++){
+	var ele=document.createElement("div");
+	a.push(ele)
+	with(ele.style){
+		position="absolute";	
+		width=0+"px";
+		height=h+"px";
+		opacity=0;
+		var l=i%cols*w;
+		left=l+"px";
+		var t=Math.floor(i/cols)*h;
+		top=t+"px";
+		//以上把每一个小盒子的坐标计算好了
+		backgroundImage="url(img/slider1.jpg)";
+		backgroundPosition="-"+l+"px -"+t+"px";
+		container.appendChild(ele);
+		
+	}
+}
+document.getElementsByTagName("img").item(0).onclick=function(){
+	for(var i=0;i<a.length;i++){
+		;(function(i){
+			window.setTimeout(function(){
+				//animate(a[i],{width:w,height:h},800,4);
+				animate(a[i],{opacity:1,width:w},800);
+			},i%cols*1000);
+		})(i);
+	}
+}
+</script>

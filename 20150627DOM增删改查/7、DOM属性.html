@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+<h2>珠峰培训的课程体系</h2>
+<ul id="tabUl">
+    <li>CSS免费课1-2周</li>
+    <li>JavaScript免费课2-3周</li>
+    <li>第一周:预解释、作用域、闭包、this、面试题、单例模式、工厂模式、构造函数模式、原型链模式、继承、数组高级</li>
+    <li>第二周:原型链深入、call和apply及应用、表格排序、RegExp正则、高级正则应用</li>
+    <!--我就是闲的无聊加个注释玩-->
+    <li id="li3">第三周:DOM深入、DOM盒子模型、延迟加载、异步编程、DOM库、选项卡高级应用</li>
+    <li>第四周:简单动画、高级动画、Tween算法动画库、高级轮播图、jQuery基础应用和jQuery实现的原理</li>
+    <li>第五周:jQuery深入应用、DOM2级事件、DOM2级事件库、事件委托、拖拽、放大镜</li>
+    <li>第六周:事件高级之拖拽照片墙、观察者模式及应用</li>
+    <li>第七周:简单的node.js应用、Ajax理论和实战、jsonp跨域及实战</li>
+    <li>第八周:移动端实战</li>
+    <li>第九周:移动端实战、就业知道、js高阶编程的技巧</li>
+    <!--以上内容完成后，你们变成了高级前端开发工程师，如果感觉没有满足你们的求知的欲望-->
+    <li>node.js为你准备着 全栈开发工程师</li>
+</ul>
+<script type="text/javascript">
+    //节点：Node  元素标签、文字、注释等都是节点
+
+
+    var tabUl = document.getElementById("tabUl");
+    //tabUl.childNodes;//获取元素下的所有子节点
+    //tabUl.children;//获取元素下的所有元素子节点
+    //tabUl.parentNode;//获取元素的父亲节点
+    //tabUl.previousSibling;//获取上一个哥哥节点
+    //tabUl.nextSibling;//获取下一个弟弟节点
+    //tabUl.firstChild;//获取所有子节点中的第一个节点
+    //tabUl.lastChild;//获取所有子节点中的最后一个节点
+
+    //还有一些不兼容的
+    //tabUl.previousElementSibling;//获取上一个哥哥元素节点
+    //tabUl.nextElementSibling;//获取下一个弟弟元素节点
+    //tabUl.firstElementChild;//获取所有元素子节点中的第一个元素节点
+    //tabUl.lastElementChild;//获取所有元素子节点中的最后一个元素节点
+
+
+    //节点     nodeType(节点类型)  nodeName(节点名称)  nodeValue
+    //元素节点：    1                 大写的标签名        null
+    //文本节点：    3                 #text            文本内容
+    //注释节点：    8                 #comment        注释内容
+    //document:   9                 #document         null
+
+    //在标准浏览器中(除IE6~8)会把空格、Enter换行都当做文本节点
+
+    //console.log(tabUl.nodeType);//1
+    //console.log(tabUl.nodeName);//"UL"
+    //console.log(tabUl.nodeValue);//null
+
+    //console.log(tabUl.childNodes);
+    //console.log(tabUl.children);
+
+    var oLi3 = document.getElementById("li3");
+    //var pre = oLi3.previousSibling;
+    //我想获取它的上一个哥哥元素节点，发现直接用previousSibling不能直接找到，需要一级级的查找，但是具体查几次不知道,那我们如何的处理?
+    //首先获取一个，判断是不是元素节点，不是的话基于现在的基础在往上找，一直找到元素节点为止(nodeType===1)
+    //pre = pre.previousSibling;
+    //pre = pre.previousSibling;
+    //pre = pre.previousSibling;
+    //console.log(pre);
+
+    //    for (var i = 0; i < 5; i++) {
+    //        console.log(i);
+    //    }
+    //改写成while循环
+    //    while(条件){
+    //        循环体
+    //    }
+    //    var i = 0;
+    //    while (i < 5) {
+    //        console.log(i);
+    //        i++;
+    //    }
+    //while循环通常处理不知道具体要循环多少次的
+
+    //获取上一个哥哥元素节点
+    function getPre(curEle) {
+        var pre = curEle.previousSibling;
+        while (pre && pre.nodeType !== 1) {
+            //只要找得到并且找到的nodeType不是1，我们就基于原有的基础继续往上找，直到找到为止，如果找到头了都有没有返回的就是null
+            pre = pre.previousSibling;
+        }
+        return pre;
+    }
+    //?获取下一个弟弟元素节点
+    function getNext(curEle) {
+        var next = curEle.nextSibling;
+        while (next && next.nodeType !== 1) {
+            next = next.nextSibling;
+        }
+        return next;
+    }
+    //第二周视频中：获取所有的哥哥元素节点、获取所有的弟弟元素节点、获取所有的兄弟节点、获取相邻的两个兄弟节点
+</script>
+</body>
+</html>

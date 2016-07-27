@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //var ary = [12, 23, 34, 45, 56, 67];
+
+    //forEach：只是用来遍历数组中的每项，它是没有返回值的
+    //var res = ary.forEach(function (item, index, input) {
+    //return "ok"; -->forEach中，函数中的return没有任何的作用
+    //});
+    //console.log(res);//-->undefined:forEach是没有返回值的
+
+    //map：也是用来遍历数组中的每一项的内容，和forEach用法一幕一样，但是map在执行的时候是有返回值的--->遍历数组中的每一项，进行相关的处理，让数组中的每一项都等于每一次执行function中返回的值
+    //var res2 = ary.map(function (item, index, input) {
+    //return item + 1;//-->return是什么，就是让当前项变成什么，不写return，默认是让当前项变成undefined
+    //});
+    //console.log(res2);
+
+
+    //var ary = ["12px", "23px", "34px", "45px", "56px"];
+    //var res = ary.map(parseInt);
+    /*
+     * parseInt("12px",0,...);
+     * parseInt("23px",1,...);
+     * parseInt("34px",2,...);
+     * ...
+     * [12, NaN, NaN, NaN, NaN]
+     * parseInt([string],[进制])
+     */
+    //var res = ary.map(parseFloat);
+    /*
+     * parseFloat("12px",0,...);
+     * parseFloat("23px",1,...);
+     * parseFloat("34px",2,...);
+     * ...
+     */
+    //ary.map(function(item,index,input){});
+    //console.log(res);
+
+    Array.prototype.myForEach = function (fn, context) {
+        context = context || window;
+        if (Array.prototype.forEach) {
+            this.forEach(fn, context);
+            return;
+        }
+        //Array is not has forEach
+        for (var i = 0; i < this.length; i++) {
+            fn.call(context, this[i], i, this);
+        }
+    };
+
+    Array.prototype.myMap = function (fn, context) {
+        context = context || window;
+        if (Array.prototype.map) {
+            return this.map(fn, context);
+        }
+        //Array is not has map
+        var ary = [];
+        for (var i = 0; i < this.length; i++) {
+            ary[i] = fn.call(context, this[i], i, this);
+        }
+        return ary;
+    };
+
+    Array.prototype.myUniq = function () {
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            var cur = this[i];
+            if (obj[cur] == cur) {
+                this[i] = this[this.length - 1];
+                this.length -= 1;
+                i--;
+                continue;
+            }
+            obj[cur] = cur;
+        }
+        obj = null;
+        return this;//是为了实现链式写法
+    };
+
+    //    var ary = [12, 13, 14, 15];
+    //    var res = ary.myMap(function (item) {
+    //        return item + 100;
+    //    });
+    //    console.log(ary, res);
+    //ary.myForEach(function(item,index,input){},this);
+
+
+    //数据分批异步加载的原理
+    //例如：绑定10万条数据
+    //第一次向服务器发送请求(url ?page=1&count=1000)，请求回来部分数据(1000条)，绑定到页面上
+    //可以当第一步完成后立即请求下一次，也可以当用户手动滑动到对应位置的时候，我们再次发送请求(url ?page=2&count=1000)
+    //.....
+
+    //图片延迟加载
+    //动画的四步优化、动画库、轮播图
+</script>
+</body>
+</html>

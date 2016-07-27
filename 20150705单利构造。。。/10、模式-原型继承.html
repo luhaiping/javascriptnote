@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>原型继承</title>
+</head>
+<body>
+<script type="text/javascript">
+    function A() {
+        this.x = 10;
+    }
+    A.prototype.getX = function () {
+        console.log(this.x);
+    }
+    function B() {
+        this.x = 20;
+    }
+    //需求：想让B继承A的私有和公有的属性，需要让B的原型等于A的一个实例
+    B.prototype = new A;
+    var a = new A;
+    var b = new B;
+
+    //B这个类继承类A的私有和公有的属性和方法，所以B的实例b可以用A里面的属性和方法
+    //b.getX();//this-->b  20
+    //console.log(b.x); //20
+    //console.log(b.__proto__.x);//10
+
+    //js中的原型继承：子类不仅可以继承父类的所有的属性和方法，而且还可以把父类原型上的属性和方法进行修改-->js中的继承是相互的
+//    b.__proto__.__proto__.c=function(){
+//        console.log("c");
+//    }
+//    b.c();
+//    a.c();
+
+
+</script>
+</body>
+</html>

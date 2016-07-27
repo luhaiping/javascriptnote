@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, img, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            border: none;
+            width: 300px;
+            height: 150px;
+        }
+
+        #div1 {
+            margin: 1000px auto 0;
+            width: 300px;
+            height: 150px;
+            background: url("img/ddd.jpg") no-repeat;
+        }
+
+        #div1 img {
+            border: none;
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<!--<img src="img/ddd.jpg" alt="" trueImg="img/1.jpg"/>-->
+<div id="div1" trueImg="img/1.jpg">
+    <img src="" alt=""/>
+</div>
+
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //第一屏幕的图片延迟加载：开始给一张小的默认图，当页面加载完(或者是过一段时间我们在加载真实的图片)
+    //第二屏幕及以后的图片延迟加载：先给一张小的默认图片，当我滚动到这个区域的时候，我们在开始加载我们的图片
+
+//    var oImg = document.getElementsByTagName("img")[0];
+//    //500毫秒后才开始向服务器请求真实图片资源，并且做判断，只有正常加载出来后，才替换我们之前的默认图片
+//        var timer = window.setTimeout(function () {
+//            //第一步：创建空的图片对象
+//            var m = new Image;// <==> var m = document.createElement("img");
+//            //第二步：把真实的图片地址给这个对象的src属性，让真实的图片开始加载
+//            console.log(oImg);
+//            m.src = oImg.getAttribute("trueImg");
+//            oImg.src = this.src;
+//            //第三步：判断是否可以正常的加载，可以的话我们让oImg变成真实的图片地址
+//            m.onload = function () {
+//                //onload:图片加载完成事件，可以进入这个事件说明图片可以正常的加载出来
+//                oImg.src = this.src;
+//                m = null;//创建的那个就没用了，我们销毁他
+//            }
+//        }, 500);
+
+
+    //不在第一屏幕的：当前图片所在盒子的底边框距离body的y轴偏移量<=浏览器窗口底边框距离body的y轴偏移量的时候，说明整张图片都进入我们的视野了，我们动态创建一个img标签加载我们真实地址，加载成功，把这张图片添加到我们的盒子中
+    var oDiv = document.getElementById("div1");
+    var divBottomTop = utils.offset(oDiv).top + oDiv.offsetHeight;
+    window.onscroll = function () {
+        var navBottomTop = utils.getWin("scrollTop") + utils.getWin("clientHeight");
+        if (!oDiv.isLoad) {
+            if (navBottomTop >= divBottomTop) {//开始加载真实的图片
+                var oImg = new Image;
+                oImg.src = oDiv.getAttribute("trueImg");
+                oImg.onload = function () {
+                    oDiv.appendChild(oImg);
+                    //为了防止重复的加载，我们在加载完成后，给oDiv增加一个自定义属性，每一次加载前，都判断是否加载过
+                    oDiv.isLoad = true;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

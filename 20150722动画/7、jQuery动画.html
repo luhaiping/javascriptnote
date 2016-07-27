@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 200px;
+            background: #22b909;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //$("#div1").fadeOut(1000).fadeIn(2000);
+
+    //$("#div1").hide(1000);//show
+
+    //$("#div1").slideUp(1000);//slideDown slideToggle
+
+    //stop 结束上一次动画
+
+    $("#div1").animate({
+        opacity: 0.1,
+        width: 50,
+        height: 50,
+        top: 300,
+        left: 800
+    }, 2000, "linear", function () {
+        $(this).css({
+            backgroundColor: "yellow"
+        });
+    });
+</script>
+</body>
+</html>

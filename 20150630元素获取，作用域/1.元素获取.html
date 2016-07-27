@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //<div class=”w” name=”h” id=”div1”></div>
+    //        document.getElementById("div1");
+    //        document.querySelector("#div1");
+    //        document.getElementsByClassName("w")[0];
+    //        document.getElementsByName("h")[0];
+    //        document.querySelectorAll(".w")[0];
+    //        document.querySelectorAll("div")[0];
+    //        document.getElementsByTagName("div")[0];
+    //        document.body.firstElementChild;
+
+
+    //获取当前浏览器屏幕的宽度和高度(兼容所有的浏览器)：
+    //document.documentElement.clientWidth||document.body.clientWidth;
+    //document.documentElement.clientHeight||document.body.clientHeight;
+
+
+    //获取上一个哥哥元素节点（兼容所有的浏览器）
+    //var oDiv = document.getElementById("div1");
+    //思路：先找上一个哥哥节点，判断是否为元素节点，不是的话基于当前继续向上找，一直到元素节点为止
+    //    function getPer(curEle) {
+    //        if (curEle.previousElementSibling) {
+    //            return curEle.previousElementSibling;
+    //        }
+    //        var pre = curEle.previousSibling;
+    //        while (pre && pre.nodeType !== 1) {
+    //            pre = pre.previousSibling;
+    //        }
+    //        return pre;
+    //    }
+    //    var res = getPer(oDiv);
+
+
+    //动态创建一个div标签，并且添加到body的最后面位置：_______________    继续上一题，把刚才创建的克隆一份一模一样的，添加到刚才创建的div前面：______________
+    //var oDiv = document.createElement("div");
+    //document.body.appendChild(oDiv);
+    //var newDiv = oDiv.cloneNode(true);
+    //oDiv.parentNode.insertBefore(newDiv, oDiv);
+
+    //我想删除数组中的最后一项，至少写出两种办法
+    //ary.pop();
+    //ary.splice(ary.length - 1, 1);
+    //ary.length = ary.length - 1;//数组的length是可读写的，不仅可以获取还可以修改
+
+    //我想在数组的末尾增加一个元素，至少写出两种办法
+    //ary.push(56);
+    //ary.splice(ary.length, 0, 56);
+    //ary[ary.length] = 56;
+
+    //基于原来的数组复制一份一模一样新的数组，不考虑原有数组是否改变的情况，请写出至少三种方案
+    var ary = [12, 23, 34, 45];
+    //ary.slice(0);
+    //ary.concat();
+    //ary.splice(0);
+    //var newAry=ary.join("|").split("|");
+
+    //var newAry = [];
+    //for (var i = 0; i < ary.length; i++) {
+    //newAry.push(ary[i]);
+    //newAry[i] = ary[i];
+    //}
+
+    //    ary.sort(function (a, b) {
+    //        return a - b;
+    //    });
+
+
+    //实现找到第n项到第m项的内容，返回一个新的数组(原有数组不变)
+    //ary.slice(n - 1, m - 1 + 1);
+
+    //![]==false  true
+    //![] ==>false
+    //false
+
+    //[]==![]
+    //[]
+    //![] ==>false
+    //[]==false
+
+
+    //js中是按照等号拆分的
+    //=是赋值：左边是变量，右边是值(如果我们的看到的右边不是一个值，需要先执行右边变成值)
+    //var a=sum(); 先执行右边的sum方法，把返回值给左边
+    //var a = 1 > 1 ? 2 : 3;   执行执行右边的三元运算符，然后得到的值给a
+    //...
+
+    //==是比较：拆分两部分，左右两边都先得到个值，然后在进行比较
+    //[]==![]
+    //左边：[]  右边：![]  右边执行，将[]变成布尔类型在取反false，再让左边的[]==false ==>true
+
+    //alert的机制：先将要弹出的内容转换为字符串在弹出
+    //[]-->""
+    //{}-->"[object Object]"
+
+
+    //    function oldAry(ary) {
+    //        var newAry = ary.concat();
+    //        var obj = {};
+    //        for (var i = 0; i < newAry.length; i++) {
+    //            var cur = newAry[i];
+    //            if (obj[cur] == cur) {
+    //                newAry.splice(i, 1);
+    //                i--;
+    //                continue;
+    //            }
+    //            obj[cur] = cur;
+    //        }
+    //        obj = null;
+    //        return newAry;
+    //    }
+    //
+    //    function sortAry(ary) {
+    //        var newAry = ary.concat();
+    //        for (var i = 0; i < newAry.length - 1; i++) {
+    //            for (var j = 0; j < newAry.length - 1 - i; j++) {
+    //                if (newAry[j] > newAry[j + 1]) {
+    //                    var temp = null;
+    //                    temp = newAry[j];
+    //                    newAry[j] = newAry[j + 1];
+    //                    newAry[j + 1] = temp;
+    //                }
+    //            }
+    //        }
+    //        return newAry;
+    //    }
+    //    var ary = [12, 4, 3, 12, 7, 5, 7];
+    //    var stp1 = oldAry(ary);
+    //    var stp2 = sortAry(stp1);
+    //    console.log(stp2);
+
+
+//    function sum() {
+//        var total = 0;
+//        for (var i = 0; i < arguments.length; i++) {
+//            var cur = Number(arguments[i]);
+//            if (isNaN(cur)) {
+//                continue;
+//            }
+//            total += cur;
+//        }
+//        return total;
+//    }
+//    function getRandom(n, m) {
+//        n = Number(n);
+//        m = Number(m);
+//        if (isNaN(n) || isNaN(m)) {
+//            return Math.random();
+//        }
+//        if (n > m) {
+//            var t = n;
+//            n = m;
+//            m = t;
+//        }
+//        return Math.round(Math.random() * (m - n) + n);
+//    }
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

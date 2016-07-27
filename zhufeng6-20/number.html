@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //number数据类型
+    // 正数 负数 0 小数（浮点数） NaN（not a number）;
+    var num = 1;
+    var num2 = num; //var num2 = 1;
+    //NaN == Nan 永远不相等
+    //isNaN();
+    //isNaN() 判断是否是一个有效数字，如果是有效数字返回false，不是有效数字返回true
+    //*isNaN()在判断一个完全是"number"例如（"888"）返回fasle，否则返回true；如果被判断字符串是例如("888px")会发生强制类型转换，讲字符串强制转化为数字类型Number("888px");
+    //非强制类型转换
+    //parseInt(); //从左到右依次取整数遇到非数字停止
+    //parseFloat(); //从左到右依次取小数（浮点数）遇到非数字停止
+    var val = Number("12px");
+    if(val == 12){
+        console.log(12)
+    }else if(val == NaN){
+        console.log(NaN)
+    }else{
+        console.log("以上都不是")
+    }
+
+</script>
+</body>
+</html>

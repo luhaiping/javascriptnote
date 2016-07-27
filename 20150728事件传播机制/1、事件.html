@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1" zhuFeng="team" class="w100 w200"></div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //事件就是一件事情或者一个行为，js中的事件包含：DOM0级事件(定义在元素的私有的属性上)、DOM2级事件(定义在EventTarget这个类的原型上)
+    //DOM0：onclick(ondblclick)、onload、onmouseover、onmouseout、onmouseenter、onmouseleave、onmousemove、onmousewheel、omusedown、onmouseup、onscroll、onresize(当前窗口大小改变事件)、onfoucs、onblur、onkeydown、onkeyup.....
+
+    //DOM2级事件的优势：
+    //1、DOM2级支持所有的DOM0级事件，并且在此基础上增加了一些DOM0级没有的事件，例如：DOMContentLoaded(HTML结构加载完成)
+    //2、可以给同一个元素的同一个事件类型，绑定多个不同的方法，下一次不会把上一次替换掉(而DOM0级的同一个元素的同一个事件类型只能绑定一次)
+
+
+    //jQuery:只要当html结构加载完成就执行对应的function
+    //在同一个页面中可以使用多次
+    //$(document).ready(function () {});
+    //$(function(){});
+    //这个方法就是用我们的DOMContentLoaded实现的，并且是用DOM2级事件来实现绑定的，对于不兼容的浏览器采用的是"onreadystatechange"事件
+
+
+    //javascript:只有当html结构、图片、文字等都加载完成才执行对应的function
+    //在同一个页面中只能使用一次，下一次会把上一次覆盖掉
+    //window.onload=function(){}  属于DOM0级事件
+
+
+    //var oDiv = document.getElementById("div1");
+    //oDiv.zhuFeng = "team";
+    //console.dir(oDiv);
+
+    //Element:元素这个类上,定义了常用的方法
+    //getAttribute、setAttribute、removeAttribute
+    //querySelector、querySelectorAll
+    //getElementsByClassName、getElementsByTagName
+
+    //Node：节点这个类上
+    //appendChild、cloneNode、hasChildNodes、insertBefore、removeChild、replaceChild
+
+    //EventTarget：DOM2级事件类
+    //addEventListener、removeEventListener
+</script>
+</body>
+</html>

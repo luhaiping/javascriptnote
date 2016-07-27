@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--内嵌式 样式-->
+    <style type="text/css">
+        #div1{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ff0000;
+            background-color:#ffff00;
+        }
+        /*导入式*/
+        @import "index.css";
+    </style>
+    <!--外链式 样式-->
+    <link type="text/css" rel="stylesheet" href="index.css"/>
+    <script type="text/javascript">
+        //如果我们非要把js放在html元素的上面,我们需要手动的改变html页面从上倒下的加载顺序
+        window.onload=function(){
+            //放我们js要执行的代码
+        }
+        //window.onload 当页面中的所有html标签、文字、图片等内容加载完成，在返回头来加载我们的js代码(但是在同一个页面中，我们只能使用一次window.onload)
+        window.onload=function(){
+            //第二个把第一个给覆盖了,有用的只是第二个
+        }
+
+        //如果我们用的是jQuery库
+        $(document).ready(function(){
+            //写我们的js代码
+        });
+        $(function(){});//上面的简写
+        //当页面中的html结构加载完成，就执行我们的js代码(一个页面中可以使用多次)
+    </script>
+</head>
+<body>
+    <!--行内 样式  行内js-->
+    <div id="div1" onclick="alert('珠峰培训欢迎您！')" style="border: 10px solid #ff0000"></div>
+
+    <script type="text/javascript">
+        //行内写js：不推荐，因为性能和安全性都特别的低
+        //内嵌式：script标签中间写我们的js代码
+
+        //一个js可以放在页面中的任何的位置,但是一般情况下我们都放在body中的最下面?
+        //js一般情况下都是让页面中的某个元素具有某个效果和功能的,说明必须先有元素我们才能操作，我们需要把 script放在元素的下面(也就是body中的最下面)
+
+        //css引入页面的几种方式：行内、内嵌
+    </script>
+    <script type="text/javascript" src="index.js">
+        //外链式引入js文件的时候，在script中间写的代码不执行不起作用
+    </script>
+</body>
+</html>

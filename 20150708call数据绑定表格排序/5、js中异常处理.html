@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>异常信息捕获</title>
+</head>
+<body>
+<script type="text/javascript">
+    //try、catch捕获异常信息，并且不影响下面代码的执行
+    //    try {
+    //        //我们执行的js代码
+    //    } catch (e) {
+    //        //如果js代码执行的时候报错了，这里可以获取报错信息
+    //        //e就是我们存储错误信息的对象
+    //        //e.code 错误码
+    //        //e.message 报错信息
+    //    }
+
+    //    try {
+    //        console.log(a);//Error:a is not defined
+    //    }catch(e){
+    //        //进入catch，说明try中的代码报错了
+    //        console.log(e.message);
+    //    }finally{
+    //        //通常不加：不管try中的代码是否报错，finally中的代码都会执行
+    //    }
+    //    var b = 100;
+    //    console.log(b);
+
+    //在js中，不错任何处理的情况下，当前代码报错，下面的所有代码都不在执行了。而用try、catch捕获异常后，即使报错，下面的代码也可以正常的执行
+
+    //js中我们可以手动的抛出异常错误
+    //throw new Error("错误信息");
+    //    try {
+    //        console.log(a);
+    //    } catch (e) {
+    //        throw new Error("浏览器繁忙，请稍后再试！");
+    //    }
+    //    console.log(a + 100);
+
+
+    //我们通常也用try、catch检测js兼容问题：如果不兼容的一个方法执行会报错，我们可以监听是否报错，报错的话就是不兼容，我们想其他的办法解决
+</script>
+</body>
+</html>

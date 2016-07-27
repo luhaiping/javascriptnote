@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background: #22b909;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript" src="js/utils.min.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    var tarR = utils.getWin("clientWidth") - oDiv.offsetWidth, tarL = 0, step = 10;
+    function move() {
+        window.clearTimeout(oDiv.timer);
+        var curL = utils.getCss(oDiv, "left");
+        //通过步长的正负数来处理当前是向做还是向右走
+        if (step > 0) {//向右
+            if (curL + step >= tarR) {
+                utils.setCss(oDiv, "left", tarR);
+                step *= -1;
+            } else {
+                utils.setCss(oDiv, "left", curL + step);
+            }
+        } else {//向左
+            if (curL + step <= tarL) {
+                utils.setCss(oDiv, "left", tarL);
+                step *= -1;
+            } else {
+                utils.setCss(oDiv, "left", curL + step);
+            }
+        }
+        oDiv.timer = window.setTimeout(move, 10);
+    }
+    move();
+
+    //精简版
+    /*var flag = null, tar = null;
+     if (step > 0) {
+     flag = (curL + step >= tarR);
+     tar = tarR;
+     } else {
+     flag = (curL + step <= tarL);
+     tar = tarL;
+     }
+     if (flag) {
+     utils.setCss(oDiv, "left", tar);
+     step *= -1;
+     } else {
+     utils.setCss(oDiv, "left", curL + step);
+     }*/
+</script>
+</body>
+</html>

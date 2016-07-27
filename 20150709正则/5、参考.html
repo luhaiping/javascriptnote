@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //1、获取一个字符串中出现次数最多的字符
+    var str = "zhu feng pei xun 2015 yang fan qi hang";
+    //通过replace方法，获取每一个字符在字符中出现的次数
+    var obj = {};
+    str.replace(/[^\s\n\b]/g, function () {
+        var cur = arguments[0];
+        obj[cur] = obj[cur] >= 1 ? obj[cur] + 1 : 1;
+    });
+    //通过假设法先获取最多出现的次数max
+    var max = 0, maxObj = {};
+    for (var key in obj) {
+        max = obj[key] > max ? obj[key] : max;
+    }
+    //然后把所有出现max次的字符保存在一个新的对象中
+    for (var key in obj) {
+        obj[key] === max ? maxObj[key] = obj[key] : void 0;
+    }
+    obj = null;
+    console.log(maxObj);
+
+
+    //2、将小写的数字转大写
+    var str = "8872840";
+    var a = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+    var result = str.replace(/\d/g, function () {
+        return a[arguments[0]];
+    });
+    console.log(result);
+
+
+    //3、把{数字}替换成数组中的每一项对应的值，例如：{0}替换成 "珠峰培训"，这个也是我们以后用到的模板引擎实现的基本原理
+    var str = "My name is{0}.I am{1} years old.I am in class{2} grade{3}.";
+    var reg = /{(\d)}/g;
+    var a = ["珠峰培训", 38, 4, 6];
+    var result = str.replace(reg, function () {
+        return " " + a[arguments[1]];
+    });
+    console.log(result);
+
+
+    //4、字符串中常用的操作案例
+    var strPro = String.prototype;
+
+    //去除首尾空格
+    strPro.myTrim = function () {
+        return this.replace(/(^\s*|\s*$)/g, "");
+    }
+    console.log(" 珠峰 ".myTrim());
+
+    //字符串截取，中文字符按照两个字节来截取
+    strPro.mySub = function () {
+        var len = arguments[0] || 10, isD = arguments[1] || false, str = "", n = 0;
+        for (var i = 0; i < this.length; i++) {
+            var s = this.charAt(i);
+            /[\u4e00-\u9fa5]/.test(s) ? n += 2 : n++;
+            if (n > len) {
+                isD ? str += "..." : void 0;
+                break;
+            }
+            str += s;
+        }
+        return str;
+    }
+    console.log("本次课程为珠峰培训正式收费课程，只有报名珠峰培训javascript正式课(周末班、在线班、全日制班)的学员可以收听；对于没有报名的学员，我们的助教会及时和大家大家沟通，引导大家进行学习交流！".mySub(20, true));
+
+    //格式化时间
+    strPro.myFormatTime = function () {
+        var reg = /^(\d{4})(?:-|\/|\.|:)(\d{1,2})(?:-|\/|\.|:)(\d{1,2})(?:\s+)(\d{1,2})(?:-|\/|\.|:)(\d{1,2})(?:-|\/|\.|:)(\d{1,2})$/g, ary = [];
+        this.replace(reg, function () {
+            ary = ([].slice.call(arguments)).slice(1, 7);
+        });
+        var format = arguments[0] || "{0}年{1}月{2}日 {3}:{4}:{5}";
+        return format.replace(/{(\d+)}/g, function () {
+            var val = ary[arguments[1]];
+            return val.length === 1 ? "0" + val : val;
+        });
+    }
+    console.log("2015-07-09 18:52:03".myFormatTime("{1}月{2}日 {3}时{4}分"));
+
+    //获取URL中的参数值
+    strPro.myQueryURLParameter = function () {
+        var reg = /([^?&=]+)=([^?&=]+)/g, obj = {};
+        this.replace(reg, function () {
+            obj[arguments[1]] = arguments[2];
+        });
+        return obj;
+    }
+    console.log("www.zhufengpeixun.cn?course1=js&course2=css".myQueryURLParameter());
+
+    //5、getElementsByClassName兼容处理
+    function getElementsByClass() {
+        var cName = arguments[0], context = arguments[1] || document, ary = [];
+        if (document.getElementsByClassName) {
+            return utils.listToArray(context.getElementsByClassName(cName));
+        }
+        var allNode = context.getElementsByTagName("*"), reg = new RegExp("(?:^| +)" + cName + "(?: +|$)");
+        for (var i = 0; i < allNode.length; i++) {
+            var cur = allNode[i];
+            if (reg.test(cur.className)) {
+                ary.push(cur);
+            }
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div{ width:100px; height:100px; position:absolute; top:0; left:0; background:blue; cursor:move; overflow:hidden;}
+div img{ width:100px; height:100px; border:none; }
+</style>
+</head>
+
+<body>
+<div style="left:100px; top:100px;" ><img src="img.png"></div>
+<div style="left:500px; top:300px;" ><img src="img2.png"></div>
+<div ><img src="img3.png"></div>
+<div style=" left:200px; top:190px;" ><img src="img4.png"></div>
+<div style="top:500px; left:0;" ></div>
+<div style="left:450px; top:0; background:red;" ></div>
+</body>
+</html>
+<script src="event2.js"></script>
+<script>
+
+function Emitter(){};//报警器类，发射器类,EventEmitter
+Emitter.prototype.on=function(type,fn){
+	if(!this["a"+type]){
+		this["a"+type]=[];	
+	}
+	var a=this["a"+type];
+	for(var i=0;i<a.length;i++){
+		if(a[i]==fn)return;	
+	}
+	a.push(fn);
+}
+Emitter.prototype.run=function(type,e,context){
+	//第二个参数是系统事件，第三参数是当被通知的方法执行时，指定的上下文。这两个参数都是可选
+	var a=this["a"+type];
+	if(a){
+		context=context||this;
+		for(var i=0;i<a.length;i++){
+			if(typeof a[i]=="function"){
+				a[i].call(context,e);
+			}else{
+				a.splice(i,1);
+				i--;	
+			}
+		}
+	}
+}
+Emitter.prototype.off=function(type,fn){
+	var a=this["a"+type];
+	if(a){
+		for(var i=0;i<a.length;i++){
+			if(a[i]==fn){
+				a[i]=null;
+				break;	
+			}
+		}
+	}
+}
+
+function Drag(){//实例识别，它自动就具备分类的功能，它的每一个实例，都是一个单例模式。
+//初始化。把拖拽准备工作做好。类上的方法，this都是指的当前实例，它是对“拖拽”这个行为的载体，它承载这个活动所有的属性和行为
+	this.ele=ele;
+	this.x=null;
+	this.y=null;
+	this.mx=null;
+	this.my=null;
+	this.DOWN=processThis(this.down,this);
+	this.MOVE=processThis(this.move,this);
+	this.UP=processThis(this.up,this);
+	on(this.ele,"mousedown",this.DOWN);//
+	//要让类上的方法运行的时候，this指向当前类的实例，而不是被拖拽的元素
+	//小明.二大爷.三姐.四姑夫.四儿子.请客();
+}
+Drag.prototype=new Emitter;
+Drag.prototype.down=function(e){//this是当前类的实例
+	this.x=this.ele.offsetLeft;
+	this.y=this.ele.offsetTop;
+	this.mx=e.pageX;
+	this.my=e.pageY;
+	if(this.ele.setCapture){
+		this.ele.setCapture();
+		on(this.ele,"mousemove",this.MOVE);
+		on(this.ele,"mouseup",this.UP);	
+	}else{
+		on(document,"mousemove",this.MOVE);
+		on(document,"mouseup",this.UP);
+	}
+	e.preventDefault();
+	this.run("dragStart",e);//去掉了第三个参数，让被绑定的方法在执行的时候，让this还是指向这里的this
+}
+Drag.prototype.move=function(e){
+	this.ele.style.left=e.pageX-this.mx+this.x+"px";
+	this.ele.style.top=e.pageY-this.my+this.y+"px";
+	this.run("dragging",e);//去掉了第三个参数，让被绑定的方法在执行的时候，让this还是指向这里的this
+}
+Drag.prototype.up=function(e){
+	if(this.ele.releaseCapture){
+		this.ele.releaseCapture();
+		off(this.ele,"mousemove",this.MOVE);
+		off(this.ele,"mouseup",this.UP);
+	}else{
+		off(document,"mousemove",this.MOVE);
+		off(document,"mouseup",this.UP);
+	}
+	this.run("dragEnd",e);//去掉了第三个参数，让被绑定的方法在执行的时候，让this还是指向这里的this
+}
+Drag.prototype.addBorder=function(){
+	this.ele.style.border="2px dashed lightBlue";
+}
+Drag.prototype.removeBorder=function(){
+	this.ele.style.border="";
+}
+Drag.prototype.border=function(){
+	this.on("dragStart",this.addBorder);
+	this.on("dragEnd",this.removeBorder);
+}
+Drag.prototype.range=function(e){	
+	//this.ele.style.top=this.y+"px";//只能在水平方向移动
+	this.objRange//这个属性是在addRange定义的
+	var x1=this.objRange.x1;
+	var x2=this.objRange.x2;
+	if(this.x+e.pageX-this.mx>=x2){
+		this.ele.style.left=x2+"px";
+	}else if(this.x+e.pageX-this.mx<=x1){
+		this.ele.style.left=x1+"px";
+	}
+	//上下的限定自己完成
+	
+	//console.log(this.y);
+}
+Drag.prototype.addRange=function(x1,x2,y1,y2){
+	//this.y=this.offsetLeft;//ele是this
+	this.objRange={x1:x1,x2:x2,y1:y1,y2:y2};//事件绑定没法传参，只好用自定义属性的方式把参数保存在实例上
+	this.on("dragging",this.range);
+}
+
+var eles=document.getElementsByTagName("div");
+for(var i=0;i<eles.length;i++){
+	var ele=eles[i]
+	var obj=new Drag(ele);
+	obj.border();
+	obj.addRange(100,400,0,0);
+}
+function clearEffect(){
+	clearTimeout(this.dropTimer);
+	clearTimeout(this.flyTimer);	
+}
+function getSpeed(e){
+	if(!this.prevPosi){
+		this.prevPosi=this.offsetLeft;
+	}else{
+		this.speed=this.offsetLeft-this.prevPosi;
+		this.prevPosi=this.offsetLeft;	
+	}	
+}
+var index=1;
+function increaseIndex(){
+	this.style.zIndex=index++;
+}
+
+function fly(){//先要计算出速度来
+	this.speed*=.97;
+	var maxR=document.documentElement.clientWidth-this.offsetWidth;
+	var val=this.offsetLeft+this.speed;
+	if(val>=maxR){
+		this.style.left=maxR+"px";
+		this.speed*=-1;	
+	}else if(val<=0){
+		this.style.left=0;
+		this.speed*=-1;
+	}else{
+		this.style.left=val+"px";
+	}
+	if(Math.abs(this.speed)>=0.5){
+		this.flyTimer=window.setTimeout(processThis(fly,this),20);
+	}
+}
+
+var num=0;
+function drop(){
+	if(!this.dropSpeed){
+		this.dropSpeed=9;
+	}else{
+		this.dropSpeed+=9;
+	}
+	this.dropSpeed*=.97;
+	var maxB=document.documentElement.clientHeight-this.offsetHeight;
+	var val=this.offsetTop+this.dropSpeed;
+	if(val>=maxB){
+		this.style.top=maxB+"px";
+		this.dropSpeed*=-1;
+		num++;
+	}else{
+		this.style.top=val+"px";
+		num=0;
+	}
+	if(num<2){
+		this.dropTimer=window.setTimeout(processThis(drop,this),20);
+	}else{
+		this.dropSpeed=null;
+		this.dropTimer=null;
+	}
+}
+//对象创建型设计模式，行为关系型设计模式
+</script>

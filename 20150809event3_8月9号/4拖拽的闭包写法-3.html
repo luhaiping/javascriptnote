@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div{ width:100px; height:100px; position:absolute; top:0; left:0; background:blue; cursor:move; overflow:hidden;}
+div img{ width:100px; height:100px; border:none; }
+</style>
+</head>
+
+<body>
+<div id="div1" style="left:100px; top:100px;" ><img src="img.png"></div>
+<div style="left:500px; top:300px;" ><img src="img2.png"></div>
+<div ><img src="img3.png"></div>
+<div style=" left:200px; top:190px;" ><img src="img4.png"></div>
+<div style="top:500px; left:0;" ></div>
+<div style="left:450px; top:0; background:red;" ></div>
+</body>
+</html>
+<script src="event2.js"></script>
+<script>
+var obj=(function(){
+	var x=null,y=null,mx=null,my=null;
+	var div1=null;
+	
+	function down(e){
+		x=this.offsetLeft;
+		y=this.offsetTop;
+		mx=e.pageX;
+		my=e.pageY;
+		if(this.setCapture){
+			this.setCapture();
+			on(this,"mousemove",move);
+			on(this,"mouseup",up);
+		}else{
+			this.MOVE=processThis(move,this);
+			this.UP=processThis(up,this);
+			on(document,"mousemove",this.MOVE);
+			on(document,"mouseup",this.UP);
+		}
+		e.preventDefault();
+	}
+	function move(e){
+		this.style.left=e.pageX-mx+x+"px";
+		this.style.top=e.pageY-my+y+"px";
+	}
+	function up(e){
+		if(this.releaseCapture){
+			this.releaseCapture();
+			off(this,"mousemove",move);
+			off(this,"mouseup",up);	
+		}else{
+			off(document,"mousemove",this.MOVE);
+			off(document,"mouseup",this.UP);
+		}
+	}
+	
+	//on(div1,"mousedown",down);
+	function init(ele){on(ele,"mousedown",down);div1=ele}
+	
+	return {init:init}
+})();
+//moudle modle模块模式
+var eles=document.getElementsByTagName("div");
+for(var i=0;i<eles.length;i++){
+	obj.init(eles[i]);
+}
+//模块--包
+</script>

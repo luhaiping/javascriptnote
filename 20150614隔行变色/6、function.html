@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //函数：功能、方法
+
+    /*//定义：function 函数名(){}
+     function sum(){
+     //函数体
+     //实现这个功能的代码
+     }
+     //执行：函数名()
+     sum();*/
+
+
+    function sum() {
+        var total = 0;
+        for (var i = 1; i <= 10; i++) {
+            total += i;
+        }
+        console.log(total);
+    }
+    sum();
+    //console.log(total);//total is not defined
+
+    //当浏览器打开页面的时候，会提供一个供js代码执行的环境
+    //在函数定义的时候，会开辟一个新的内存空间，然后把空间的地址给我们的函数名
+    //把函数体中的代码当做字符串存入我们的新的空间(空间中存储的是字符串)：函数是由定义和执行两部分完成，只是定义并没有执行，函数没有任何的意义
+
+    //当函数执行的时候，会形成一个新的私有的作用域(就是我们理解的那个小环境)，供我们函数体中的js代码执行，并且保护私有作用域中的私有变量不受外界的干扰，我们把这种机制称之为闭包！
+
+
+
+</script>
+</body>
+</html>

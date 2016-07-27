@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+<!--
+    用单例模式封装一个常用的方法库
+
+-->
+<div class="w100 w200 w300"></div>
+<div class="w200 w300"></div>
+<div class="w100 w200"></div>
+<div class="w100" id="div4"></div>
+<!--->
+<div class="w300" id="div5">
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <div></div>
+    <div></div>
+    <div>
+        <p></p>
+    </div>
+</div>
+
+<script type="text/javascript" src="dom/utils.js"></script>
+<script type="text/javascript">
+    //document.getElementsByClassName() 在IE6~8下不兼容
+    //不兼容处理：我们首先获取页面上所有的html标签,然后循环获取每一个标签的className的值，如果包含我们的cName，这个元素就是我们想要的，我们把它放在一个容器中
+    //document.getElementsByClassName("w300");
+    //utils.getElementsByClass("w300");
+    //"w100 w200 w300" 判断是否包含w300
+
+
+    var oDiv5 = document.getElementById("div5");
+    //console.log(oDiv5.getElementsByTagName("p"));
+    //getElementsByTagName 获取指定上下文中 子子孙孙的所有的p标签
+    //指向获取儿子级别下的p
+    //console.log(utils.getChildren(oDiv5, "p"));
+
+    //在标准的浏览器中，我们会把空格、换行当做文本节点处理
+    //console.log(oDiv5.previousSibling.previousSibling);
+
+    var oDiv4 = document.getElementById("div4");
+    utils.html(oDiv4, "珠峰培训");//让div4中新增加"珠峰培训"
+    //console.log(utils.html(oDiv4));
+
+    //    utils.setCss(oDiv4, "width", 300);
+    //    utils.setCss(oDiv4, "height", 100);
+    //    utils.setCss(oDiv4, "background", "red");
+
+    //    utils.setGroupCss(oDiv4, {
+    //        width: 300,
+    //        height: 100,
+    //        background: "yellow",
+    //        border: "5px solid red",
+    //        opacity: 0.1,
+    //        position: "absolute",
+    //        top: "50%",
+    //        left: "50%",
+    //        marginLeft:"-150px",
+    //        marginTop:"-50"
+    //    });
+
+    //console.log(utils.isFun([]));//isNum、isStr、isBoo、isNul、isUnd、isObj、isAry、isReg、isFun
+
+
+    //tool.css-js.com
+</script>
+</body>
+</html>

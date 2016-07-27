@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background: #22b909;
+            border-radius: 50%;
+        }
+
+        input {
+            margin: 300px 0 0 100px;
+            width: 100px;
+            height: 35px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<input type="button" value="左"/>
+<input type="button" value="右"/>
+
+<script type="text/javascript" src="js/utils.min.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    var btns = document.getElementsByTagName("input");
+    var btnLeft = btns[0];
+    var btnRight = btns[1];
+    var tar = utils.getWin("clientWidth") - oDiv.offsetWidth;
+
+    //实现向左/向右走
+    //    function move(tar) {
+    //        window.clearTimeout(oDiv.timer);
+    //        var curL = utils.getCss(oDiv, "left");
+    //        if (curL < tar) {//向右
+    //            if (curL + 10 >= tar) {
+    //                utils.setCss(oDiv, "left", tar);
+    //                return;
+    //            }
+    //            utils.setCss(oDiv, "left", curL + 10);
+    //        } else if (curL > tar) {//向左
+    //            if (curL - 10 <= tar) {
+    //                utils.setCss(oDiv, "left", tar);
+    //                return;
+    //            }
+    //            utils.setCss(oDiv, "left", curL - 10);
+    //        } else {//不管
+    //            return;
+    //        }
+    //        oDiv.timer = window.setTimeout(function () {
+    //            move(tar);//tar用到的是move传递进来的形参，那么此时我们的匿名函数形成的那个作用域就不销毁了
+    //        }, 10);
+    //
+    //    }
+
+    //如果move需要传参数，为了避免作用域累积的问题，我们在大move中写一个小_move，动画处理和定时器在调用的时候都执行_move即可(_move一个参数都不要有)
+    function move(tar) {
+        _move();
+        function _move() {
+            window.clearTimeout(oDiv.timer);
+            var curL = utils.getCss(oDiv, "left");
+            if (curL < tar) {
+                if (curL + 10 >= tar) {
+                    utils.setCss(oDiv, "left", tar);
+                    return;
+                }
+                utils.setCss(oDiv, "left", curL + 10);
+            } else if (curL > tar) {
+                if (curL - 10 <= tar) {
+                    utils.setCss(oDiv, "left", tar);
+                    return;
+                }
+                utils.setCss(oDiv, "left", curL - 10);
+            } else {
+                return;
+            }
+            oDiv.timer = window.setTimeout(_move, 10);
+        }
+    }
+    btnLeft.onclick = function () {
+        move(0);
+    }
+    btnRight.onclick = function () {
+        move(tar);
+    }
+</script>
+</body>
+</html>

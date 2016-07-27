@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //js中的类都有哪些：
+    //内置类(浏览器天生自带的)、自定义类(我们自己写的)
+    //内置类：
+    //Window、Object(对象的内置类)、Array是数组的内置类、RegExp、Date、Number、String、Boolean、Function、HTMLCollection、NodeList、HTMLDivElement、HTMLElement、Element、Node、EventTarget、Document...
+
+    //实例：每一个数组[]都是Array这类的一个实例，每一个{}都是Object这个类的一个实例、每一个数字都是Number这个类的一个实例、每一个字符串都是String这个类的一个实例...
+
+
+    //自己创建类
+    //    function fn() {
+    //
+    //    }
+    //    fn();//普通的一个函数执行
+    //    new fn();//这就是创建一个类的实例 而fn就是类
+
+
+    //对象:js中万物皆对象
+    //类:是对对象的一个具体的细分
+    //实例:每一类中具体的事物
+
+    //自然界中万物皆对象，对象仅仅是一个泛指而已
+    //我们想要认知世界首先要把对象细分成一个个的类别：人类、动物类、植物类....
+    //实例就是某一个类别中具体的东西，比如某一个人就是人类中的一个实例
+
+
+    //构造函数模式和工厂模式的区别：
+    //1、在执行的时候，createJsPerson()就是普通函数执行，new createJsPerson()就是构造函数模式执行，用构造函数模式执行的话，我们把createJsPerson就不叫做函数名了，叫做类名
+    //2、在函数体中我们不需要手动的创建一个对象了，浏览器会默认的创建一个对象,这个对象是当前函数执行的行为主体(也就是this)，接下来把createJsPerson当做一个普通函数来执行(形参赋值、预解释、代码自上而下执行)，把相关的方法属性放到this上
+    //浏览器默认开辟的那个对象(this)，是当前这个类的一个实例
+    //3、浏览器默认把实例返回，外面的p1就是当前createJsPerson这个类的一个实例
+    function createJsPerson(name, age) {
+        //var obj = {};
+        this.name = name;
+        this.age = age;
+        this.writeCss = function () {
+            console.log("我叫做" + this.name + "，我会写css啦！");
+        }
+        this.writeJs = function () {
+            console.log("我叫做" + this.name + "，我会写js啦！");
+        }
+        //return obj;
+    }
+    var p1 = new createJsPerson("张三", 25);
+    //createJsPerson是类
+    //p1是这个类的一个实例
+    //函数体中出现的this就是这个实例
+    //每一个实例都继承类它所属类中的私有的或者是公有的属性和方法
+    //p1.writeJs();
+    //p1.writeCss();
+</script>
+</body>
+</html>

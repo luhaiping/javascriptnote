@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var num = 12;
+    var str = "";
+    var obj = {};
+    //我们用肉眼可以看出数据类型，计算机是如何的检测这些数据类型的呢？
+    //js中检测数据类型：
+    //1、typeof 检测数据类型的预算符  typeof 要检查的值==>返回的结果是数据类型对应的字符串，例如："number"、"string"、"boolean"、"undefined"、"object"、"function"  返回的结果首先是一个字符串，其次里面才包含了对应的数据类型
+    //console.log(typeof num);
+    //特殊记忆：
+    //1)typeof null的结果是"object"而不是"null"，但是typeof undefined的结果就是"undefined"
+    //2)typeof是存在局限性的：不能细分object下的数组、正则等详细的数据类型，typeof []==>"object"
+
+    //console.log(typeof typeof typeof []);
+    //typeof []==>"object"
+    //typeof "object"==>"string"
+    //typeof "string"==>"string"
+    //这是一道大公司面试题，我们一定要记好typeof返回的首先是一个字符串，只要出现两个及以上的typeof检测，最终的结果肯定是"string"
+
+
+    //2、instanceof
+    //3、constructor
+    //4、Object.prototype.toString.call()
+
+</script>
+</body>
+</html>

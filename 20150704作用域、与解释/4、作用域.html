@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var a = 19;
+    //    function fn(n) {
+    //        console.log(num);
+    //        console.log(n);
+    //        var num = 13;
+    //        console.log(num);
+    //        arguments[0] = 14;//让第一个传递的参数值变为14，在非严格模式下 arguments修改了参数的值，可以映射到对应的形参上，形参的值也跟着改变了 ===> n = 14
+    //        console.log(n);
+    //        console.log(m);
+    //        console.log(a);
+    //        a = 20;
+    //        return;//函数体中return后面的代码是不执行的，但是需要预解释
+    //        var m = 13;
+    //        console.log(m);
+    //    }
+    //    fn(15);
+    //    console.log(a);
+
+    //函数执行的时候，会形成一个新的私有的作用域(供函数体中的代码执行和存储基本数据类型值的--栈内存)，来保护里面的私有变量不受外界的干扰(外面不能直接的修改，也不能直接的获取)，我们把函数的这种保护机制-->闭包
+    //闭包不是具体的某一种形式而是一种机制
+
+    //私有变量有且只有以下两种情况:
+    //在私有作用域中声明过的变量属于私有的变量
+    //形参也是私有的变量
+
+    //在函数体中发现一个变量，我们首先看是否为私有的变量，如果是的话，那么这里面出现的变量和外面没有半毛钱的关系；如果不是私有变量，往当前作用域的上一级作用域查找，上一级如果也没有的话，继续找，一直到window为止
+
+
+    //如何查找当前作用域的上一级作用域：
+    //看当前作用域（C）对应的堆内存是在哪个作用域（A）下定义的,那么C作用域的上一级作用域就是A
+
+    //自己画个图分析一遍
+    //    function fn(){
+    //        var num=12;
+    //        function fn1(){
+    //            console.log(num);
+    //        }
+    //        return fn1;
+    //    }
+    //    var f=fn();//f=function(){-->num}
+    //    function sum(){
+    //        var num=15;
+    //        f();
+    //    }
+    //    sum();
+
+
+    //一般情况下，当我们的私有作用域中代码执行完成后，当前这个私有的作用域就自动销毁了（里面的私有变量也销毁了）
+
+</script>
+</body>
+</html>

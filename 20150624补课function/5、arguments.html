@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>function--arguments</title>
+</head>
+<body>
+<script type="text/javascript">
+    //arguments:是函数内置(天生就有的)的接收所有传递参数的集合
+
+    //[任意数求和]
+    //1)把字符串数字(例如:"13")转换为数字进行有效的相加
+    //2)把非有效的数字过滤掉
+    function sum() {
+        var total = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            var cur = Number(arguments[i]);//将其他数据类型转化为数字，这样我们结果的范围只有两种：有效的数字、NaN
+            //如果不是有效的数字直接的执行下一轮循环就可以了，不需要在进行累加了
+            if (isNaN(cur)) {
+                continue;
+            }
+            total += cur;
+        }
+        return total;
+    }
+    var num = sum(12, "13", "a");
+    console.log(num);
+
+    //我们把代表位置信息的数字属性名称之为“索引”
+    //console.log(typeof arguments);//"object"说明arguments是一个对象数据类型，是由属性名和属性值组成的
+    //console.dir(arguments);
+    //结构：arguments是一个数据集合
+    //1、以数字作为索引，索引从0开始，逐级递增 arguments[0]获取第一个参数的值 arguments[1]获取第二个参数的值...arguments[索引]获取指定索引位置的参数
+    //2、length的属性：传递参数的个数，或者说这个集合的长度 arguments.length就是获取参数的个数
+    //由于以上的两个特点和我们的数组非常像，所以arguments又叫做类数组
+    //3、callee:arguments.callee就代表当前函数自己本身
+
+
+    //在js中+不仅仅是数字相加，而且还代表字符串拼接，例如：12+"13"不是数字相加，而是字符串的拼接==>"1213"
+</script>
+</body>
+</html>

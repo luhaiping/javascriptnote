@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    //    var a = false, b = 9, c = " ";//c是一个空格不是空字符串
+    //    var result = a || b && c;//b&&c --> c   a||c --> c
+    //    console.log(result);//" "
+    //
+    //    result = a && b && c;//a&&b --> a  a&&c --> a
+    //    console.log(result);//false
+    //
+    //    result = c && b && a;//c&&b --> b  b&&a --> a
+    //    console.log(result);//false
+
+    // || 左边的为真返回左，为假返回右
+    // && 左边的为真返回右，为假返回左
+    // && 优先级高于 ||
+
+
+    //null和undefined的区别
+    //郭靖三岁的时候我问他，你女朋友呢，此时肯定没有，但是以后会有的，结果是null
+    // 你男朋友呢，此时也是没有，但是根本不符合常理，所以结果是undefined
+    // null是意料之中的没有(一般都是我们手动赋值的) ，undefined出乎意外的没有
+
+    //null：
+    //1、手动赋值,后期会有值，初期用一个null占着位置  var num=null;
+    //2、获取HTML元素的时候，如果元素不存在，得到的结果就是null。例如：getElementById、previousSibling、offsetParent...
+    //3、用正则捕获的时候，如果没有捕获到内容结果就是null
+
+    //undefined：
+    //1、预解释的时候，只声明未定义，默认值是undefined
+    //2、void 0; 就是undefined
+    //3、方法没有返回值，默认的返回值是undefined
+    //4、定义形参没有传值，默认值也是undefined
+    //5、获取一个对象不存在的属性名的属性值，默认是undefined
+
+
+    //DOM0级事件绑定关于赋值是函数还是函数执行的问题
+    //    var oDiv = document.getElementById("div1");
+    //    function fn() {
+    //        console.log(this);
+    //    }
+    //fn -->函数体本身
+    //fn() -->函数执行，会有返回值,fn()整体执行完成的结果就是返回的值
+    //var a = fn(); 把fn执行完成的结果给a变量
+
+    //oDiv.onclick = fn;//把fn函数本身当做值赋值给我们的oDiv的onclick事件,相当于oDiv.onclick=function(){}
+    // 当页面加载完成，我们点击oDiv的时候,执行我们的fn这个方法，fn里面的this是oDiv
+    //oDiv.onclick(); //相当于让我们的fn直接的执行，this--oDiv
+
+    //oDiv.onclick=fn(); //首先执行fn，把返回值赋值给我们的oDiv的click事件,此时fn方法中的this --> window  由于fn没有返回值，相当于oDiv.onclick=undefined
+
+
+</script>
+</body>
+</html>

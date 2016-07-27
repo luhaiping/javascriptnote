@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style type="text/css">
+        /*导入式：不常用 移动端有时候会有点用*/
+        @import "css/test1.css";
+    </style>
+    <style type="text/css">
+        /*清除浏览器对元素样式的默认的margin 和 padding*/
+        body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            border: 1px dashed #ff0000;
+        }
+    </style>
+    <!--外链式：最常用的一种方式 rel="stylesheet"一定要加 href=外部文件的相对地址-->
+    <link type="text/css" rel="stylesheet" href="css/test.css"/>
+    <script type="text/javascript">
+        //这里面直接的获取div1，是获取不到的
+        //var oDiv=document.getElementById("div1");
+        //alert(oDiv);//null 代表空
+
+        /*window.onload=function(){
+            var oDiv=document.getElementById("div1");
+            alert(oDiv);
+        }
+        window.onload=function(){
+            alert("珠峰培训!")
+        }*/
+    </script>
+</head>
+<body>
+    <div id="div1" style="width: 100px; height: 100px;"></div>
+    <!--
+        作为一名合格的前端开发工程师必备技能：
+
+        css、html: 拿到UI设计师给我们的psd格式的效果图，我们按照效果图上提供的尺寸和结构规则，用html+css做出一个和效果图一模一样的页面
+        要求:自己去学习html+css、和简单的photo shop切图
+
+        javascript：在静态页面基础上，按照设计师的规划，完成相关的动画效果和对应的功能操作，以及和后台交互，把数据绑定到页面中
+        //javascript三部分组成:
+        //ECMAScript中的基础细节知识点(核心)
+        //DOM中提供的操作页面中元素的属性和方法
+        //BOM中一些浏览器中常用的属性和方法
+
+        //项目实战编程思想：
+        //如何的分析需求、如何的规划技术方案、产品研发、产品内测
+        //我们还需要掌握一些常用的有效的设计模式
+        //ajax和后台交互的
+        //简单的node.js 我们需要会使用node.js服务
+        //移动端HTML5和CSS3
+    -->
+
+    <!--
+        在一个html页面中写css样式有四种办法：
+        1、行内样式：写在html元素上面
+        2、内嵌样式：在head中写一个style标签，把样式写在style中
+        3、外链样式：在项目中建一个css文件，页面中用link把它引入进来
+        4、导入式：和外链式基本一样(不常用)
+    -->
+
+    <!--
+        在一个html页面中引入js有三种情况:
+        1、内嵌式
+        2、外链式
+        3、行内式(不推荐使用)
+
+        我们通常将我们的js文件放在body中最后面的位置?
+        因为js通常是用来操作我们html元素的，我们需要先加载元素标签在加载我们的js(这也是我们推荐的写法)，但是，有些时候,我们想把js代码写在body的前面，也想获取到我们的元素，那需要如何的处理：
+        window.onload=function(){
+            //把js写在这里面
+        }
+        当页面中的html标签、图片、文字等都加载完成后，在执行我们的js代码(这个方法只能在同一个页面中使用1次，使用两次下面的会把上面的覆盖掉)
+    -->
+    <script type="text/javascript">
+        //这里面编写我们的js代码
+        //var oDiv=document.getElementById("div1");
+        //alert(oDiv);//获取到了
+    </script>
+    <script type="text/javascript" src="js/test.js">
+        //这里面不写js代码，写了也没用
+    </script>
+</body>
+</html>

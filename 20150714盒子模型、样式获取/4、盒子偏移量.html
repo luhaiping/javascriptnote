@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            position: relative;
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            border: 5px solid #00007F;
+            background: yellow;
+        }
+
+        #inner {
+            position: absolute;
+            left: 20px;
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+            border: 5px solid #00007F;
+            background: #20B2AA;
+        }
+
+        #center {
+            margin: 20px auto;
+            width: 80px;
+            height: 80px;
+            border: 5px solid #00007F;
+            background: #959595;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <div id="center"></div>
+    </div>
+</div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //偏移量：当前元素距离父级参照物左上角的 x轴和y轴 的位移
+
+    //offsetParent：父级参照物
+    //parentNode：父亲节点
+    //父及参照物和父亲节点没有必然的关系，在默认情况下，我们页面中的所有的元素都在同一个水平面上，默认的父级参照物都是body
+    //如果我们想改变默认的参照物关系，需要让元素脱离body这个平面，需要使用position设置(relative、absolute、fixed...)
+
+    //var outer = document.getElementById("outer");
+    //var inner = document.getElementById("inner");
+    //var center = document.getElementById("center");
+
+    //console.log(outer.offsetLeft);
+    //console.log(center.offsetTop);
+    //offsetLeft 当前元素距离父级参照物的左偏移量(从最外面的边框开始算，也就是得到的值不包含我们的边框的宽度)
+    //offsetTop 当前元素距离父级参照物的上偏移量(从最外面的边框开始算，也就是得到的值不包含我们的边框的宽度)
+
+    //var innL = inner.offsetLeft;
+    //var outerL = outer.offsetLeft;
+    //console.log(innL - outerL - outer.clientLeft);
+    //把inner距离outer的偏移量求出来了
+
+    //console.log(inner.offsetParent);
+    //console.log(center.offsetParent);
+
+
+    //    var par = center.offsetParent;//inner
+    //    var l = center.offsetLeft;
+    //    l += par.clientLeft;//inner.clientLeft
+    //    l += par.offsetLeft;
+    //    par = par.offsetParent;//outer
+    //    l += par.clientLeft;
+    //    l += par.offsetLeft;
+    //    par = par.offsetParent;//body
+    //首先找到当前元素的父级参照物，求出当前元素的偏移量+父级参照物的边框，然后继续基于现有的参照物在往上找上一级参照物，每一次找的时候都把偏移量和边框加行，一直找到body为止
+
+    //获取curEle距离我们body的偏移量(左偏移量和上偏移量)
+    //兼容问题：在标准的IE8中，我们是不需要加边框的
+    //    function offset(curEle) {
+    //        var offTop = null, offLeft = null;
+    //        var par = curEle.offsetParent;
+    //        offLeft += curEle.offsetLeft;
+    //        offTop += curEle.offsetTop;
+    //        while (par) {
+    //            offLeft += par.offsetLeft;
+    //            offTop += par.offsetTop;
+    //            if (navigator.userAgent.indexOf("MSIE 8.0") < 0) {
+    //                //我们用navigator.userAgent获取浏览器的版本信息，此处的意思是非IE8浏览器，我们把边框加上
+    //                offLeft += par.clientLeft;
+    //                offTop += par.clientTop;
+    //            }
+    //            par = par.offsetParent;
+    //        }
+    //        return {
+    //            left: offLeft,
+    //            top: offTop
+    //        };
+    //    }
+    //    var offObj = offset(center);
+    //    console.log(offObj);
+
+
+    var outer = document.getElementById("outer");
+    var inner = document.getElementById("inner");
+    var center = document.getElementById("center");
+    var off=utils.offset(inner);
+    console.log(off.top);
+
+
+
+
+</script>
+</body>
+</html>

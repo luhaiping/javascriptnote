@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+//有n个评委打分，去掉一个最高分，再去掉一个最低份，求平均分
+function average(){
+	var a=arguments;
+	[].sort.call(a,function(a,b){return a-b});
+	//[].sort.call(eles,function(a,b){});
+	[].pop.call(a);
+	[].shift.call(a);
+	var count=null;
+	for(var i=0;i<a.length;i++){
+		count+=a[i];	
+	}
+	return count/a.length;
+	//eval
+}
+
+var score=average(100,85,88,93,97,90,91,92);
+
+</script>

@@ -1,0 +1,50 @@
+body,div,span,table,tr,td,th,tbody,thead,img,input{
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+    -webkit-user-select: none;
+}
+.cursor{
+    cursor: pointer;
+}
+.c{
+    background: #ccc;
+}
+.cY{
+    background: #CDE074;
+}
+
+.tab{
+    margin: 20px auto 0;
+    padding: 5px;
+    width: 700px;
+    border: 1px solid #87c6ff;
+    border-radius: 5px;
+}
+thead tr,tbody tr{
+    height: 35px;
+    line-height: 35px;
+}
+thead tr{
+    background: #87c6ff;
+}
+thead tr th,tbody tr td{
+    text-align: center;
+}
+thead tr th input,tbody tr td input{
+    display: block;
+    margin: 3px auto 0;
+}
+thead tr th.w30{
+    width: 30px;
+}
+thead tr th.w100{
+    width: 100px;
+}
+thead tr th.w70{
+    width: 70px;
+}
+thead tr th.w200{
+    width: 200px;
+}

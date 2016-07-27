@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li>no class</li>
+            	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li>no class</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        
+        <li>no class</li>
+        <li>no class</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li class="tab promoted a b c">选项四</li>
+        <li class="a tab b promoted c ">选项四</li>
+        <li class="tab-abc">tab-abc</li>
+    </ul>
+</body>
+</html>
+<script>
+function byClass(strClass){
+	var a=[];
+	var reg=new RegExp("(^| )"+strClass+"( |$)");
+	var eles=document.getElementsByTagName("*");
+	for(var i=0;i<eles.length;i++){
+		var ele=eles[i];
+		if(reg.test(ele.className)){
+				a.push(ele);
+		}		
+	}
+	return a;
+}
+var result=byClass("promoted");
+//验证结果是否正确
+for(var i=0;i<result.length;i++){
+	result[i].style.backgroundColor="red";
+	result[i].style.margin="10px";
+}
+
+var str="  a b tab    promoted    ";
+var regTrim=/^ +| +$/g;
+str=str.replace(regTrim,"");
+//str=str.trim();//字符串处理方法，都不能修改原来的实例（不能修改原来的字符串）
+var aClass=str.split(/ +/);
+console.log(aClass);
+!""
+!" ";
+/*str.length;
+值类型，对象类型。工作需要：保存方式上有区别，保存在快内存
+万物皆对象
+论证：字符即是值也是对象*/
+
+</script>

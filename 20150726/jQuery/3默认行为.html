@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body style="height:4000px;">
+</body>
+</html>
+<script>
+document.oncontextmenu=function(e){//禁止右键菜单
+	var ele=document.createElement("div");
+	ele.style.position="absolute";
+	ele.style.top=e.pageY+"px";
+	ele.style.left=e.pageX+"px";
+	ele.style.width="200px";
+	ele.style.height="250px";
+	ele.style.background="#ccc";
+	document.body.appendChild(ele);
+	ele.innerHTML="<h3>我的前女友们</h3>"
+	
+	
+	return false;}
+	//取消鼠标的滚轮
+	document.onmousewheel=function(){return false;}
+	//document.addEventListener("DOMMouseScroll",function(){return false;},false);//鼠标的滚轮事件
+
+
+</script>

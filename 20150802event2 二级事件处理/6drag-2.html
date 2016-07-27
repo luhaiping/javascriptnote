@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:170px; left:260px; background:red; cursor:move;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="event.js"></script>
+<script>
+//事件的性能7-8ms
+function down(e){//准备拖拽，拖拽开始
+	this.x=this.offsetLeft;
+	this.y=this.offsetTop;
+	this.mx=e.pageX;
+	this.my=e.pageY;
+	if(this.setCapture){
+		this.setCapture();
+		on(this,"mousemove",move);
+		on(this,"mouseup",up);
+	}else{
+		this.MOVE=processThis(move,this);
+		this.UP=processThis(up,this);
+		on(document,"mousemove",this.MOVE);
+		on(document,"mouseup",this.UP);	
+	}
+}
+function move(e){//拖拽中
+	this.style.left=this.x+e.pageX-this.mx+"px";
+	this.style.top=this.y+e.pageY-this.my+"px";
+	if(!this.prevTime){
+		this.prevTime=+(new Date);
+		this.prevPosi=this.offsetLeft;
+	}else{
+		var t=+(new Date);
+		console.log(t-this.prevTime);
+		this.prevTime=t;
+		///////////////////
+		this.speed=this.offsetLeft-this.prevPosi;
+		this.prevPosi=this.offsetLeft;
+	}
+}
+
+function up(e){//拖拽结束
+	if(this.releaseCapture){
+		this.releaseCapture();
+		off(this,"mousemove",move);
+		off(this,"mouseup",up);
+	}else{
+		off(document,"mousemove",this.MOVE);
+		off(document,"mouseup",this.UP);	
+	}
+	fly.call(this);
+	drop.call(this);
+}
+on(div1,"mousedown",down);
+
+var flyTimer=null;
+function fly(){
+	this.speed*=.97;
+	var val=this.offsetLeft+this.speed;
+	var r=document.documentElement.clientWidth-this.offsetWidth;
+	if(val>=r){
+		this.style.left=r+"px";
+		this.speed*=-1;
+	}else if(val<=0){
+		this.style.left=0;
+		this.speed*=-1;
+	}else{
+		this.style.left=this.offsetLeft+this.speed+"px";	
+	}
+	if(Math.abs(this.speed)>=0.5)
+		flyTimer=window.setTimeout(processThis(fly,this),20);
+}
+
+var dropTimer=null;
+var dropFlag=0;
+function drop(){
+	if(!this.dropSpeed){//如果没有速度
+		this.dropSpeed=9;//定义一个初速	
+	}else{
+		this.dropSpeed+=9;	//让速度累加，就是加速运动
+	}
+	this.dropSpeed*=0.97;//速度会衰减
+	var bottom=document.documentElement.clientHeight-this.offsetHeight;//下边界
+	var val=this.offsetTop+this.dropSpeed;//正常情况下应该到的位置值
+	if(val>=bottom){//如果过界
+		this.style.top=bottom+"px";
+		this.dropSpeed*=-1;	
+		dropFlag++;//如果到达边界，则让这个变量累加。如果这个变量大于1，则说明在边界停止不动了
+	}else{
+		this.style.top=val+"px";
+		dropFlag=0;	//正常运动时，dropFlag的值在0和1之间变化
+	}
+	
+	if(dropFlag<3)
+		dropTimer=window.setTimeout(processThis(drop,this),20);
+	
+}
+
+</script>

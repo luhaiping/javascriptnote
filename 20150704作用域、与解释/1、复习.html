@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //document.documentElement.clientHeight || document.body.clientHeight
+
+    var ary = [12, 23, 34, 45, 56, 67];
+    //ary.pop();
+    //ary.splice(ary.length - 1, 1);
+    //ary.length = ary.length - 1;//length属性是可读写的
+
+    //ary.splice(2,1); 改变了原数组，删除这一项后面所有项的索引都需要重新的计算一边，如果后面数据太多，影响性能
+
+    //优化：把要删除的项用最后一项替换，在把最后一项删除
+    //ary[2] = ary[ary.length - 1];
+    //ary.length = ary.length - 1;
+
+    //    var obj = {};
+    //    for (var i = 0; i < ary.length; i++) {
+    //        var cur = ary[i];
+    //        if (obj[cur] == cur) {
+    //            //ary.splice(i, 1);
+    //            ary[i] = ary[ary.length - 1];
+    //            ary.length = ary.length - 1;
+    //            i--;
+    //            continue;
+    //        }
+    //        obj[cur] = cur;
+    //    }
+    //    obj = null;
+    //
+    //    ary.sort(function (a, b) {
+    //        return a - b;
+    //    });
+    //
+    //    ary.slice(n-1,m);
+
+    var ary = [1, 2, 3, 4];
+    function fn(ary) {
+        ary[0] = 0;
+        ary = [0];
+        ary[0] = 100;
+        return ary;
+    }
+    var res = fn(ary);
+    console.log(ary);//[0,2,3,4]
+    console.log(res);//[100]
+</script>
+</body>
+</html>

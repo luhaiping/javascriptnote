@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>复习-腾讯面试题(基本面试必问)</title>
+    <style type="text/css">
+        body, input {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            margin-top: 20px;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #ff0000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="孙良华"/>
+<input type="button" value="宋晓双"/>
+<input type="button" value="张耀龙"/>
+<input type="button" value="赵英"/>
+<input type="button" value="李琳玉"/>
+
+<script type="text/javascript">
+    //    var oBtns = document.getElementsByTagName("input");
+    //    for (var i = 0; i < oBtns.length; i++) {
+    //        oBtns[i].onclick = function () {
+    //            alert("我是第" + (i + 1) + "个按钮！");
+    //        }
+    //    }
+    //问：上述是否可以实现我们的功能，不能的话是为什么？不能的话你的解决方法有几种？
+    /*
+     不行的原因：
+
+     i=0 第一次循环
+     oBtns[0].onclick=function(){
+     alert("我是第" + (i + 1) + "个按钮！");
+     }
+     oBtns[1].onclick=function(){
+     alert("我是第" + (i + 1) + "个按钮！");
+     }
+     ...
+     oBtns[4].onclick=function(){
+     alert("我是第" + (i + 1) + "个按钮！");
+     }
+     循环绑定完成后，我们的i变成5了
+     当页面加载完成（js代码都执行完成了），我们手动点击某一个按钮的时候，触发这个按钮的点击事件，执行给它绑定的那个方法
+     而此时我们函数中的i都是循环完成的那个5了
+     */
+
+    //1、自定义属性解决:我们在函数中想用他的索引，但是用i是不能实现的(原因是上面分析的)，那如何处理? 思路：我们给每一个按钮增加一个属性，让他的属性值存储的是我们的索引，在函数执行的时候，我们用这个属性的值就可以了
+    var oBtns = document.getElementsByTagName("input");
+    for (var i = 0; i < oBtns.length; i++) {
+        var cur = oBtns[i];
+        cur.zhuFeng = i;
+        cur.onclick = function () {
+            //this：就是当前点击的这个元素
+            alert("我是第" + (this.zhuFeng + 1) + "个按钮！");
+        }
+    }
+
+    //2、闭包1
+    var oBtns = document.getElementsByTagName("input");
+    for (var i = 0; i < oBtns.length; i++) {
+        var cur = oBtns[i];
+        cur.onclick = (function (i) {
+            return function () {
+                alert("我是第" + (i + 1) + "个按钮！");
+            }
+        })(i);
+    }
+
+    //3、闭包2
+    var oBtns = document.getElementsByTagName("input");
+    for (var i = 0; i < oBtns.length; i++) {
+        ;
+        (function (i) {
+            oBtns[i].onclick = function () {
+                alert("我是第" + (i + 1) + "个按钮！");
+            }
+        })(i);
+    }
+
+    //4、闭包3
+    function fn(i) {
+        return function () {
+            alert("我是第" + (i + 1) + "个按钮！");
+        }
+    }
+    var oBtns = document.getElementsByTagName("input");
+    for (var i = 0; i < oBtns.length; i++) {
+        oBtns[i].onclick = fn(i);
+    }
+
+</script>
+</body>
+</html>

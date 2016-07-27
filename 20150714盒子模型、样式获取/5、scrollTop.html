@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, p {
+            margin: 0;
+            padding: 0;
+            font: 14px "微软雅黑";
+            -webkit-user-select: none;
+        }
+
+        #tip {
+            margin: 100px auto 0;
+            padding: 0 5px 0 40px;
+            width: 915px;
+            height: 31px;
+            line-height: 31px;
+            background: url("img/gg.gif") no-repeat center center;
+        }
+
+        #tip p {
+            width: 915px;
+            height: 31px;
+            line-height: 31px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body>
+<div id="tip">
+    <p>
+        新版经理人论坛上线了：亲爱的用户，为了更好的提供服务，神州英才推出了全新经理人论坛平台。从即日起面向网站所有的会员朋友们开放公测！上线的社区平台，有全新的读版、读帖页样式，增添了更多的交互功能，关注用户需求和使用感受。
+    </p>
+</div>
+<script type="text/javascript">
+    //我们学习的盒子模型中除了scrollTop和scrollLeft是可读写的，其余的都是只读的(只能获取值不能修改值)
+    //scrollTop和scrollLeft：滚动条卷去的宽度或者高度
+    //scrollTop和scrollLeft 都有边界值的，当到达边界值的时候，不管你在写多大或者多小，值都不在继续改变了，例如：最小是0，你写-100，它的值还是0不改变的
+
+    var oTip = document.getElementById("tip").getElementsByTagName("p")[0];
+
+        var flag = 1;
+        var timer = window.setInterval(function () {
+            //临界判断，加之前获取一个，加之后获取一个，如果两个值相等代表加的没起到效果，说明到边界了
+            var start = oTip.scrollLeft;
+            oTip.scrollLeft += flag;
+            var end = oTip.scrollLeft;
+            if (start === end) {
+                flag *= -1;
+            }
+        }, 10);
+
+    //    var s = oTip.innerHTML;
+    //    var timer = window.setInterval(function () {
+    //        var start = oTip.scrollLeft;
+    //        oTip.scrollLeft += 1;
+    //        var end = oTip.scrollLeft;
+    //        if (start === end) {
+    //            oTip.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + s;
+    //        }
+    //    }, 10);
+</script>
+</body>
+</html>

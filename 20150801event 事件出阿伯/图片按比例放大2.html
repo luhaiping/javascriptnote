@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:300px; height:223px; margin:150px auto; position:relative;  }
+#div1 img{ border:none; display:block;}
+#mask{ width:100px; height:80px; position:absolute; background:black; opacity:0.8;}
+#zoom{ position:absolute; left:310px; top:0; background:green url(img/peony.jpg);}
+</style>
+</head>
+
+<body>
+<div id="div1">
+<img src="img/smallPeony.jpg" width="300" height="223">
+</div>
+<img src="img/peony.jpg" width="950" height="706">
+</body>
+</html>
+<script>
+var ele=document.getElementById("div1");
+ 
+ele.onmouseenter=function(e){
+	var oMask=document.createElement("div");
+	oMask.id="mask";
+	oMask.style.left=e.pageX-this.offsetLeft+"px";
+	oMask.style.top=e.pageY-this.offsetTop+"px";
+	this.appendChild(oMask);
+	
+	//创建放大区域
+	var oZoom=document.createElement("div");
+	oZoom.id="zoom";
+	oZoom.style.width=950*oMask.offsetWidth/this.offsetWidth+"px";
+	oZoom.style.height=706*oMask.offsetHeight/this.offsetHeight+"px";
+	
+	this.appendChild(oZoom);
+	
+}
+
+ele.onmousemove=function(e){
+	var oMask=document.getElementById("mask");
+	if(oMask){
+		//1、鼠标动则盒子动；2、盒子的中心和鼠标重合；3、盒子的范围是固定的
+		var leftVal=e.pageX-this.offsetLeft-oMask.offsetWidth/2;
+		var topVal=e.pageY-this.offsetTop-oMask.offsetHeight/2;
+		if(leftVal<=0){
+			oMask.style.left=0;	
+		}else if(leftVal>=(this.offsetWidth-oMask.offsetWidth)){
+		   oMask.style.left=this.offsetWidth-oMask.offsetWidth+"px";
+		}else{
+			oMask.style.left=leftVal+"px";
+		}
+		if(topVal<=0){
+			oMask.style.top=0;	
+		}else if(topVal>=this.offsetHeight-oMask.offsetHeight){
+			oMask.style.top=this.offsetHeight-oMask.offsetHeight+"px";
+		}else{
+			oMask.style.top=topVal+"px";
+		}
+		var oZoom=document.getElementById("zoom");
+		if(oZoom){
+		oZoom.style.backgroundPosition=-1*(oMask.offsetLeft/this.offsetWidth*950)+"px -"+(oMask.offsetTop/this.offsetHeight*706)+"px " ;
+		//oZoom.style.backgroundPosition=-1*(oMak.offsetLeft/this.offsetWidth*950)+"px";
+		}
+	}
+	
+}
+
+//遮罩/小图=放大区域/大图
+//遮罩/小图*大图=放大区域
+//遮罩大小是固定，小图大小是固定的,放大区也是可固定：算出来的
+
+ele.onmouseleave=function(e){
+	var oMask=document.getElementById("mask");
+	var oZoom=document.getElementById("zoom");
+	console.log(oMask);
+	if(oMask){
+		this.removeChild(oMask);
+		this.removeChild(oZoom);
+	}
+}
+</script>

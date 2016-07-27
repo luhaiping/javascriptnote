@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-bottom: 1px dashed red;
+        }
+    </style>
+</head>
+<body>
+<p>陈家楠</p>
+
+<p>郭聪军</p>
+
+<p>张静</p>
+
+<p>田琼珍</p>
+
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //HTMLCollection(标签集合)类数组集合
+    //console.dir(document.getElementsByTagName("div"));
+    //console.dir(document.getElementsByClassName("w100"));
+    //NodeList(节点集合)类数组集合
+    //console.dir(document.getElementsByName("aa"));
+
+    var oList = document.getElementsByTagName("p");
+    var ary = utils.listToArray(oList);
+    //    ary.sort(function (a, b) {
+    //        var cur = parseFloat(a.innerHTML);
+    //        var next = parseFloat(b.innerHTML);
+    //        return cur - next;//只要得到的结果是大于0的，a和b就交换位置
+    //    });
+
+    ary.sort(function (a, b) {
+        return a.innerHTML.localeCompare(b.innerHTML);//非数字之间的比较用localeCompare
+    });
+
+    //把存储p标签并且拍完序的数组，从新放到我们的容器中，实现了我们的排序
+    for (var i = 0; i < ary.length; i++) {
+        document.body.appendChild(ary[i]);
+    }
+
+
+    //我们如果用Array.prototype.slice.call的思想来操作我们的DOM集合(HTMLCollection、NodeList)类数组，将其转化为数组，在IE6~8下不兼容（arguments是没有兼容问题的）
+
+</script>
+</body>
+</html>

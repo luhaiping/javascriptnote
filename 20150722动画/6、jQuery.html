@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .dd {
+            width: 100px;
+            height: 100px;
+            background: #22b909;
+        }
+
+        .ee {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<!--
+    1、什么是jQuery：
+    它是一个js文件，它里面包含了我们项目中常用的js方法和属性(都是用原生的js实现的)，换句话说就是一个类库(和我们自己写的DOM库，包含了很多常用的方法，并且方法把兼容问题都处理了，以后引进来直接用即可)
+    jQuery1.8.3
+    jQuery1.9
+    jQuery1.11
+    jQuery从2.xx开始就不在解决IE6~8的兼容了
+
+    2、如何学习jQuery
+    jQuery API在线帮助手册：http://jquery.cuishifeng.cn/
+    锋利的jQuery(第二版) --jQuery词典
+    推荐：把jQuery源码读一遍(一两年后能读懂就可以了)
+
+    https://github.com/
+-->
+
+<div id="div1" class="test1 test2">
+    <div></div>
+    <div></div>
+    <div>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <P></P>
+
+    <P></P>
+</div>
+<div class="test1"></div>
+<div class="test2 test3"></div>
+<div class="test3"></div>
+<div class="test2"></div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //jQuery实现的原理：这个类库是用构造函数模式进行封装的，而jQuery是一个类，我们的选择器$(),相当于new jQuery创建了jQuery这个类的一个实例
+    //$()可以传递两个参数：selector(选择器内容)、context(上下文，不传默认是document)
+    //我们所说的 属性、css、动画、文档处理、事件等提供的属性和方法都是定义在jQuery原型上的-->jQuery.prototype，属于实例的公有方法，并且每一个jQuery实例都可以使用这些方法
+    //    ~function () {
+    //        var jQuery = function () {
+    //
+    //        }
+    //        window.jQuery = window.$ = jQuery;
+    //    }();
+
+    //jQuery选择器原理
+    //ID选择器：通过ID获取一个jQuery对象(jQuery的一个实例)(不是一个元素对象)
+    //var $div1 = $("#div1");
+    //我想获取一个#div1元素对象--->将jQuery对象转换为原生的js对象，但是真正的意思是在jQuery的一个实例中，把属性名为0的属性值拿出来用
+    //var oDiv1 = $div1[0];
+    //var oDiv1 = $div1.get(0);//在jQuery的原型上提供了一个get方法，通过索引获取指定的元素对象
+
+    //将原生的js对象转换为jQuery对象
+    //var oDiv = document.getElementById("div1");
+    //console.log($(oDiv));
+    //this和$(this)的区别：this是原生的对象，$(this)是jQuery对象，this不能直接使用jQuery的方法
+
+    //$("#div1").addClass("dd").html("珠峰培训"); //jQuery中的链式写法 每一次执行完方法，都把当前的jQuery实例返回(return this;)
+
+    //jQuery有一部分常用的方法是定义在jQuery.prototype上的(属性、css、文档处理、事件、动画、筛选...)，这些方法只有通过选择器创建一个实例才能够使用
+    //$("#div1").addClass("dd");
+
+    //还有一部分是把jQuery当做一个普通的对象，增加的属性名和属性值(ajax、工具)
+    //$.ajax();
+    //$.each();
+
+    //jQuery中提供了扩展原型和私有对象属性上的方法
+    //当做对象扩展的：通常是在完善类库
+    //    $.extend({
+    //        aryDistinct: function (ary) {
+    //            var obj = {};
+    //            for (var i = 0; i < ary.length; i++) {
+    //                var cur = ary[i];
+    //                if (obj[cur] == cur) {
+    //                    ary[i] = ary[ary.length - 1];
+    //                    ary.length -= 1;
+    //                    i--;
+    //                    continue;
+    //                }
+    //                obj[cur] = cur;
+    //            }
+    //            obj = null;
+    //            return ary;
+    //        }
+    //    });
+    //    var ary = [1, 2, 3, 2, 1, 2, 3, 4, 2, 3, 4, 2, 1];
+    //    var newAry = $.aryDistinct(ary);
+    //    console.log(newAry);
+
+    //扩展到jQuery原型上的：我们通常用来写插件
+    //    $.fn.extend({
+    //        a: function () {
+    //            alert(1);
+    //        }
+    //    });
+    //    $().a();
+
+    //当一个页面出现多个类库，都是用到了$，那么我们把jQuery的使用权转让给别的
+    //var j = $.noConflict();//转让使用权，并且起了个别名j，以后用j代替$
+    //$("#div1").addClass("dd");//Error:$ is not a function
+    //jQuery("#div1").addClass("dd");
+    //j("#div1").addClass("dd");
+
+
+    //任务：filter、find、children 三者的区别  筛选中最常用的三个方法
+
+    //    $("#div").click(function(){
+    //
+    //    });
+    //    $("#div").on("click",function(){
+    //
+    //    });
+    //    $("#div").bind("click",function(){
+    //
+    //    });
+    //    $("#div").live("click",function(){
+    //
+    //    });
+</script>
+</body>
+</html>

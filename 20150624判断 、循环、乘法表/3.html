@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //for in循环
+    //作用：用来循环(遍历)一个对象中的属性名和属性值的
+    var obj = {
+        name: "陈家楠",
+        age: 19,
+        height: "170cm",
+        weight: "45kg",
+        10: 100
+    };
+    for (var key in obj) {//对象obj中有几组属性名就循环几次
+        //console.log(key);//这个key变量存储的就是我们的属性名
+        //在for in循环中我们不知道key是数字还是其他的，所以只能用obj[key]来获取属性值
+        //console.log("属性名:" + key + " 属性值:" + obj[key]);
+    }
+    //for in循环的时候，先按照数字属性名的由小到大循环，当数字都处理完成，在循环剩下的属性名(按照书写时候的顺序)
+
+
+    //for循环
+    //作用：如果有一个集合，你想操作集合里面的每一个元素，那么就用for循环遍历集合中的每一个元素，在每一轮的遍历中，我们执行对应的操作即可
+    //1、定义一个初始值，一般情况下我们的初始值都是0
+    //2、设置循环执行的条件，符合条件就执行，不符合循环就结束
+    //3、执行循环体中的操作
+    //4、执行最后的累加操作
+    //    for (var i = 0; i < 10; i++) {
+    //        i += 2;
+    //    }
+    //    console.log(i);//12
+
+    //break、continue 出现在循环体中的
+    //不管是哪一个，在循环体中出现，循环体后面的内容就不在执行了
+    //break是结束整个循环的,最后的累加操作也不在执行
+    //continue是结束本轮循环，继续执行下一轮，后面的累加操作是执行的
+    for (var i = 0; i < 10; i++) {
+        if (i <= 5) {
+            i += 2;
+            continue;
+        } else {
+            break;
+            i += 3;
+        }
+        i += 1;
+        console.log(i);
+    }
+    console.log(i);//6
+</script>
+</body>
+</html>

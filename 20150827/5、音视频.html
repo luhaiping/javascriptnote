@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <style type="text/css">
+        body, div, audio {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        #audio1 {
+            display: none;
+        }
+
+        #btn {
+            display: none;
+            margin: 30px auto;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #c5dbf2;
+            cursor: pointer;
+            -webkit-border-radius: 50%;
+            -webkit-box-shadow: 0 0 20px 1px #ff3333;
+        }
+
+        .move {
+            -webkit-animation: audioMove 1s linear 0s infinite;
+            -webkit-animation-fill-mode: both;
+        }
+
+        @-webkit-keyframes audioMove {
+            0% {
+                -webkit-box-shadow: 0 0 20px 1px #ff3333;
+            }
+            50% {
+                -webkit-box-shadow: 0 0 40px 10px #ff3333;
+            }
+            100% {
+                -webkit-box-shadow: 0 0 20px 1px #ff3333;
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="btn">暂停</div>
+<audio src="file/beyond-hktk.mp3" preload="none" loop="true" id="audio1"/>
+<script type="text/javascript">
+    var oAudio = document.querySelector("#audio1"),
+            oBtn = document.querySelector("#btn");
+    window.onload = function () {
+        oAudio.play();//让音频文件开始播放
+        //监听它的事件，可以播放的事件，在事件中让我们的#btn显示，并且显示对应的动画
+        oAudio.addEventListener("canplay", function () {
+            oBtn.style.display = "block";
+            oBtn.className = "move";
+        }, false);
+
+        //点击实现播放/暂停
+        oBtn.onclick = function () {
+            if (oAudio.paused) {//当前处于暂停状态
+                oAudio.play();
+                oBtn.className = "move";
+                oBtn.innerHTML = "暂停";
+            } else {
+                oAudio.pause();
+                oBtn.className = "";
+                oBtn.innerHTML = "播放";
+            }
+        }
+    }
+</script>
+
+<!--
+audio 音频  mp3、wav、ogg 每一个浏览器的兼容性不一样(兼容看我的word文档)，所以，如果我们做的是pc端的项目，想让主流的浏览器都兼容的话，我们需要准备三个音频文件，在移动端我们最常用的是mp3格式
+<audio src="file/beyond-hktk.mp3" controls="true" preload="auto" autoplay="true" loop="true"/>
+1、controls="true" 是否使用我们浏览器自带的播放组件 默认是false，不使用,true使用
+2、preload：告诉当前的浏览器何时加载我们的音频文件
+auto：开始加载页面的时候，就把整个音频文件下载下来了
+metadata：开始加载页面的时候，只把音频文件的头部信息加载出来，当播放的时候才开始下载我们的音频文件
+none:开始加载页面的时候,什么都不下载，播放的时候才开始下载
+3、autoplay 是否允许自动播放，默认是false
+4、loop 播放完成后是否自动重新播放(循环播放)，默认是false
+
+
+video 视频
+-->
+<!--
+<audio controls="true">
+    主流的浏览器我们放三种音频文件
+    <source src="file/beyond-hktk.mp3" type="audio/mpeg"/>
+    <source src="file/beyond-hktk.wav" type="audio/wav"/>
+    <source src="file/beyond-hktk.ogg" type="audio/ogg"/>
+
+    your browser is not support audio~~ 如果不需要兼容低版本浏览器就提示相关文字即可
+    <embed></embed> 如果需要支持，则使用传统的flash播放的方案实现即可
+</audio>
+-->
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="div1">div1</div>
+</body>
+</html>
+<script>
+
+for(var i=0;i<a.length;i++){
+	a[i].call(this,e);
+}
+ele.onclick=function(e){/*/....*/}
+var ele=document.getElementById("div1");
+function fn(e){this.innerHTML=e.pageX}
+ele.onclick=fn;//直接绑定到事件上的方法，可以得到事件对象。
+ele.onclick=function(){fn();}//而间接绑定到事件上的方法，没办法直接得到事件对象。
+//除非是绑定在事件上的方法，否则不会自动的传参数给一个方法
+</script>

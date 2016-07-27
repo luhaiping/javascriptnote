@@ -1,0 +1,43 @@
+window下的预解释:
+    var num; var obj; var fn;
+window下的代码执行:
+    num=2;  //window.num=2;
+    obj=xxxfff000  给obj赋值，首先开辟一个堆内存，把地址给obj
+    [开辟一个堆内存]
+         num=4; //obj.num=4;
+         fn=自执行函数的返回结果,首先自执行函数执行，形成一个新的私有的作用域AA(当前的这个AA作用域不销毁的)
+         AA下的预解释：
+              var num;
+         AA下的代码执行：
+              this.num*=2; // window.num*=2  window.num=4
+              num*=2; //num=undefined*2=NaN 这句话没用
+              num=3; //AA下的私有变量num=3
+              return xxxfff111; //返回的是一个堆内存的地址，这个堆内存就是我们返回的这个小的函数
+              xxxfff11 -->function(){this.num*=2;num*=3.....}
+          fn=xxxfff111; //obj.fn=xxxfff111;
+
+     fn=obj.fn=xxxfff111; //window.fn=xxxfff111;
+     fn(); 形成一个新的私有作用域
+             预解释：无
+             代码执行:
+                  this.num*=2; //window.num=8
+                  num*=3; //AA下的num*=3 -->9
+                  alert(num); //9
+     obj.fn();形成一个新的私有作用域
+             预解释：无
+             代码执行:
+                  this.num*=2; //obj.num=8;
+                  num*=3; //AA下的num*=3 -->27
+                  alert(num); //27
+     alert(num);//输出window.num 8
+     alert(obj.num);//8
+
+
+
+
+
+
+
+
+
+

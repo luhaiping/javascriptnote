@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Orientation</title>
+</head>
+<body>
+<script type="text/javascript">
+    //H5只能检测横竖屏，不能禁止横竖屏
+    var supportsOrientationChange = "onorientationchange" in window,orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+    window.addEventListener(orientationEvent, function () {
+        if (supportsOrientationChange) {
+            if (Math.abs(window.orientation) === 90) {
+                //开启了横屏模式
+            } else {
+                //开启了述评模式
+            }
+        }
+    }, false);
+</script>
+
+</body>
+</html>

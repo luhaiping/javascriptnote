@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var ary = [
+        {name: "赵", age: 18},
+        {name: "钱", age: 25},
+        {name: "孙", age: 23},
+        {name: "李", age: 34},
+        {name: "周", age: 16},
+        {name: "吴", age: 19},
+        {name: "郑", age: 28}
+    ];
+    //让当前的这个数组按照年龄从大到小排序
+    ary.sort(function (a, b) {
+        return parseInt(b.age) - parseInt(a.age);
+    });
+
+    console.log(ary);
+</script>
+</body>
+</html>

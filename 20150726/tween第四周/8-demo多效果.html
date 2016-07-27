@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div{ width:100px; height:100px; background:red; position:absolute; top:100px; left:150px; filter:alpha(opacity=100); opacity:1}
+</style>
+</head>
+
+<body>
+<div id="div1" style="top:0"></div>
+<div id="div2" style="top:110px;"> 左</div>
+<div id="div3"  style="top:220px;">右</div>
+
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+//ele这个元素在规定的duration时间在，在attr这个方向，到达target这个终点
+
+var obj={left:700};
+div2.onclick=function(){
+	animate(div1,obj,1600);
+}
+div3.onclick=function(){
+	
+		animate(div1,"left",750,1600);
+}
+//如果这div1还动画中，则不可以重新触发动画
+</script>

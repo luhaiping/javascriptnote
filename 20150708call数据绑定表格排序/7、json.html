@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSON</title>
+</head>
+<body>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript">
+    //JSON只是一种数据格式：把普通对象的属性名用""包起来，我们就说这个对象是JSON格式的对象
+    //js中我们基本上都是用JSON来存储我们想要的数据
+
+    //一个普通的对象
+    //    var obj = {
+    //        name: "李晓慧",
+    //        age: 18
+    //    };
+    //JSON格式的对象
+    //    var obj = {
+    //        "name": "李晓慧",
+    //        "age": 18
+    //    };
+
+    //操作JSON格式的数据我们通常按照下面的来操作：
+    //1、将json格式的对象转换为json格式的字符串:JSON.stringify();
+    //console.log(JSON.stringify(jsonAry));
+
+    //var jsonStr = '[{"name":"陈家楠","age":23,"email":"chen_jia_nian@163.com","tel":"13054673458","score":74},{"name":"郭春莹","age":22,"email":"guo@163.com","tel":"13845238835","score":70},{"name":"郭春莹","age":22,"email":"guo@163.com","tel":"13845238835","score":70}]';
+
+    //2、将json格式的字符串转化为json格式的对象：JSON.parse():   parse(解析)
+    //在IE6、7下这个方法是不存在的：eval("("+jsonStr+")") 千万不要忘记手动加一个小括号
+    //console.log(eval("(" + jsonStr + ")"));
+    //console.log(JSON.parse(jsonStr));
+</script>
+</body>
+</html>

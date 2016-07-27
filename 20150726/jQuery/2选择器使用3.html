@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#middle+li{ background:blue;}
+</style>
+</head>
+
+<body>
+<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <div >div
+        	<p>ppppp
+            	<span>span</span>
+            </p>
+        </div>
+        <li id="middle" class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <div >div
+        	<p>ppppp
+            	<span>span</span>
+            </p>
+        </div>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <div >div
+        	<p>ppppp
+            	<span>span</span>
+            </p>
+        </div>
+        <li id="middle" class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <div >div
+        	<p>ppppp
+            	<span>span</span>
+            </p>
+        </div>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <div >div
+        	<p>ppppp
+            	<span>span</span>
+            </p>
+        </div>
+        <li id="middle" class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+        <li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <div >div
+        	<p>ppppp
+            	<span>span</span>
+            </p>
+        </div>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    
+    <div></div>
+</body>
+</html>
+<script src="jquery-1.9.1.js"></script>
+<script>
+//alert($("ul.panelGroup li").length);
+/*$("ul.panelGroup").find("li");
+alert($("ul.panelGroup>*").length);
+$("ul.panelGroup").children("div");
+$("#middle+li").css("color","red").css({"font-weight":"bold",fontSize:28});
+$("#middle").next("li")
+$("#middle~li").css({"height":"55px","background":"black"});
+$("#middle").nextAll("li")
+$("#middle").prevAll().css("background","orange");
+//selector*/
+//$("li:first-child").css("background","red");;//
+":last-child";
+//$("li:not(#middle)").css("background","red");
+//$("li:even").css("background","red")
+/*$("li:eq(3)").css("background","red")
+$("li").eq(3).css("background","red");
+$("li:contains(三)").css("background","black")
+$("li[id=middle]");
+//innerHTML和innerText=<div>abcd</div>*/
+var oLis=$("li");
+var oLis2=oLis.slice(3,6);
+oLis2.css("background","green");
+$("ul:first").innerHeight();
+$("li").eq(0)//这样得到的一个jQuery对象
+$("li").get(0);//这样得到的一个原生的JS DOM对象
+$("li").get(0).className===$("li")[0];
+document.getElementsByTagName("*")[0]
+//jQuery方法：height是内容的高，innerHeight是clientHeight,outerHeight，offsetHeight,outerHeight(true)是offsetHeight+上下的margin;
+</script>

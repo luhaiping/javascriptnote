@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div.tabbedPanel{ width:500px; height:450px; margin:10px auto;}
+div.tabbedPanel ul.panelGroup{ margin:0; padding:0; list-style:none; margin-left:10px; overflow:hidden;}
+.tabbedPanel li.tab{ padding:0; margin:0 5px; width:70px; height:2em; font-size:14px;  float:left; text-align:center; line-height:2em; background:#CC9;cursor:pointer; }
+.tabbedPanel li.selectedTab{ background:#FF9; }
+.tabbedPanel div.content{ height:400px; clear:both; display:none; }
+.tabbedPanel div.selectedContent{ display:block; background:#FF9;}
+.promoted{ color:red; font-weight:bold;}
+</style>
+</head>
+
+<body>
+<div class="tabbedPanel">
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <div class="content selectedContent">内容一  
+    	<div>我是内容一里边的div</div>
+    </div>
+    <div class="content">内容二  </div>
+    <div class="content">内容三  
+    	<ul>
+        	<li>JavaScript</li>
+            <li>Node</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+        </ul>
+    
+    </div>
+    <div class="content">内容四  </div>
+    <div class="content">内容 五 </div>
+
+</div>
+<!----每一个选项卡的分隔线--------------->
+<div class="tabbedPanel">
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <div class="content selectedContent">内容一  
+    	<div>我是内容一里边的div</div>
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一  
+    	<ul>
+        	<li>JavaScript</li>
+            <li>Node</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+        </ul>
+    
+    </div>
+    <div class="content">内容四  </div>
+    <div class="content">内容五  </div>
+
+</div>
+<!----每一个选项卡的分隔线--------------->
+<div class="tabbedPanel">
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <div class="content selectedContent">内容一  
+    	<div>我是内容一里边的div</div>
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一  
+    	<ul>
+        	<li>JavaScript</li>
+            <li>Node</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+        </ul>
+    
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一  </div>
+
+</div>
+<!----每一个选项卡的分隔线--------------->
+
+<div class="tabbedPanel">
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <div class="content selectedContent">内容一  
+    	<div>我是内容一里边的div</div>
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一  
+    	<ul>
+        	<li>JavaScript</li>
+            <li>Node</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+        </ul>
+    
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一  </div>
+
+</div>
+<!----每一个选项卡的分隔线--------------->
+
+<div id="tabbedPanel" class="tabbedPanel">
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <div class="content selectedContent">内容一  
+    	<div>我是内容一里边的div</div>
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一  
+    	<ul>
+        	<li>JavaScript</li>
+            <li>Node</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+        </ul>
+    
+    </div>
+    <div class="content">内容一  </div>
+    
+    <div id="demo" class="content">内容一  </div>
+
+</div>
+<!----每一个选项卡的分隔线--------------->
+
+</body>
+</html>
+<script src="jquery-1.9.1.js"></script>
+<script>
+$("li.tab").click(function(){
+	$(this).addClass("selectedTab").siblings().removeClass("selectedTab");
+	var index=$(this).index();
+	$(this).parent().siblings().removeClass("selectedContent").eq(index).addClass("selectedContent");
+});
+</script>
+

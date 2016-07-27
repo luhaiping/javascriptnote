@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 20px;
+            left: 500px;
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #div2 {
+            display: none;
+            position: absolute;
+            top: 55px;
+            left: 500px;
+            margin: 0 auto;
+            width: 300px;
+            height: 0;
+            background: #ffff00;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">熊米</div>
+<div id="div2"></div>
+
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //事件委托实现的原理：利用事件冒泡传播的机制，我们给最外层元素的事件绑定方法，当这里面的任意元素触发事件的时候，我们的这个方法都会被执行，我们可以在方法中通过事件对象中存储的事件源，做不同的操作
+
+    var oBtn = document.getElementById("div1");
+    var oBox = document.getElementById("div2");
+
+    document.body.onmouseover = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        console.log(tar);
+        var id = tar.getAttribute("id");
+        if (id === "div1") {
+            oBox.style.display = "block";
+            move(150, 200);
+        } else if (id === "div2") {
+            return;
+        } else {
+            move(0, 100, function () {
+                oBox.style.display = "none";
+            });
+        }
+    }
+
+    function move(target, time, callBack) {
+        var curH = utils.getCss(oBox, "height");
+        var step = (Math.abs(target - curH) / time) * 10;
+        _move();
+        function _move() {
+            window.clearTimeout(oBox.timer);
+            var curH = utils.getCss(oBox, "height");
+            if (curH < target) {
+                if (curH + step >= target) {
+                    utils.setCss(oBox, "height", target);
+                    typeof callBack === "function" ? callBack() : void 0;
+                    return;
+                }
+                utils.setCss(oBox, "height", curH + step);
+            } else if (curH > target) {
+                if (curH - step <= target) {
+                    utils.setCss(oBox, "height", target);
+                    typeof callBack === "function" ? callBack() : void 0;
+                    return;
+                }
+                utils.setCss(oBox, "height", curH - step);
+            } else {
+                return;
+            }
+            oBox.timer = window.setTimeout(_move, 10);
+        }
+    }
+</script>
+</body>
+</html>

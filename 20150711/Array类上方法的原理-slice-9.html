@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+Array.prototype.slice;
+
+Array.prototype.indexOf;
+Array.prototype.clone=function(){
+	return this.slice(0);
+}
+
+Array.prototype.slice2=function(a,b){
+	a=a||0;
+	b=b||this.length;
+	var ary=[];
+	for(var i=a;i<b;i++){
+		ary.push(this[i]);
+	}
+	return ary;
+}
+[].slice.call(eles,0);//DOM集合借用数组类上的方法的原因就是：1、它也是以数字为属性（索引）来读取里面的值的 eles[i]。2、有length属性，边界。
+//凡是具备以上两点的，都可以借用Array类上的方法。
+//也把具备以上两点的对象称之“类数组”
+
+</script>

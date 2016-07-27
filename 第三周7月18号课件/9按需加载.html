@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+body{ height:3500px;}
+#content{ background:green;}
+</style>
+</head>
+
+<body>
+http://www.7160.com/uploads/allimg/140618/9-14061Q11150.jpg<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="content" style="width:150px; height:150px;">
+<img width="150" height="150" src="T85.gif">
+
+</div>
+</body>
+</html>
+<script>
+function offset(ele){//计算出ele元素距离浏览器最左和最上边的偏移量来
+	var l=ele.offsetLeft;
+	var t=ele.offsetTop;
+	var p=ele.offsetParent;
+	while(p){
+		//通过用户代理属性判断是不是IE8浏览器
+		if(window.navigator.userAgent.indexOf("MSIE 8")>-1){
+			l+=p.offsetLeft;
+			t+=p.offsetTop;		
+		}else{
+			l+=p.offsetLeft+p.clientLeft;
+			t+=p.offsetTop+p.clientTop;//加边框的宽
+		}
+		p=p.offsetParent;
+	}
+	return {left:l,top:t}
+}
+var ele=document.getElementById("content");
+ele.t=offset(ele).top;//计算出ele距离文档最上边的偏移量并且保存在自己的自定义属性上
+/*//浏览器的滚动条的位置是
+document.documentElement.scrollTop||document.body.scrollTop;
+document.documentElement.clientHeight||document.body.clientHeight;
+如果ele.t小于了 浏览器翻出去的高度+浏览器（可视窗口）本身的高度，则说明ele已经进入了浏览器的可视区*/
+var oImg=document.getElementsByTagName("img").item(0);
+window.onscroll=function(){
+	//首先把浏览器的底边的位置算出来
+	var bottom=(document.documentElement.scrollTop||document.body.scrollTop)+(document.documentElement.clientHeight||document.body.clientHeight);
+	if(oImg.loaded)return;
+	if(ele.t<bottom){
+		var strImg="http://www.7160.com/uploads/allimg/140618/9-14061Q11150.jpg?"+Math.random();
+		var tempImg=new Image;
+		var tempImg=document.createElement("img");
+		tempImg.src=strImg;//天生就具备下载资源的功能。不必将其添加文档里，它自动就会去下载图片
+		//并且下载完成之后对应一个事件：onload
+		tempImg.onload=function(){//表示加载完成
+			oImg.src=strImg;//这一行代码，在163行之后执行
+			oImg.loaded=true;//标识着图片已经成功加载的记号
+			}
+		oImg.src="o_loading.gif";//转圈，表示正在下载
+	}
+}
+</script>

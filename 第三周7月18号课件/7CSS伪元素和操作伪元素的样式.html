@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+p{ width:450px; background:black; color:white; margin:0;}
+p::before{ content:"我出现在段落前边"; color:#0f0; }
+p::after{ content:"我在后边"; color:red;}
+</style>
+</head>
+
+<body>
+<p>我是一个正常的段落</p>
+</body>
+</html>
+<script>
+var ele=document.getElementsByTagName("p").item(0);
+alert(window.getComputedStyle(ele,"before").color);
+</script>

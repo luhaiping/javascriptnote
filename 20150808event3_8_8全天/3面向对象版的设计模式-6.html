@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+//A-中介-B --就是事件绑定
+
+<script>
+///水壶--烧水方法---水壶报警器
+//有报警器，工作更方便
+//PHP
+//异步，高并发--事件驱动  
+//进程--线程
+//多进程---多并发--
+//服务员
+/*window.setTimeout(fn,3000);//
+fn2();*/
+//烧水水开之后，泡方便面，喝水，洗漱
+function Emitter(){};//报警器类，发射器类,EventEmitter
+Emitter.prototype.on=function(type,fn){
+	if(!this["a"+type]){
+		this["a"+type]=[];	
+	}
+	var a=this["a"+type];
+	for(var i=0;i<a.length;i++){
+		if(a[i]==fn)return;	
+	}
+	a.push(fn);
+}
+Emitter.prototype.run=function(type,e,context){
+	//第二个参数是系统事件，第三参数是当被通知的方法执行时，指定的上下文。这两个参数都是可选
+	var a=this["a"+type];
+	if(a){
+		context=context||this;
+		for(var i=0;i<a.length;i++){
+			if(typeof a[i]=="function"){
+				a[i].call(context,e);
+			}else{
+				a.splice(i,1);
+				i--;	
+			}
+		}
+	}
+}
+Emitter.prototype.off=function(type,fn){
+	var a=this["a"+type];
+	if(a){
+		for(var i=0;i<a.length;i++){
+			if(a[i]==fn){
+				a[i]=null;
+				break;	
+			}
+		}
+	}
+}
+
+function Bottle(){};
+Bottle.prototype=new Emitter;
+Bottle.prototype.boiling=function(){
+	console.log("水开了！");
+	this.run("boiling");
+	}
+
+function instantnoodle(){console.log("泡方便面");}
+
+function drinkWater(){console.log("喝水");}
+function wash(){console.log("洗漱");}
+
+var bottle1=new  Bottle;
+bottle1.boiling();
+bottle1.on("boiling",instantnoodle);
+bottle1.on("boiling",drinkWater);
+bottle1.on("boiling",wash);
+</script>

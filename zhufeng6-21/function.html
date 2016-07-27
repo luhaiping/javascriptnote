@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>function</title>
+</head>
+<body>
+
+
+</body>
+</html>
+<script type="text/javascript">
+    //function 函数、 方法
+    //var obj = {"name":"zhufeng","age":6}
+   //函数数据类型 关键字function
+    function getName(){ //函数名字getName
+        //函数体
+        console.log(123);
+        alert("welcome to zhufeng")
+    }
+    //定义一个函数是为了
+    //getName(); //函数名后面加()小括号代表函数的运行
+    /*function yuehui(){
+        1/ 准备money
+        2、吃饭，看电影
+        3、看电影、吃饭
+        4、送回家
+        5、复习js（赚钱）
+        6、周末还得来听课
+    }
+*/
+
+    function sum(){
+        console.log(3+4);
+    }
+    function sum(num1,num2){ //带参数的函数
+        //函数内的参数相当于定义了两个变量，在函数体内都可以取到参数的值
+        console.log(num1+num2);
+        //var total = 0;
+
+       // console.log(total);
+    }
+    //sum(3,4); //7
+    //sum(5,6);
+    //sum(5,"fff");
+    function sum(num1,num2){ //形参
+
+        //console.log(sum1) //5
+        //console.log(sum2) //undefined
+        //console.log(sum1+sum2)
+        var total = 0;
+        //debugger
+        if(typeof(num1) != undefined){ //判断是否传了参数
+            num1 = Number(num1); //强制把传入的参数转化为number类型
+             if(isNaN(num1) === false){
+                 total+= num1;
+             }
+        }
+        if(typeof(num2) != undefined){
+            num2 = Number(num2);
+            if(isNaN(num2) === false){
+                total+= num2;
+            }
+        }
+        console.log(total);
+        console.log(arguments.length+"我是参数的长度");
+    }
+    sum(5,"a",78); //实参
+
+
+    //arguments 内置参数
+    function sum(){ //多个数求和
+        //arguments js内置可以取到任何参数
+        var total = 0;
+        for(var i=0; i<arguments.length;i++){
+            if(isNaN(arguments[i]) === false){
+                total +=Number(arguments[i]) ;
+            }
+        }
+        console.log(total);
+        //return "234";
+    }
+    sum(3,5,"6"); //3+5+"6" ==>8+"6"==>86
+
+
+</script>

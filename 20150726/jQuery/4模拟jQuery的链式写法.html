@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div >1</div>
+<div >2</div>
+<div >3</div>
+<div >4</div>
+<div >5</div>
+<div >6</div>
+<div >7</div>
+</body>
+</html>
+<script>
+//链式写法
+//document.getElementsByTagName("div").item(0).getAttribute();
+//jQuery的查找功能
+//jQuery保存元素的功能
+//对this理解，在面向对象的编程里:类上的方法，this是指当前这个类的实例
+//对象（实例）是复合的数据载体
+function Query(selector){//selector是选择器类型的字符串	
+	var regId=/^#([a-z_]\w*)$/i;
+	var regClass=/^\.([a-z_]\w*)$/i;
+	var regTag=/^[a-z]\w*$/i;
+	if(regId.test(selector)){
+		RegExp.$1
+		var ele=document.getElementById(RegExp.$1);
+		if(ele){
+			this[0]=ele;
+			this.length=1;
+		}
+	}else if(regClass.test(selector)){
+		var eles=document.getElementsByClassName(RegExp.$1);
+		for(var i=0;i<eles.length;i++){
+			this[i]=eles[i];
+		}
+		this.length=eles.length;
+	}else if(regTag.test(selector)){
+		var eles=document.getElementsByTagName(selector);
+		for(var i=0;i<eles.length;i++){
+			this[i]=eles[i];
+		}
+		this.length=eles.length;
+	}
+}
+Query.prototype.height=function(val){
+	for(var i=0;i<this.length;i++){
+		this[i].style.height=val+"px";	
+	}
+	return this;//这是链式写法的关系所在，把当前实例返回
+}
+Query.prototype.width=function(val){
+	for(var i=0;i<this.length;i++){
+		this[i].style.width=val+"px";	
+	}
+	return this;//这是链式写法的关系所在，把当前实例返回
+}
+Query.prototype.bgColor=function(val){
+	for(var i=0;i<this.length;i++){
+		this[i].style.backgroundColor=val;	
+	}
+	return this;//这是链式写法的关系所在，把当前实例返回
+}
+Query.prototype.eq=function(n){//这个要返回Query类的实例
+	var instance=new Query;
+	instance[0]=this[n];
+	instance.length=1;
+	return instance;
+	
+}
+Query.prototype.get=function(n){//把Query对象来的DOM原生对象取出来
+	return this[n]?this[n]:null;
+	//return this[n];
+}
+function $(selector){
+	return new Query(selector);
+}
+//var obj=new Query("div");
+$("div").height(100).width(100).bgColor("red").eq(1).bgColor("green");
+
+(2).plus(8).reduce(3)//7;
+</script>
+

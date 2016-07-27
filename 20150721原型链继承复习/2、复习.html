@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="left">5</div>
+<script type="text/javascript">
+    //答案：行成了死循环，如果有输出也是0，用到了我们定时器异步加载的原理：设置一个定时器，在等带时间内，继续执行定时器下面的代码，而且只有下面的代码都加载完成了，才会翻回头执行我们的定时器
+    //    var foo = 0;
+    //    var timer = setInterval(function () {
+    //        foo++;
+    //    }, 500);
+    //    while (1) {
+    //        if (foo == 10) {
+    //            clearInterval(timer);
+    //            break;
+    //        } else {
+    //            console.log(foo);
+    //        }
+    //    }
+
+
+    //    var a = 200;
+    //    function fn() {
+    //        console.log(this.a);
+    //    }
+    //    var foo = {
+    //        a: 100,
+    //        bar: fn
+    //    };
+    //(foo.bar)();//如果说()只有一个，和不加()是一样的效果，都是相当于foo.bar执行
+    //(fn, foo.bar)();//把两个中的最后一个函数的定义部分拿出来fn(){console.log(this.a);}然后接下来让这个function执行-->fn() this是window
+
+    //    var a = 200;
+    //    function fn() {
+    //        console.log(this.a);
+    //    }
+    //    var foo = {
+    //        a: 100,
+    //        bar: function () {
+    //            console.log(this.a);
+    //        }
+    //    };
+    //    (fn, foo.bar)();//获取的还是foo.bar对应的函数function(){console.log(this.a);}接下来让这个函数执行 this-->window
+
+    //    var foo = {
+    //        bar: function () {
+    //            console.log(this);
+    //        }
+    //    };
+    //    foo.bar();//this-->foo
+    //    (foo.bar)();//this-->foo  只有一个的情况下和不加一样
+    //    (fn1,fn2,foo.bar)();//this-->window
+    //    function fn1() {
+    //        console.log(1);
+    //    }
+    //    function fn2() {
+    //        console.log(2);
+    //    }
+    //    console.log((fn1, fn2));//返回的是fn2这个函数的定义部分，(a,b,c)返回的是最后一个c
+
+
+    //    var val = 1;
+    //    var json = {
+    //        val: 10,
+    //        dbl: (function () {
+    //            this.val *= 2;
+    //            var val = 2;
+    //            return function () {
+    //                this.val *= 2;
+    //                val += 10;
+    //                alert(val);
+    //            }
+    //        })()
+    //    };
+    //    var dbl = json.dbl;
+    //    dbl();
+    //    json.dbl();
+    //    json.dbl.call(window);
+    //    alert(val);
+    //    alert(json.val);
+
+
+    //    ;(function () {
+    //        var val = 1;
+    //        var json = {
+    //            val: 10,
+    //            dbl: function () {
+    //                val *= 2;
+    //            }
+    //        };
+    //        json.dbl();
+    //        alert(json.val + val);
+    //    })();
+
+
+    //9.
+    //    function C1(name) {
+    //        //name:undefined
+    //        if (name) {//条件不成立
+    //            this.name = name;
+    //        }
+    //    }
+    //    function C2(name) {
+    //        this.name = name;//私有属性name的值是undefined
+    //    }
+    //    function C3(name) {
+    //        this.name = name || 'join';//name是私有的，传进来的参数默认值是undefined,this.name='join';
+    //    }
+    //    C1.prototype.name = 'Tom';
+    //    C2.prototype.name = 'Tom';
+    //    C3.prototype.name = 'Tom';
+    //    var c1 = new C1();
+    //    alert(c1.name);//私有中没有name,找公有的"Tom"
+    //    var c2 = new C2();
+    //    alert(c2.name);//私有中存在，找私有的，结果是undefined
+    //    var c3 = new C3();
+    //    alert(c3.name);//私有中存在，找私有的，结果是'join'
+
+
+    //10.<div id=”left”>5</div>我想让数字5隔一秒变为4，再隔一秒变为3……依次至变为1，请问用JS如何写？
+    //    var oLeft = document.getElementById('left');
+    //    var timer = null, count = Number(oLeft.innerHTML);
+    //    timer = setInterval(function () {
+    //        if (count === 1) {
+    //            clearInterval(timer);
+    //            oLeft.innerHTML = 1;
+    //            return;
+    //        }
+    //        count--;
+    //        oLeft.innerHTML = count;
+    //    }, 1000);
+
+    //用setTimeout进行改写
+
+    //    var oLeft = document.getElementById('left');
+    //    function fn() {
+    //        var n = oLeft.innerHTML;
+    //        if (--n) {//换成n--可以数到0 这个就是--n 和 n--的区别，和++i和i++一样
+    //            oLeft.innerHTML = n;
+    //            setTimeout(fn, 1000);
+    //        }
+    //    }
+    //    setTimeout(fn, 1000);
+
+
+    //    11.
+    //    var test = (function (i) {
+    //        return function () {
+    //            alert(i * 2);
+    //        }
+    //    })(2);
+    //    test(5);//4 传的5只是在逗你玩
+
+
+    //    var obj = {
+    //        name: "tom"
+    //    };
+    //    //obj=xxxfff000
+    //    function fn() {
+    //        var obj2 = obj;//obj2=xxxfff000
+    //        obj2.name = "jack";
+    //    }
+    //    fn();
+    //    console.log(obj);//name:"jack"
+</script>
+</body>
+</html>

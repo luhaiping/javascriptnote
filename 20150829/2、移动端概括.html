@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+            //条件成立代表当前是移动端
+            //window.location.href="phone.html"
+
+//            if (/Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+//
+//            } else if (/iPad/i.test(navigator.userAgent)) {
+//
+//            }
+        } else {
+            //当前是pc端浏览器，我们就跳转到pc端页面
+        }
+    </script>
+</head>
+<body>
+<!--
+学会移动端H5、css3，我们可以做什么？
+
+1、PC端项目都在用H5和css3来进行部分处理：
+做一个页面，里面用到的一些结构标签采用H5的语义标签更加有利于SEO的优化
+在pc端项目中的部分动画都采用css3动画来处理，这样性能更好
+对于一些常用的样式，我们采用css3新的属性来处理(例如：border-radius)
+对于不兼容的我们经常采取”优雅降级方案“：不管、用js技术来实现替代
+
+2、做移动端的项目
+1)pc和移动端都要可以访问的：
+  pc和移动端是不同的项目(pc端打开跳转到pc项目，移动端打开跳转到移动端项目，我们需要检测当前的浏览器是pc还是移动)；
+  但是对于简单的页面，我们需要用一套项目实现适配(上周王燕老师带领大家做的网易科技的项目，回去练习一下,更多的是传统css的应用技巧，需要注意的是根据不同的设备，动态的控制viewport)；
+
+2)只做移动端的页面（pc访问的时候给一个温馨提示页面）
+A、我们用的是手机端的浏览器（内置浏览器、UC、QQ...）打开的，除了传统的适配以外，我们还需要了解每一个浏览器的独特性
+B、我们在APP中打开的页面：例如在微信中打开的
+我们把一个app中嵌入的h5页面的方式叫做hybrid模式
+app开发：存在时效性和用户自主更新的问题
+h5开发：取决于浏览器的兼容；实现的动画等性能不好；h5基本上是无法操作手机内部的软件的；
+h5和app之间的交互(app开发一款功能,我们的h5页面中用js来调用这个功能)：jsBridge.js、伪链接URL
+-->
+</body>
+</html>

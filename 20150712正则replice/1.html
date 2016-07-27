@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复习</title>
+</head>
+<body>
+<div id="div1">欢迎大家来珠峰</div>
+<script type="text/javascript">
+    //call和apply
+    //作用：改变this关键字的--->让当前的函数执行，把里面的this关键字进行改变
+    //区别：call在传递参数的时候是一个个的传的，apply在传递参数的时候，是把需要传递的参数放在一个数组中一起传进去
+    //    function fn(num1, num2, num3) {
+    //        console.log(this);
+    //    }
+    //    var obj = {fn: fn};
+    //    var obj2 = {
+    //        attr: {
+    //            12: 12,
+    //            fn: fn
+    //        }
+    //    };
+    //    fn.call(12, 13, 14);//this-->12
+    //    fn.call(obj, 12, 13, 14);//this-->obj
+    //    fn.call(obj2.attr, 12, 13, 14);//this-->obj2.attr
+    //    fn.apply(window, [12, 13, 14]);
+    //    //在非严格模式下，我们第一个传递的是null/undefined，this都是window
+    //    //严格模式下你写啥this就是啥,写null,this就是null
+    //    fn.call(null, 12, 13, 14);//this-->window
+    //    fn.call(undefined, 12, 13, 14);//this-->window
+
+    //    fn();//this-->window
+    //    obj.fn();//this-->obj
+    //    obj2.attr.fn();//this-->obj2.attr
+    //    //f.__proto__.g();//this-->f.__proto__  ==> Fn.prototype
+    //    var oDiv = document.getElementById("div1");
+    //    //oDiv.onclick = fn;//this-->oDiv
+    //    oDiv.onclick = function () {
+    //        //this-->oDiv
+    //        fn();//fn this-->window
+    //    }
+
+    //this
+    //跟函数在哪定义的和在哪执行的都没有关系
+    //1、函数执行看函数名前面有没有"."，没有就是window，有的话"."前面谁this就是谁
+    //2、自执行函数里面的this都是我们的window
+    //3、给元素绑定事件，“对应函数中”的this是我们当前被绑定事件的这个元素
+    //4、使用call/apply强制改变this
+
+
+    //fn.call 为啥函数可以调用call这个方法
+    //Function js中所有的函数数据类型对应的基类 call和apply就是定义在Function这个基类的原型上的，而每一个函数都是Function这个基类的一个实例，所有所有的函数都可以使用call和apply方法
+    //    function fn1() {
+    //        console.log(1);
+    //    }
+    //    function fn2() {
+    //        console.log(2);
+    //    }
+    //fn1.call(fn2);//执行call方法，里面执行fn1，并且让f1函数中的this变成fn2，输出的结果是1
+    //fn1.call.call(fn2);//执行第二个call方法，在这个call方法里面，执行fn1.call，让fn1.call这个方法中的this变成fn2
+
+    //Function.prototype.call(fn1);//执行call方法，在call方法里面让 Function.prototype执行,并且把Function.prototype中的this改变成fn1
+    //Function.prototype对应的不是一个对象而是一个函数(Empty)
+
+    //Function.prototype.call.call(fn1);//执行call方法，在call里面让Function.prototype.call执行，并且让这个call方法中的this是fn1，其实就是让fn1执行
+    //和我们的fn1.call.call(fn2)一样  Function.prototype.call==fn1.call
+
+    /*
+     第二个call执行：
+     fn1.call(); -->fn1.call这个方法中的this变成fn2
+     fn1.call获取的是我们Function这个原型上的call方法，也就是让Function原型上的call方法执行，让里面的this变成fn2
+     [参考下代码]
+     this(); -->fn2();
+     */
+
+    //    Function.prototype.call = function () {
+    //        //call这个方法中的this就是我们的fn1
+    //        //1、让fn1执行
+    //        this();
+    //        //2、把fn1中的this改变成我们第一个参数传的值
+    //        //把this函数中的[this]改变成arguments[0]
+    //    }
+
+
+    //fn1.call();
+    //fn1.call 是Function原型上的call方法的定义
+    //fn1.call(); 把call方法执行，在call这个方法执行的时候我们做了两件事：让fn1执行，把fn1这函数中的this变成我们第一个参数的值
+
+
+</script>
+<script type="text/javascript" src="js/utils.js"></script>
+</body>
+</html>

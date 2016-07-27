@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="div1">我是div1</div>
+</body>
+</html>
+<script>
+var innerHTML="全局的";
+var obj={innerHTML:"obj的"};
+
+function fn(a,b,c,d){
+	this.innerHTML=a+b+c+d;
+	}
+	fn.call(div1,1,2,3,4);//call的参数可以有无数个，从第二个参数会依次传给fn做参数
+	//fn(1,2,3,4)
+	fn.apply(div1,[1,2,3,4]);//apply最多只有两个参数。第二个参数是一个集合（数组），它相当于fn的arguments
+	var a=[100,21,77,88,99,22,75,52,19,39];
+	var min=a[0];//假定第一项最小
+	var max=a[0]
+	for(var i=1;i<a.length;i++){
+		if(min>a[i]){
+			min=a[i];
+		}
+		
+		if(max<a[i]){
+			max=a[i];	
+		}
+	}
+	min;
+	max;
+/*	Math.min(100,21,77,88,99,22,75,52,19,39);
+	Math.max(100,21,77,88,99,22,75,52,19,39);
+	Math.max(a);
+	
+	Math.min([100,21,77,88,99,22,75,52,19,39]);*/
+	Math.min.apply(null,a);
+	Math.min(100,21,77,88,99,22,75,52,19,39);
+	
+	
+
+	
+	
+</script>
+

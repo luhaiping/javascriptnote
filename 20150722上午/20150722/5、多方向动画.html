@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: #22b909;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript" src="js/utils.min.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+
+    //tarL是左边边界，由于从0开始走，所以也是left运动总距离;tarT是top运动的总距离；time是规定的总时间；interval频率，间隔多久走一次；stepL是left步长；stepT是top步长；
+    var tarL = utils.getWin("clientWidth") - oDiv.offsetWidth;
+    var tarT = utils.getWin("clientHeight") - oDiv.offsetHeight;
+    var time = 2000, interval = 10;
+    var stepL = (tarL / time) * interval;
+    var stepT = (tarT / time) * interval;
+    var stepO = (1 / time) * interval;
+
+    function move() {
+        window.clearTimeout(oDiv.timer);
+        var curL = utils.getCss(oDiv, "left"), curT = utils.getCss(oDiv, "top"), curO = utils.getCss(oDiv, "opacity");
+
+        //left和top是同时到达的，只需要判断一个临界即可
+        if (curL + stepL >= tarL) {
+            utils.setGroupCss(oDiv, {
+                left: tarL,
+                top: tarT,
+                opacity: 0
+            });
+            return;
+        }
+        utils.setGroupCss(oDiv, {
+            left: curL + stepL,
+            top: curT + stepT,
+            opacity: curO - stepO
+        });
+        oDiv.timer = window.setTimeout(move, interval);
+    }
+    oDiv.onclick = move;
+
+    //运动的总时间 5000ms
+    //运动总距离 tarL-0
+    //每一次间隔时间(频率) 10ms
+
+    //步长=(总距离/总时间)*频率
+
+
+</script>
+</body>
+</html>

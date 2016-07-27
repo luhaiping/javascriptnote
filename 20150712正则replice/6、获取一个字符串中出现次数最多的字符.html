@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //replace
+    //    var str = "2015-07-12";
+    //    str = str.replace(/-/g, "/");
+    //    console.log(str);
+
+    //需求：把所有的单词的首字母大写
+    //    var str = "welcome to zhu feng pei xun! good good study, day day up!";
+    //    var reg = /(?:^| +)?([a-z]+)(?: +|$)?/g;
+    //    str = str.replace(reg, function () {
+    //        //console.dir(arguments);
+    //        //我们当前能够进行捕获的分组只有一个，我们传进来的参数有四个
+    //        //第一个：大正则捕获的内容 ==>exec ary[0]
+    //        //第二个：第一个分组捕获的内容（我们想操作的就是这个） ==>exec ary[1]
+    //        //第三个：大正则捕获的开始索引 ==> exec index
+    //        //第四个：原始字符串 ==> exec input
+    //
+    //        var tar = arguments[1];//每一次匹配，第一个分组捕获的内容
+    //        //var tar = RegExp.$1;//每一次匹配，第一个分组捕获的内容 $2就是第二个分组捕获的内容....(存在兼容问题，我们通常用arguments来处理即可)
+    //        var f = tar.charAt(0).toUpperCase();
+    //        tar = f + tar.substr(1);
+    //        return " " + tar;//用tar把每一次大正则捕获到的内容替换掉
+    //    });
+    //    console.log(str);
+
+    //字符串中的replace方法，我们第一个参数如果写的是正则，每匹配一次replace就执行一次(不要忘记加g)
+    //字符串中的replace方法，可以捕获正则匹配的内容，如果我第二个参数传递的是一个function，每捕获一次我们的函数就执行一次，不光光是执行，执行的时候浏览器还默认传递了参数
+
+
+    var str = "zhufengpeixunyangfanqihang";
+    //把每一个字母出现的次数进行统计
+    var obj = {};
+    str.replace(/[a-z]/gi, function () {
+        var a = arguments[0];
+        if (obj[a] >= 1) {
+            obj[a] = obj[a] + 1;
+        } else {
+            obj[a] = 1;
+        }
+    });
+    //用假设法，获取最多出现的次数
+    var max = 0;
+    for (var key in obj) {
+        var cur = obj[key];
+        max = cur > max ? cur : max;
+    }
+    //把最多出现次数的字母放到数组中
+    var ary = [];
+    for (var key in obj) {
+        if (obj[key] === max) {
+            ary.push(key);
+        }
+    }
+    console.log(ary);
+    console.log(max);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var n = 9;
+    //    var s = "str";
+    //    function fn() {
+    //        alert(n);//undefined
+    //        alert(s);//str
+    //        n = 7;
+    //        var n = 6;
+    //    }
+    //    fn();
+
+    //    var n = 9;
+    //    function fn() {
+    //        s = "zhufeng";//相当于给window增加了一个属性s="zhufeng";
+    //        n = 7;
+    //        var n = 6;
+    //    }
+    //    fn();
+    //    alert(n);
+    //    alert(s);
+
+
+    f = function () {return true;}
+    g = function () {return false;}
+    ;(function () {
+        if (g() && [] == ![]) {
+            //g() -->true
+            //[]==![] []==false -->true
+            f = function() {
+                return false;
+            }
+            function g() {
+                return true;
+            }
+        }
+    })();
+    alert(f());
+    alert(g());
+
+    //window下的预解释：无
+    //window下的代码执行：
+      //f=xxxfff111;
+      //g=xxxfff222;
+      //自执行函数function执行：--->形成一个私有作用域，先进行私有作用域的预解释: g=xxxfff000；
+      //自执行函数function下面的代码执行：
+         //判断if条件成立为true
+         //f = function f() {return false;},f在这个函数中没有预解释也不是形参，继续往上一级查找，上一级作用域是window，也就是window下的f=function f() {return false;}
+        //g预解释过的所以是私有的，和外面没有关系。
+    //所以：
+    //alert(f());--->false
+    //alert(g());---->false
+
+
+
+</script>
+</body>
+</html>

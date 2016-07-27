@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="http://www.zhufengpeixun.cn" id="a1" >珠峰培训</a>
+</body>
+</html>
+<script>
+var ele=document.getElementById("a1");
+function fn(e){
+	if(e.preventDefault){
+		e.preventDefault();
+	}else{
+		e.returnValue=false;	
+	}
+	alert(this);
+	return false;
+}
+function fn2(){alert(2);}
+function fn3(){alert(3);}
+function fn4(){alert(4);}
+function fn5(){alert(5);}
+function fn6(){alert(6);}
+function fn7(){alert(7);}
+function fn8(){alert(8);}
+function fn9(){alert(9);}
+function fn10(){alert(10);}
+function fn11(){alert(11);}
+function fn12(){alert(12);}
+ele.addEventListener("click",fn,false);
+ele.addEventListener("click",fn2,false);
+ele.addEventListener("click",fn3,false);
+ele.addEventListener("click",fn4,false);
+ele.addEventListener("click",fn5,false);
+ele.addEventListener("click",fn6,false);
+ele.addEventListener("click",fn7,false);
+ele.addEventListener("click",fn8,false);
+ele.addEventListener("click",fn9,false);
+ele.addEventListener("click",fn10,false);
+ele.addEventListener("click",fn11,false);
+ele.addEventListener("click",fn12,false);
+ele.addEventListener("click",fn,false);
+ele.addEventListener("click",fn,false);
+//ele.id//DHTML DOM0
+//object-EventTarget-Node
+//DOM二级的事件处理方式：阻止事件默认行为，用e.preventDefault
+//ele.onclick=fn;
+
+//ele.attachEvent("onclick",fn);
+//ele.addEventListener("DOMContentLoaded",fn);
+
+</script>

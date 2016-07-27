@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>不销毁的作用域</title>
+</head>
+<body>
+<script type="text/javascript">
+    //函数执行的时候，会形成一个私有的作用域，在这个作用域中返回了一个引用数据类型值
+    //1)并且在函数的外面有一个变量接收了这个值,那么当前作用域就不能销毁了
+    //2)外面并没有变量接收，那么当前的作用域不立即销毁，当浏览器空闲的时候在销毁
+    function fn() {
+        var i = 0;
+        return function (n) {
+            console.log(n + i++);
+        }
+    }
+    var f = fn();//先执行fn，把返回的小function给我们的f
+    f(5);//5
+    f(6);//7
+    fn()(7);//fn先执行，返回一个function，然后紧接着让我们返回的function执行 var b=fn(); b(7); //7
+    fn()(8);//8
+
+
+    //i++、++i
+    //都是自身累加1，区别在于和另外一个值计算时候的顺序：
+    //i++:先运算在+1
+    //++i:先+1在运算
+    //var i = 4;
+    //console.log(5 + (i++));//5+4=9  i++==>i=5
+    //console.log(i);//5
+
+    //console.log(5 + (++i));//i++==>i=5  5+5=10
+    //console.log(i);//5
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //4、字符串中常用的操作案例
+    var strPro = String.prototype;
+
+    //去除首尾空格
+    strPro.myTrim = function () {
+        return this.replace(/(^\s*|\s*$)/g, "");
+    }
+    console.log(" 珠峰 ".myTrim());
+
+    //字符串截取，中文字符按照两个字节来截取
+    strPro.mySub = function () {
+        var len = arguments[0] || 10, isD = arguments[1] || false, str = "", n = 0;
+        for (var i = 0; i < this.length; i++) {
+            var s = this.charAt(i);
+            /[\u4e00-\u9fa5]/.test(s) ? n += 2 : n++;
+            if (n > len) {
+                isD ? str += "..." : void 0;
+                break;
+            }
+            str += s;
+        }
+        return str;
+    }
+    console.log("本次课程为珠峰培训正式收费课程，只有报名珠峰培训javascript正式课(周末班、在线班、全日制班)的学员可以收听；对于没有报名的学员，我们的助教会及时和大家大家沟通，引导大家进行学习交流！".mySub(20, true));
+
+    //格式化时间
+    strPro.myFormatTime = function () {
+        var reg = /^(\d{4})(?:-|\/|\.|:)(\d{1,2})(?:-|\/|\.|:)(\d{1,2})(?:\s+)(\d{1,2})(?:-|\/|\.|:)(\d{1,2})(?:-|\/|\.|:)(\d{1,2})$/g, ary = [];
+        this.replace(reg, function () {
+            ary = ([].slice.call(arguments)).slice(1, 7);
+        });
+        var format = arguments[0] || "{0}年{1}月{2}日 {3}:{4}:{5}";
+        return format.replace(/{(\d+)}/g, function () {
+            var val = ary[arguments[1]];
+            return val.length === 1 ? "0" + val : val;
+        });
+    }
+    console.log("2015-07-09 18:52:03".myFormatTime("{1}-{2} {3}:{4}"));
+
+    //获取URL中的参数值
+    strPro.myQueryURLParameter = function () {
+        var reg = /([^?&=]+)=([^?&=]+)/g, obj = {};
+        this.replace(reg, function () {
+            obj[arguments[1]] = arguments[2];
+        });
+        return obj;
+    }
+    console.log("www.zhufengpeixun.cn?course1=js&course2=css".myQueryURLParameter());
+</script>
+</body>
+</html>

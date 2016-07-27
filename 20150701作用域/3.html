@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>预解释深入</title>
+</head>
+<body>
+<!--
+预解释是毫无节操的一种机制
+1、预解释发生在当前的作用域下
+2、不管条件是否成立，{}中的代码都要进行预解释
+3、只有=左边进行预解释，右边的不进行预解释
+4、匿名函数中的自执行函数，在window下不进行预解释
+5、在函数中return后面的代码不在执行了，但是需要进行预解释
+6、在预解释的时候，如果发现声明的东西重复了，不需要重新的声明，但是需要重新的定义
+7、预解释只发生在同一个脚本块中
+
+-->
+<script type="text/javascript">
+    //虽然条件不成立，但是a也要进行预解释 (2)
+    //    if (1 == 0) {
+    //        var a = 12;
+    //    }
+
+
+    //普通的函数写法和函数表达是的区别:
+
+    //预解释的时候，声明和定义都完成了
+    //    fn(); 可以正常的执行
+    //    function fn() {
+    //
+    //    }
+
+    //预解释的时候，只是声明一个fn
+    //    fn();//-->undefined(); Error:fn is not a function
+    //    var fn = function () {
+    //
+    //    }
+
+
+    //在window下function是不进行预解释的，但是当代码执行到这的时候，自执行函数执行，形成一个私有的作用域，在这个私有作用域中是需要预解释的
+    //    ;(function () {
+    //
+    //    })();
+
+
+    //    function fn(){
+    //        //预：var a; var b;
+    //        var a=12;
+    //        return;
+    //        var b=13;//代码不执行，但是需要预解释
+    //    }
+
+
+    //预计：var a;
+    //    var a=13;
+    //    var a=14;
+    //    var a=15;
+    //    console.log(a);//15
+
+    //window下的预解释：
+    //fn=xxxfff1 声明和定义
+    //【var fn;】不需要重新的声明fn了
+    //fn=xxxfff2
+    //fn=xxxfff3
+    //预解释完成了，fn变成了最后的xxxfff3
+
+    //    fn();
+    //    function fn() {
+    //        console.log(1);
+    //    }
+    //    fn();
+    //    var fn = 13;//重新的给预解释时候的fn赋值 fn=13
+    //    function fn() {
+    //        console.log(2);
+    //    }
+    //    fn();//13();Error:fn is not a function
+    //    function fn() {
+    //        console.log(3);
+    //    }
+    //    fn();
+
+    //console.log(a);//a is not defined
+</script>
+<script type="text/javascript">
+    var a = 13;
+</script>
+</body>
+</html>

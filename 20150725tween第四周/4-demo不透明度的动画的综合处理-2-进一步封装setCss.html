@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; background:red; position:absolute; top:100px; left:150px; filter:alpha(opacity=10); opacity:0.1}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+//ele这个元素在规定的duration时间在，在attr这个方向，到达target这个终点
+function getCss(ele,attr){
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr]);
+	}else{
+		if(attr=="opacity"){
+			ele.filter
+			var val=ele.currentStyle.filter
+			//alpha(opacity=20);
+			var reg=/alpha\(opacity=(\d+(\.\d+)?)\)/;
+			if(reg.test(val)){
+				RegExp.$1;
+				//return parseFloat(RegExp.$1)
+				return RegExp.$1/100;//为了和标准浏览器采用相同的原则：0-1之间的一个浮点数
+			}else{
+				return 1;	
+			}
+		}else{
+			return parseFloat(ele.currentStyle[attr]);
+		}
+	}
+	
+}
+function setCss(ele,attr,val){
+	switch(attr){
+		case "width":
+		case "height":
+		case "top":
+		case "left":
+			ele.style[attr]=val+"px";
+			break;
+		case "float":
+			//ele.style.float=val;
+			ele.style.cssFloat=val;//标准浏览器的
+			ele.style.styleFloat=val;
+			break;
+		case "opacity":
+			ele.style.opacity=val;
+			ele.style.filter="alpha(opacity="+val*100+ ")";
+			break;
+		default:
+			ele.style[attr]=val;	
+	}
+	
+}
+function animate(ele,attr/* 是一个CSS属性,指方向 */,target,duration){
+	var begin=getCss(ele,attr);//ele.offsetLeft;
+	target;
+	var change=target-begin;
+	var times=0;
+	var interval=15;	
+	function step(){
+		times+=interval;
+		if(times<duration){
+			var val=times/duration*change+begin;
+			setCss(ele,attr,val);
+		}else{
+			setCss(ele,attr,target);
+			window.clearInterval(timer);
+		}
+	}
+	var timer=window.setInterval(step,interval);
+//this
+}
+div1.onclick=function(){
+	animate(this,"width",750,1600);
+}
+</script>

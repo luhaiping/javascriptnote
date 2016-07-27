@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>function-return</title>
+</head>
+<body>
+<script type="text/javascript">
+    //由于函数执行闭包的机制，导致了我们不能直接的拿到函数体中的变量，那么如果我想用里面的东西，该如何的处理？
+    //函数中的返回值机制--->return
+    //作用：
+    //1、在函数体中，把外面需要的内容进行返回，让外面可以拿到(可以定义一个变量接收函数的返回值)
+    //如果在函数体中并没有写return或者只写了return;都是默认有返回值的，默认返回值是undefined:说明函数执行都是由返回值的，如果我们写了，我们写的是啥，返回值就是啥，否则就是undefined
+
+    //2、在函数体中，return后面的代码不执行，所以我们以后的项目中可以通过return来指定当前函数执行到什么位置结束
+
+    function sum() {
+        var total = 0;
+        total = 1 + 1;
+        return total;//把total的值返回到函数的外面
+        total += 3;//这句话不执行
+    }
+    var total = sum();//当函数执行的时候，整体的结果的就是我们返回的内容
+    console.log(total);//外面的变量叫total和里面没关系(闭包机制)
+
+
+</script>
+</body>
+</html>

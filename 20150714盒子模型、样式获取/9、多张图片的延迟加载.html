@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oBox = document.getElementById("box");
+    //init data
+    var frg = document.createDocumentFragment();
+    for (var i = 0; i < data.length; i++) {
+        var oDiv = document.createElement("div");
+        oDiv.trueImg = data[i];
+        frg.appendChild(oDiv);
+    }
+    oBox.appendChild(frg);
+    var oDivs = oBox.getElementsByTagName("div");
+
+    //init img
+    function loadImg() {
+        for (var i = 0; i < oDivs.length; i++) {
+            ~function (i) {
+                var cur = oDivs[i];
+                if (!cur.isLoad) {
+                    var curT = utils.offset(cur).top + cur.offsetHeight;
+                    var navT = utils.getWin("scrollTop") + utils.getWin("clientHeight");
+                    if (navT >= curT) {
+                        var oImg = new Image;
+                        oImg.src = cur.trueImg;
+                        oImg.onload = function () {
+                            cur.appendChild(this);
+                            cur.isLoad = true;
+                            move(this);
+                        }
+                    }
+                }
+            }(i);
+        }
+    }
+
+    //实现我们的渐现效果
+    function move(oImg) {
+        var count = 0;
+        var timer = window.setInterval(function () {
+            if (count >= 1) {
+                window.clearInterval(timer);
+                return;
+            }
+            count += 0.05;
+            oImg.style.opacity = count;
+        }, 10);
+    }
+
+    //页面加载后的500毫秒执行图片延迟加载
+    window.setTimeout(loadImg, 500);
+    //在页面滚动的时候也要继续加载图片
+    window.onscroll = loadImg;
+
+    //js中所有的事件绑定都是异步编程：
+    //    var oImg = new Image;
+    //    oImg.src = cur.trueImg;
+    //    oImg.onload = function () {
+    //        cur.appendChild(oImg);
+    //        cur.isLoad = true;
+    //    }
+    //oImg.onload正在加载中，如果可以正常的加载，触发对应的function，在加载的这个时间内，我们js不等着它，继续执行我们下一次循环....我们只能给最后一个div添加图片，解决的方案：闭包原理的应用
+</script>
+</body>
+</html>

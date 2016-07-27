@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 28px;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: #FFE0E9;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px 2px #22b909;
+        }
+
+        .flash {
+            -webkit-animation: cindy 1s linear 0s infinite;
+            animation: cindy 1s linear 0s infinite;
+        }
+
+        @-webkit-keyframes cindy {
+            0%, 100% {
+                box-shadow: 0 0 20px 2px #22b909;
+            }
+            50% {
+                box-shadow: 0 0 20px 15px #22b909;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--
+    audio：
+    音频标签，支持三种格式的文件：mp3(火狐和欧朋不兼容)、ogg(safari和IE不兼容)、wav(IE不兼容)
+    controls:是否使用浏览器自带的播放器
+    autoplay:自动播放
+    loop:是否循环播放
+    preload:告诉浏览器怎么加载我们的音频文件 auto(页面一打开就开始加载) none(只有播放的时候才开始加载) metadata(开始打开页面只加载音频文件的头信息，播放后才开始加载音频信息),默认值是none
+
+    video视频
+    width/height：设置视频区域的宽度和高度
+    poster：设置视屏的封面图，一般情况下，只有视频第一帧没有加载出来、preload=none、未找到指定视频文件才会出现这个
+
+-->
+<!--<audio>-->
+<!--<source src="xxx.mp3" type="audio/mpeg"/>-->
+<!--<source src="xxx.ogg" type="audio/ogg"/>-->
+<!--<source src="xxx.wav" type="audio/wav"/>-->
+<!--your browser is not support audio!-->
+<!--</audio>-->
+
+<div id="div1">暂停</div>
+<script type="text/javascript">
+    //    var oDiv = document.querySelector("#div1");
+    //    window.onload = function () {
+    //        var oAudio = document.createElement("audio");
+    //        oAudio.src = "hktk.mp3";
+    //        oAudio.loop = true;
+    //        oAudio.preload = "auto";
+    //        document.body.appendChild(oAudio);
+    //        oAudio.play();//js控制音频播放
+    //        oDiv.style.display = "block";
+    //        oDiv.className = "flash";
+    //
+    //        oDiv.onclick = function () {
+    //            if (oAudio.paused) {
+    //                oAudio.play();
+    //                this.innerHTML = "暂停";
+    //                oDiv.className = "flash";
+    //            } else {
+    //                oAudio.pause();
+    //                this.innerHTML = "播放";
+    //                oDiv.className = "";
+    //            }
+    //        }
+    //    }
+</script>
+</body>
+</html>

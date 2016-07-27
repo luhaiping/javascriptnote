@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: #22b909;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    //元素本身天生自带一些事件行为，不管有没有给事件绑定方法，事件天生就有，例如：oDiv天生有click事件，当我用鼠标点击它的时候，就触发了click这个事件，如果没有给事件绑定任何的方法，那么只是什么都不做，但是click确实触发了
+
+    //事件绑定：给元素的某一个事件类型绑定一个方法，当事件触发的时候，执行我们绑定的这个方法，并且浏览器默认的给这个方法传递了一个参数值--->MouseEvent 鼠标事件，并且是对象数据类型的，里面包含了本次操作相关的属性和属性值--->事件对象
+    var oDiv = document.getElementById("div1");
+    oDiv.onclick = function (e) {//e就是浏览器默认传递进来的事件对象
+        //e = e || window.event;//事件对象本身存在兼容问题，在IE6~8下，浏览器不会给函数传递事件对象，但是相关的事件信息存储到了我们的window.event下面了
+
+        //e.type;//事件类型，例如："click"，"mouseover"...
+
+        //e.target || e.srcElement;//事件源，不兼容，在IE6~8下需要换成srcElement
+
+        //e.clientX / e.clientY;//鼠标的x轴和y轴的坐标值 (距离当前屏幕左上角的距离)，例如:当前是第7屏幕，获取的值是距离第7屏幕左上角的，而不是第一屏幕左上角
+
+        //e.pageX / e.pageY; //鼠标距离页面第一屏幕左上角的x轴y轴的距离，但是这个属性在IE6~8下不存在，我们用clientY+页面卷去的高度来实现
+//        e.pageY = e.pageY || (e.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+//        e.pageX = e.pageX || (e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+
+        //阻止事件默认的冒泡传播，IE6~8下不兼容stopPropagation,我们用e.cancelBubble = true来解决
+        //e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+
+        //阻止默认行为，IE6~8下不兼容preventDefault,我们用e.returnValue = false来解决
+        //e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    }
+</script>
+</body>
+</html>

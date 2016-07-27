@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var name = "china";
+    //    var age = 5000;
+    //    ~function (name, age) {
+    //        //私有的name="china" age=5000;
+    //        name = "zhufeng";//私有的name="zhufeng"
+    //        age = 6;//私有的age=6
+    //        alert(name + "===>" + age);
+    //    }(name, age);//把全局下的name和age的值给我们的私有作用域中的形参
+    //    alert(name + "===>" + age);
+
+    //    var name = "china";
+    //    var age = 5000;
+    //    ~function (name, age) {
+    //        name = "zhufeng";
+    //        age = 6;
+    //        alert(window.name + "===>" + window.age);//我想让他弹出china==>5000
+    //    }(name, age);
+
+    //在私有作用域中如果想修改和使用全局的变量值，最简单的方式是假前缀window
+
+
+    //jQuery实现的原理
+    //    (function () {
+    //        var jQuery = function () {
+    //            console.log("ok");
+    //        }
+    //        window.jQuery = window.$ = jQuery;
+    //    })();
+    //    jQuery();
+    //    $();
+
+    //Zepto(移动端的小jQuery)实现的原理
+    //    var Zepto = (function () {
+    //        var Zepto = function () {
+    //            console.log("ok");
+    //        }
+    //        return Zepto;
+    //    })();
+    //    Zepto();
+
+    //在私有作用域中定义的私有的变量和函数，我想在全局下使用
+    //window.xxx
+    //return xxx
+
+
+
+
+</script>
+</body>
+</html>

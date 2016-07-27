@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+//使用toString严格断判断数组
+//1、instanceof有什么不足
+function InheritArray(){};
+InheritArray.prototype=new Array;
+var a=new InheritArray;
+/*alert(a instanceof InheritArray);
+alert(a instanceof Array);
+alert(a instanceof Object);*/
+//instanceof不能严格判断是不是一个类的实例
+
+function isArray(obj){
+	return Object.prototype.toString.call(obj) =="[object Array]"
+}
+
+alert(isArray([]));
+</script>

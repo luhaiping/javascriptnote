@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="http://www.zhufengpeixun.cn" id="a1" >珠峰培训</a>
+事件兼容性问题总结
+1、事件对象本身：标准浏览器是一个自动传入的参数；IE是window.event;
+2、事件源
+3、阻止事件默认行为
+4、阻止事件传播
+5、DOM2级事绑定的方法不同
+6、DOM2级事件绑定的方法，执行顺序问题
+7、DOM2级事件绽定的方法，this关键字不同
+</body>
+</html>
+<script>
+var ele=document.getElementById("a1");
+function fn1(e){
+	e=e||event;
+	if(e.preventDefault){
+		e.preventDefault();
+	}else{
+		e.returnValue=false;	
+	}
+	if(e.stopPropagation){
+		e.stopPropagation();
+	}else{
+		e.cancelBubble=true;
+	}
+	alert(this===window);
+	return false;
+}
+function fn2(){alert(2);}
+function fn3(){alert(3);}
+function fn4(){alert(4);}
+function fn5(){alert(5);}
+function fn6(){alert(6);}
+function fn7(){alert(7);}
+function fn8(){alert(8);}
+function fn9(){alert(9);}
+function fn10(){alert(10);}
+function fn11(){alert(11);}
+function fn12(){alert(12);}
+ele.attachEvent("onclick",fn1);
+//ele.attachEvent("onclick",fn1);
+//ele.attachEvent("onclick",fn1);
+ele.attachEvent("onclick",fn2);
+ele.attachEvent("onclick",fn3);
+ele.attachEvent("onclick",fn4);
+ele.attachEvent("onclick",fn5);
+ele.attachEvent("onclick",fn6);
+ele.attachEvent("onclick",fn7);
+ele.attachEvent("onclick",fn8);
+ele.attachEvent("onclick",fn9);
+ele.attachEvent("onclick",fn10);
+ele.attachEvent("onclick",fn11);
+
+</script>

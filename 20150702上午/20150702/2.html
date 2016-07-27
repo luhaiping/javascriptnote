@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">我是div1</div>
+<script type="text/javascript">
+    //this:我们学习的this基本上都是在函数中应用的
+    //this指的是当前行为(方法)执行的主体
+    //context上下文指的是当前行为(方法)执行的环境
+    //例如：林雅贞去北京饭店吃大餐，上下文是"北京饭店"，this是"林雅贞"
+
+    //    var innerHTML = "我是window下的innerHTML变量"
+    //    var obj = {
+    //        innerHTML: "我是obj下的innerHTML属性",
+    //        fn: fn
+    //    };
+    //
+    //    function fn() {
+    //        console.log(this.innerHTML);
+    //    }
+    //    var oDiv = document.getElementById("div1");
+    //    fn();//this-->window
+    //    obj.fn();//this-->obj
+    //    oDiv.onclick = fn;//this-->oDiv
+    //    function f() {
+    //        var innerHTML = "fff";
+    //        fn();//this-->window
+    //    }
+    //    f();
+
+
+    function fn() {
+        console.log(this);
+    }
+    var oDiv = document.getElementById("div1");
+    oDiv.onclick = function () {
+        console.log(this);//this-->oDiv
+        fn();//this-->window
+    }
+
+    //js中的this:
+    //this是谁跟函数在哪定义的和在哪执行的没有半毛钱的关系
+    //1、方法名(); this是谁，就看函数执行方法名前面有没有".",有的话,"."前面是谁this就是谁;没有的话this就是window
+    //2、自执行函数里面的this永远是window,这个和自执行函数在哪执行的没关系
+    //3、给元素绑定事件(例如点击事件)，当触发事件的时候，函数中的this是当前被绑定事件的这个元素
+</script>
+</body>
+</html>

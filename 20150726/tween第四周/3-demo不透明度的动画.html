@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; background:red; position:absolute; top:100px; left:150px;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+//ele这个元素在规定的duration时间在，在attr这个方向，到达target这个终点
+function getCss(ele,attr){
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr]);
+	}else{
+		return parseFloat(ele.currentStyle[attr]);
+	}
+	
+}
+function animate(ele,attr/* 是一个CSS属性,指方向 */,target,duration){
+	var begin=getCss(ele,attr);//ele.offsetLeft;
+	target;
+	var change=target-begin;
+	var times=0;
+	var interval=15;	
+	function step(){
+		times+=interval;
+		if(times<duration){
+			ele.style[attr]=times/duration*change+begin;
+		}else{
+			ele.style[attr]=target;
+			window.clearInterval(timer);
+		}
+	}
+	var timer=window.setInterval(step,interval);
+	this
+}
+div1.onclick=function(){
+	this;
+	animate(this,"opacity",0.1,1600);
+	}
+</script>

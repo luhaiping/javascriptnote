@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">我是DIV，有本事点我啊！</div>
+<script type="text/javascript">
+    //this -->我
+    //我们一般都在函数中研究this -->当前函数执行的主体
+    //this(执行的主体)、context(执行的环境范围)
+
+    //    var innerHTML = "我是window!";
+    //    var obj = {
+    //        innerHTML: "我是obj！",
+    //        fn: fn
+    //    };
+    //    function fn() {
+    //        console.log(this.innerHTML);
+    //    }
+    //    var oDiv = document.getElementById("div1");
+    //    oDiv.onclick = fn;//this-->oDiv
+    //    fn();//this-->window
+    //    obj.fn();//this-->obj
+
+    //this是谁和函数在哪定义的以及在哪执行的没半毛钱关系
+    //1)函数名(); 我们看函数名前面有没有"."，有的话"."前面是谁this就是谁，没有的话this是window
+    //2)ele.onclick=function(){this-->ele}；给函数绑定事件，方法中的this是当前被绑定事件的那个元素
+    //3)自执行函数中的this永远是window
+
+
+    //    var innerHTML = "我是window!";
+    //    function fn() {
+    //        console.log(this.innerHTML);
+    //    }
+    //    var oDiv = document.getElementById("div1");
+    //    oDiv.onclick = function () {
+    //        //this-->oDiv
+    //        fn();
+    //    }
+</script>
+</body>
+</html>

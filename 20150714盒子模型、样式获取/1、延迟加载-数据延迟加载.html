@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+
+<div id="box">
+    <img src="/xdf.img/001.jpg" trueImge="../../真实图片地址" alt=""/>
+</div>
+
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    //开始加载10条，记录当前最后一张图片底边框的偏移量imgT和最后一张图片的序号，当页面的滚动的时候，我们获取浏览器底边框的偏移量navT，如果navT>imgT，我们开始加载下一个10条，并从新记录当前最后一张图片底边框的偏移量imgT和最后一张图片的序号.....当我们加载玩成最后的数据，停止我们的加载
+
+    var oBox = document.getElementById("box");
+    var timer = null;
+    var imgT = 0, imgN = -1, page = 10;//imgT:最后一张图片底边框的偏移量,imgN:最后一张图片的序号,page:每一次加载的条数
+    initData();
+    window.onscroll = scrollFn;
+
+    function initData() {
+        //3)如果已经把所有的数据都加载完成了，我们就不在触发下面的两步骤了
+        if (imgN + 1 >= data.length) {
+            window.onscroll = null;
+            return;
+        }
+        //1)每一次都从imgN + 1开始，创建page个div，并且把它们添加到oBox中
+        window.onscroll = null;//为了加载等待过程中的重复触发操作，我们在加载新的内容之前把onscroll禁止，当加载完成后在打开
+        var frg = document.createDocumentFragment();
+        var count = 0, oDiv = null;
+        for (var i = imgN + 1; i < data.length; i++) {
+            oDiv = document.createElement("div");
+            oDiv.index = i;
+            oDiv.trueImg = data[i];
+            frg.appendChild(oDiv);
+            count++;
+            if (count === page) {
+                break;
+            }
+        }
+        oBox.appendChild(frg);
+        //2)记录当前最后一个div的底边框的偏移量
+        if (oDiv) {
+            imgT = utils.offset(oDiv).top + oDiv.offsetHeight;
+            imgN = oDiv.index;
+        }
+        window.onscroll = scrollFn;//加载完成后在把事件给onscroll
+        //4)每一次加载完成新的数据都执行我们的imgLoad
+        window.clearTimeout(timer);
+        timer = window.setTimeout(imgLoad, 500);
+    }
+    function imgLoad() {
+        var oDivs = oBox.getElementsByTagName("div");
+        for (var i = 0; i < oDivs.length; i++) {
+            ~function (i) {
+                var oDiv = oDivs[i];
+                if (!oDiv.isLoad) {
+                    var oImg = new Image;
+                    oImg.src = oDiv.trueImg;
+                    oImg.onload = function () {
+                        oDiv.appendChild(this);
+                        oDiv.isLoad = true;
+                        imgMove(this);
+                    }
+                }
+            }(i);
+        }
+    }
+    function imgMove(curImg) {
+        var count = 0;
+        var timer = window.setInterval(function () {
+            if (count >= 1) {
+                window.clearInterval(timer);
+                return;
+            }
+            count += 0.05;
+            curImg.style.opacity = count;
+        }, 10);
+    }
+    function scrollFn() {
+        var navT = utils.getWin("scrollTop") + utils.getWin("clientHeight");
+        if (navT >= (imgT - 500)) {//从倒数第三张就开始加载我们新的数据
+            //window.setTimeout(initData, 10000);
+            initData();
+        }
+    }
+
+
+</script>
+</body>
+</html>

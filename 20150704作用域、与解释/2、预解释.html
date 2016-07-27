@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    console.log(num);
+    var num = 12;
+    console.log(window.num);
+    var obj = {name: "zhufeng"};
+    var ary = [12, 23, 34];
+    function fn() {
+        console.log(num);
+        var num = 13;
+    }//因为预解释的时候我们函数定义的部分已经完成了，所以代码在执行的时候遇到定义的这个部分就不在重新的定义
+    fn();
+
+
+    //当浏览器开始加载我们HTML页面的时候会默认开辟一个供js代码执行的环境-->window全局作用域（栈内存）
+    //只有关闭(刷新)页面的时候，全局作用域才销毁
+    //在全局作用域下声明过的变量就是全局的变量，不仅属于全局变量，还属于我们window这个对象的一个属性(只有全局作用域才是这样)
+
+
+    //预解释：在当前作用域下(刚开始是window全局作用域)，js代码从上到下执行之前，首先会把所有带var和function关键字的进行提前的声明(或者定义)
+    //带var关键字的和带function关键字的是不一样的
+    //var:只提前的声明
+    //function:提前声明+定义都完成了
+
+    //var num=12;
+    //声明:declare --> var num; 声明没有赋值，默认值是undefined
+    //定义:defined --> num=12;
+
+
+    //栈内存：用来运行我们的js代码和存储基本数据类型值的 例如：作用域(全局作用域)
+    //堆内存：引用数据类型在操作的时候，首先会开辟一个新的内存空间，用来存储数据(对象的属性或者是函数的代码字符串)，这个新开辟的内存空间就是我们的堆内存
+</script>
+</body>
+</html>

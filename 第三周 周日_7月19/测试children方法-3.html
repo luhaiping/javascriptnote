@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="demo1" class="tabbedPanel">
+	<ul class="panelGroup">
+    	<li class="tab selectedTab">选项一</li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三</li>
+        <li class="tab promoted">选项四</li>
+        <li class="tab">选项五</li>
+    </ul>
+    <div class="content selectedContent">内容一  
+    	<div>我是内容一里边的div</div>
+    </div>
+    <div class="content">内容一  </div>
+    <div class="content">内容一 </div>
+    <div class="content">内容四  </div>
+    <div class="content">内容五  </div>
+	<p>我是段落</p>
+    <span>我是span</span>
+</div>
+</body>
+</html>
+<script src="../script/DOM.js"></script>
+<script>
+console.log(DOM.children(demo1,document))
+ </script>

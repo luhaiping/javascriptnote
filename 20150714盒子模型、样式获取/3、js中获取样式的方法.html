@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 12px;
+        }
+
+        #div1 {
+            margin: 100px;
+            padding: 30px;
+            width: 200px;
+            height: 200px;
+            border: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    站在台风口上，猪都能飞起来！学习的好坏和自身基础、自身接受能力没有必然的关系，学不好的话跟自己说你太懒了！想想自己的钱包，想想自己未来的媳妇老公，想想自己未来是否要做家务，想完了就去拼吧！站在台风口上，猪都能飞起来！站在台风口上，猪都能飞起来！
+</div>
+<script type="text/javascript">
+    //所有在页面中出现的元素都是经过浏览器计算渲染过的(有的是我们自己写的，有的是浏览器默认的)
+    //获取元素经过计算的样式(所有的样式，不管写在哪，不管是否写，只要渲染出来了，都能获取到)
+    //window.getComputedStyle([元素],[伪类]) 获取的是一个CSSStyleDeclaration样式集合(对象数据类型的)
+    //如果想获取具体的某一个属性的，我们可以通过属性名获取属性值就可以了
+
+    //getComputedStyle在IE6~8下不兼容，我们用currentStyle来出来
+    //元素.currentStyle 获取的是一个对象
+
+    //每一个浏览器对默认值存在差异，为了保证js获取的时候的准确性我们通常在css样式开始的时候把常用的样式都初始化一下
+
+    //var oDiv = document.getElementById("div1");
+    //console.dir(window.getComputedStyle(oDiv, null).margin);
+    //console.dir(oDiv.currentStyle.margin);
+
+
+    //1、try catch处理兼容
+    //    function getCss(curEle, attr) {
+    //        try {
+    //            return window.getComputedStyle(curEle, null)[attr];
+    //        } catch (e) {
+    //            return curEle.currentStyle[attr];
+    //        }
+    //    }
+
+    //2、getComputedStyle兼容的话是一个函数，不兼容的话属性值是undefined，那我们就可以通过以下好几种方式来判断兼容了
+
+    //    function getCss(curEle, attr) {
+    //        if (typeof window.getComputedStyle === "function") {
+    //            return window.getComputedStyle(curEle, null)[attr];
+    //        } else {
+    //            return curEle.currentStyle[attr];
+    //        }
+    //    }
+
+    //    function getCss(curEle, attr) {
+    //        if (window.getComputedStyle) {
+    //            return window.getComputedStyle(curEle, null)[attr];
+    //        } else {
+    //            return curEle.currentStyle[attr];
+    //        }
+    //    }
+
+    //    function getCss(curEle, attr) {
+    //        if ("getComputedStyle" in window) {
+    //            return window.getComputedStyle(curEle, null)[attr];
+    //        } else {
+    //            return curEle.currentStyle[attr];
+    //        }
+    //    }
+
+    //console.log(getCss(oDiv, "margin"));
+    //console.log(window.getComputedStyle);
+
+    //四种处理兼容的方式中
+    // try catch因为每一次都要先执行一个不兼容，才会报错，才可以执行catch中的，所以性能不是很好
+    // typeof 检测数据类型，每一次都需要typeof一下才会出结果，性能也不是最好的
+    // window.getComputedStyle 首先获取这个属性的值，然后把这个值转换为布尔类型，再判断条件是否成立
+    //"getComputedStyle" in window 直接查找，返回true或者false，我个人喜欢用最后一种方式来节约那一丢丢的性能
+
+</script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    //console.log(oDiv.offsetWidth);
+    //var res = utils.getCss(oDiv, "borderLeftWidth") + utils.getCss(oDiv, "borderRightWidth") + utils.getCss(oDiv, "paddingLeft") + utils.getCss(oDiv, "paddingRight") + utils.getCss(oDiv, "width");
+    //console.log(res);
+
+    //    var f = utils.getCss(oDiv, "backgroundColor");
+    //    console.log(f);
+</script>
+</body>
+</html>

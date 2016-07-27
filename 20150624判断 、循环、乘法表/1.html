@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>js中的三个判断</title>
+</head>
+<body>
+<script type="text/javascript">
+    //if、else if、else(是我们项目中最常用的判断方式，可以解决一切的判断需求)
+    //if后面跟条件，条件可以是多个，中间用 &&(并且：所有的小条件都为真整体才为真) ||(或者：只要有一个为真，整体就为真) 分隔开
+    //    var num = -12;
+    //    if (num > 10) {
+    //        alert(10);
+    //    } else if (num > 0 && num <= 10) {
+    //        alert(0);
+    //    } else {
+    //        //以上条件都不成立执行
+    //        alert(-1);
+    //    }
+
+
+    //三元运算符：是简单的if else情况的应用
+    //条件？条件成立执行的：条件不成立执行的；
+    //var num = 12;
+    //num >= 10 ? (num++, console.log(num)) : num--;
+    //void 0只是用来站位的，没有任何的实际意义
+    //num >= 10 ? (num++, console.log(num)) : void 0;
+
+    //    if (num >= 10) {
+    //        num++;//num=num+1  num+=1 都是自身值累加1
+    //        console.log(num);
+    //    }
+
+    //    var num = 12;
+    //    if (num >= 0) {
+    //        if (num <= 10) {
+    //            num++;
+    //        } else {
+    //            num--;
+    //        }
+    //    } else {
+    //        if (num >= -10) {
+    //            num--;
+    //        }
+    //    }
+    //    num >= 0 ? (num <= 10 ? num++ : num--) : (num >= -10 ? num-- : void 0);
+
+
+    //switch case:应用于一个变量在不同值情况下的不同的操作，换句话说相当于判断条件是：是否相等，相等如何的处理
+
+    var num = "10";
+    switch (num) {
+        case 0://如果num等于0我们执行下面代码
+            num++;
+            break;//每一种情况结束都要加break
+        case 5:
+            num += 2;
+            break;
+        case 10:
+            num += 3;
+            break;
+        default://相当于我们的else，以上都不成立执行
+            num += 0;
+    }
+    console.log(num);
+
+    //    var num = "10";
+    //    if (num == 0) {
+    //        num++;
+    //    } else if (num == 5) {
+    //        num += 2;
+    //    } else if (num == 10) {
+    //        num += 3;
+    //    } else {
+    //        num += 0;
+    //    }
+    //    console.log(num);
+
+
+    //==在进行比较的时候，首先会看左右两边的数据类型是否一样，不一样的话会默认的把两边的数据类型转换为一样(转换规律-9条规律),例如："10"==10 首先把"10"通过Number转换为我们的数字10，然后在和数字10进行比较,结果相等
+    //switch case中的每一种case情况都是用===进行比较的，===是绝对相等，也就是只有数据类型相同才能进行比较，对于数据类型不同的，不会像==一样进行转换，直接的就不相等，例如："10"===10，数据类型不一样肯定不相等
+
+    //+在js中不仅仅是加法运算，如果遇到的是字符串和数字相加，属于字符串拼接而不是数学运算,例如："10"+3的结果是"103"
+
+    //    var a;
+    //    if(a=1){//给a这个变量赋值，这个条件永远都是成立的，但是这个不是判断a是不是等于1
+    //
+    //    }
+
+    //    var a = 0;
+    //    if (a) {//只有一个值的情况：首先把a转换为boolean类型，判断真假
+    //
+    //    }
+</script>
+</body>
+</html>

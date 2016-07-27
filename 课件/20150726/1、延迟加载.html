@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>新闻资讯</title>
+    <link type="text/css" rel="stylesheet" href="css/news.css"/>
+</head>
+<body>
+<div class="con">
+    <ul>
+
+    </ul>
+</div>
+
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+    function kbs_sports(data) {
+        if (data[0] === 0) {
+            var newsList = data[1].idlist[0].newslist;
+            var frg = document.createDocumentFragment();
+            newsList.forEach(function (item, index) {
+                var oLi = document.createElement("li");
+                var str = "<div class='imgAre' trueImg='" + item.thumbnails_qqnews[0] + "'></div>";
+                str += "<div class='textAre'>";
+                str += "<p>" + item.title + "</p>";
+                str += "<p>" + item.abstract + "</p>";
+                str += "</div>";
+                oLi.innerHTML = str;
+                frg.appendChild(oLi);
+            });
+            $(".con ul").append(frg);
+            window.setTimeout(imgLoad, 500);
+        }
+    }
+
+    function imgLoad() {
+        var winT = getWin("clientHeight") + getWin("scrollTop");
+        $(".imgAre").each(function () {
+            if (!$(this).attr("isLoad")) {
+                var $t = $(this).offset().top;
+                var $that = $(this);
+                if ($t <= winT) {
+                    var oImg = new Image;
+                    oImg.src = $(this).attr("trueImg");
+                    oImg.onload = function () {
+                        $that.append(oImg);
+                        $that.attr("isLoad", true);
+                    }
+                }
+            }
+        });
+    }
+
+    function getWin(attr) {
+        return document.documentElement[attr] || document.body[attr];
+    }
+
+    $.ajax({
+        url: "http://sportswebapi.qq.com/newsApp/matchDetail?appOS=ios&mid=208_794844&width=568&height=320&callback=kbs_sports&ran=" + Math.random(),
+        type: "get",
+        dataType: "jsonp",
+        success: kbs_sports
+    });
+    $(document).scroll(imgLoad);
+</script>
+</body>
+</html>

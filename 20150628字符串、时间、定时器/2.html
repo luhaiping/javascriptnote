@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //var str = "2015-6-28 11:42:8";
+    //2015年06月28日 11时42分08秒
+
+    //1、replace一个个的替换
+    //var res = str.replace("-", "年").replace("-", "月").replace(" ", "日 ").replace(":", "时").replace(":", "分");
+    //res += "秒";
+
+    //2、slice截取 先找到两个-的索引和两个:的索引
+
+    //3、字符串拆分成数组
+    //    var ary = str.split(" ");
+    //    var s1 = ary[0], s2 = ary[1];
+    //    var ary1 = s1.split("-");
+    //    var ary2 = s2.split(":");
+    //    var res = ary1[0] + "年" + addZero(ary1[1]) + "月" + addZero(ary1[2]) + "日 " + addZero(ary2[0]) + "时" + addZero(ary2[1]) + "分" + addZero(ary2[2]) + "秒";
+    //    console.log(res);
+
+    //4、参考：正则
+    //    var str = "2015-6-28 11:42:8";
+    //    var reg = /^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/g;
+    //    var res = str.replace(reg, function () {
+    //        return RegExp.$1 + "年" + addZero(RegExp.$2) + "月" + addZero(RegExp.$3) + "日 " + addZero(RegExp.$4) + "时" + addZero(RegExp.$5) + "分" + addZero(RegExp.$6) + "秒";
+    //    });
+    //    console.log(res);
+
+    //5、用时间对象来处理
+
+    //不足10的在前面补充一个0
+    function addZero(value) {
+        value = Number(value);
+        return value < 10 ? "0" + value : value;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #txtEmail {
+            border: 1px solid #22b909;
+        }
+
+        .c {
+            box-shadow: 0 0 10px 1px red;
+        }
+
+        /*#txtEmail:valid{*/
+        /*box-shadow: 0 0 10px 1px #22b909;*/
+        /*}*/
+        /*#txtEmail:invalid{*/
+        /*box-shadow: 0 0 10px 1px red;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<!--
+    构建网页基本布局结构的：header、footer、nav、article、figure(配图)、figcaption(配图说明)、aside(标注)...
+    //目前做pc端也使用这些标签了，有利于我们SEO搜索引擎的优化，但是这些标签在IE6~8下不兼容，我们不用自己单独的处理，只需要引入一个html5.js即可
+
+    HTML5中新增加了很多的表单类型
+    在没有HTML5之前：input:text、password、radio、checkbox、button、submit、reset、file、image、hidden
+    textarea、select(option)
+
+    HTML5中给input又新增加了很多的类型:search(搜索)、url(地址)、email、number、tel、range、date、time、color
+    1、选择适当的类型，我们可以调取对应的虚拟键盘
+    2、新增加了css的验证和js中通过checkValidity()验证
+    3、number这个类型的，当输入的不是数字，浏览器是不允许输入的
+-->
+<!--<input type="search"/><br/><br/>-->
+<!--<input type="url"/><br/><br/>-->
+<!--<input type="email" id="txtEmail"/><br/><br/>-->
+
+<!--<input type="tel"/><br/><br/>-->
+<input type="number" id="txtNum" disabled="false" value="25"/><br/><br/>
+<input type="range" id="txtRange" min="18" max="65" value="25" step="0.1"/><br/><br/>
+
+<input type="date"/><br/><br/>
+<input type="time"/><br/><br/>
+<!--<input type="color"/><br/><br/>-->
+
+<script type="text/javascript">
+//    var txtRange = document.querySelector("#txtRange");
+//    var txtNum = document.querySelector("#txtNum");
+//    txtRange.onchange = function () {
+//        txtNum.value = this.value;
+//    }
+
+
+    //    var txtEmail = document.querySelector("#txtEmail");
+    //    txtEmail.onblur=function(){
+    //        if(this.value===""){
+    //            this.className="c";
+    //            return;
+    //        }
+    //        if(!this.checkValidity()){
+    //            this.className="c";
+    //        }else{
+    //            this.className="";
+    //        }
+    //    }
+
+</script>
+</body>
+</html>

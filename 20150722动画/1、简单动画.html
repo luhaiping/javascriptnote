@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background: #22b909;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<!--
+    动画的常规优化技巧
+    1、边界判断：一定加上步长进行判断
+    2、setTimeout每一次执行动画前，先把之前的没用的清除掉
+    3、对于定时器返回值timer，我们把它写在元素的自定义属性上，来避免全局变量的过多使用
+-->
+
+<script type="text/javascript" src="js/utils.min.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    //获取目标left值：当前屏幕宽度-盒子本身的宽度
+    var target = utils.getWin("clientWidth") - oDiv.offsetWidth;
+    //设置步长：每一步走的距离
+    var step = 10;
+
+    //设置动画运动的方法move
+    function move() {
+        //5)由于setTimeout定时器只能起到一次的作用，下一次执行move的时候，我们需要把上一个没用的定时器清除掉，这样来优化我们的动画性能
+        window.clearTimeout(oDiv.timer);
+
+        //1)获取当前盒子的left值
+        var l = utils.getCss(oDiv, "left");
+
+        //4)做我们的边界判断：到达我们的目标值，结束本次动画，这里注意为了防止我们在走一步比我们的目标值大，我们做边界判断的时候，都是加上步长来处理边界判断的
+        if (l + step >= target) {
+            oDiv.style.left = target + "px";//到达边界后，直接等于目标值即可
+            return;
+        }
+
+        //2)给当前的盒子从新设置left值:原有的值l+步长step
+        oDiv.style.left = (l + step) + "px";
+
+        //3)设置一个定时器，每隔10毫秒都重新执行一次我们的move
+        oDiv.timer = window.setTimeout(move, 10);
+    }
+    move();
+</script>
+</body>
+</html>

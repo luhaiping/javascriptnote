@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none; /*禁止用户选中文字*/
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -150px;
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ff0000;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1" class="" style="font-size: 28px;background: yellow;">珠峰培训</div>
+<script type="text/javascript">
+    //需求：默认盒子的背景颜色是黄色，如果点击这个盒子进行判断：如果是黄色-->绿色  如果是绿色-->黄色
+    //获取我们页面中的id是div1的这个盒子
+    var oDiv = document.getElementById("div1");
+    //给元素绑定一个点击的事件,实现我们的需求
+    oDiv.onclick = function () {
+        //首先获取当前元素的背景颜色
+        var bg = oDiv.style.backgroundColor;
+        switch (bg) {
+            case "yellow":
+                oDiv.style.backgroundColor = "red";
+                break;
+            case "red":
+                oDiv.style.backgroundColor = "blue";
+                break;
+            case "blue":
+                oDiv.style.backgroundColor = "green";
+                break;
+            case "green":
+                oDiv.style.backgroundColor = "black";
+                break;
+            case "black":
+                oDiv.style.backgroundColor = "orange";
+                break;
+            default:
+                oDiv.style.backgroundColor = "yellow";
+        }
+
+
+        /* if (bg == "yellow") {
+         oDiv.style.backgroundColor = "red";
+         } else if (bg == "red") {
+         oDiv.style.backgroundColor = "blue";
+         } else if (bg == "blue") {
+         oDiv.style.backgroundColor = "green";
+         } else if (bg == "green") {
+         oDiv.style.backgroundColor = "black";
+         } else if (bg == "black") {
+         oDiv.style.backgroundColor = "orange";
+         } else {
+         oDiv.style.backgroundColor = "yellow";
+         }*/
+
+
+        /*//然后判断
+         if (bg == "yellow") {
+         //如果当前的背景颜色是黄色，我让他变成绿色
+         oDiv.style.backgroundColor = "green";
+         } else {
+         //如果当前的背景颜色是绿色，我让他变成黄色
+         oDiv.style.backgroundColor = "yellow";
+         }*/
+        //bg == "yellow" ? oDiv.style.backgroundColor = "green" : oDiv.style.backgroundColor = "yellow";
+    }
+
+    //我们获取的这个元素是对象数据类型的
+    //console.log(typeof oDiv);//"object"
+    //console.dir(oDiv);//在控制台输出 console.dir 比 console.log输出的内容详细一些
+    //属性名：属性值 组成  id、className(获取元素上class中的值的)、style(获取元素行内样式的)
+    //console.log(oDiv.style.fontSize);//"28px"
+    //console.log(oDiv.style.backgroundColor);//"" style这个属性只能获取行内样式上的
+
+    //document.getElementById:在整个文档中，通过元素的id来获取这个元素
+    //document文档对象
+    //get获取
+    //Element一个元素
+    //By通过
+    //Id:元素的Id
+
+</script>
+</body>
+</html>

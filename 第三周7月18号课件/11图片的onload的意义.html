@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+var oImg=new Image;
+var strImg="http://www.7160.com/uploads/allimg/140618/9-14061Q11150.jpg?"+Math.random();
+oImg.src=strImg;
+document.body.appendChild(oImg);
+//如果是图片，不仅仅需要添加到网页中，还需要等src资源下载成功之后，才可以计算出oImg的高宽等属性的有效值
+oImg.onload=function(){
+	console.log(oImg.offsetWidth);
+}
+</script>

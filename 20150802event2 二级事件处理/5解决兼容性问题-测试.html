@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="http://www.zhufengpeixun.cn" id="a1" >珠峰培训</a>
+事件兼容性问题总结
+1、事件对象本身：标准浏览器是一个自动传入的参数；IE是window.event;
+2、事件源e.target,e.srcElement;
+3、阻止事件默认行为
+4、阻止事件传播
+5、DOM2级事绑定的方法不同
+6、DOM2级事件绑定的方法，执行顺序问题
+7、DOM2级事件绽定的方法，this关键字不同
+8、e.pageX,e.pageY;
+</body>
+</html>
+<script src="event.js"></script>
+<script>
+var ele=document.getElementById("a1");
+function fn1(e){
+	e.preventDefault();
+	e.stopPropagation();
+	alert(this===ele);
+}
+function fn2(){alert(2);}
+var n=0;
+function fn3(){
+	n++;
+	if(n===3){
+		off(ele,"click",fn2);
+		off(ele,"click",fn3);
+		//off(ele,"click",fn4);	
+	}
+	alert(3);
+}
+function fn4(){alert(4);}
+function fn5(){alert(5);}
+function fn6(){alert(6);}
+function fn7(){alert(7);}
+function fn8(){alert(8);}
+function fn9(){alert(9);}
+function fn10(){alert(10);}
+function fn11(){alert(11);}
+function fn12(){alert(12);}
+
+
+on(ele,"click",fn1);
+on(ele,"click",fn2);
+on(ele,"click",fn3);
+on(ele,"click",fn4);
+on(ele,"click",fn5);
+on(ele,"click",fn6);
+on(ele,"click",fn7);
+on(ele,"click",fn8);
+on(ele,"click",fn9);
+on(ele,"click",fn10);
+on(ele,"click",fn11);
+on(ele,"click",fn12);
+</script>

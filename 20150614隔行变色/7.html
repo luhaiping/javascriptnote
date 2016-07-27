@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        ul {
+            margin: 20px auto 0;
+            padding: 15px;
+            width: 500px;
+            border: 1px dashed #ff0000;
+            border-radius: 10px;
+        }
+
+        ul li {
+            line-height: 35px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .c0 {
+            background: #ffff00;
+        }
+
+        .c1 {
+            background: #22b909;
+        }
+
+        .c2 {
+            background: #E44072;
+        }
+
+        .c3 {
+            background: orange;
+        }
+
+        .c4 {
+            background: green;
+        }
+
+        /*
+        IE6~8不兼容
+        ul li:nth-child(odd){
+            background: #37C7D4;
+        }
+        ul li:nth-child(even){
+            background: #22b909;
+        }*/
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>中央纪念陈云诞辰110周年 习近平发表讲话</li>
+    <li>俞正声：台胞来往大陆将免予签注 就业积极信号</li>
+    <li>菲律宾播放南海纪录片煽动反华情绪</li>
+    <li>小米与乐视：一场各取所需的拙劣公关战</li>
+    <li>东方之星获救12人非14人 官方解释变化原因</li>
+</ul>
+<ul id="ul2">
+    <li>中央纪念陈云诞辰110周年 习近平发表讲话</li>
+    <li>俞正声：台胞来往大陆将免予签注 就业积极信号</li>
+    <li>菲律宾播放南海纪录片煽动反华情绪</li>
+    <li>小米与乐视：一场各取所需的拙劣公关战</li>
+    <li>东方之星获救12人非14人 官方解释变化原因</li>
+</ul>
+<script type="text/javascript">
+    //function:一个功能或者是一个方法
+    //作用：将实现同一个功能的代码进行封装,以后在用这个功能的时候，没有必要在重新的写了，直接的执行这个方法就好了
+    /*function changeColor(id){//id形参
+     var oUl = document.getElementById(id);
+     var oLis = oUl.getElementsByTagName("li");
+     for (var i = 0; i < oLis.length; i++) {
+     oLis[i].className = "c" + i % 5;
+     }
+     }
+     changeColor("ul1");
+     changeColor("ul2");*/
+
+
+    //需求：1+1的和
+    /*function sum(){
+     console.log(1+1);
+     }
+     sum();*/
+
+    //需求：随便给我两个数都能求和
+    //形参：想要实现一个功能，发现原材料不够，需要别人在使用这个功能的时候，把材料给我，那么我就把他定义为形参
+    /*function sum(num1, num2) {
+     var total = num1 + num2;
+     console.log(total);
+     }
+     //sum(10,100);//执行sum方法，把10和100分别给num1和num2
+     //sum(10);//只给num1赋值10,num2不赋值，默认值是undefined
+     sum(1,2);
+     sum(100,200);*/
+
+    //不管你传递给我多少个数，我都可以求出和
+    //sum(1,2,3,4,5,6,7);
+    //arguments:函数内置(天生就有的)的接受参数的机制
+    //类数组:对象数据类型的，以数字为索引，从0开始逐级递增，索引代表当前参数的位置，有个叫做length的属性代表传递参数的个数
+    //callee：代表的是当前函数本身
+    //任意数求和
+    function sum() {
+        var total = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            var cur = Number(arguments[i]);//每一次循环拿出来的当前的那个参数
+            if (isNaN(cur)) {//如果不是有效的数字，我们不相加
+                continue;
+            }
+            total += cur;
+        }
+        console.log(total);
+    }
+    sum(12, "34", "a");
+
+
+</script>
+</body>
+</html>

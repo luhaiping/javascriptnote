@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+</head>
+<body>
+<script type="text/javascript">
+    function sortAry(ary) {
+        var newAry = ary.slice(0);
+        for (var i = 0; i < newAry.length - 1; i++) {
+            for (var j = 0; j < newAry.length - 1 - i; j++) {
+                if (newAry[j] > newAry[j + 1]) {
+                    var temp = null;
+                    temp = newAry[j];
+                    newAry[j] = newAry[j + 1];
+                    newAry[j + 1] = temp;
+                }
+            }
+        }
+        return newAry;
+    }
+    function distinctAry(ary) {
+        var newAry = ary.slice(0), obj = {};
+        for (var i = 0; i < newAry.length; i++) {
+            var cur = newAry[i];
+            if (obj[cur] == cur) {
+                newAry.splice(i, 1);
+                i--;
+                continue;
+            }
+            obj[cur] = cur;
+        }
+        obj = null;
+        return newAry;
+    }
+    var ary = [12, 23, 23, 23, 21, 14, 24, 35, 34, 12, 23, 45, 34, 56, 34, 56, 78, 12, 23, 45];
+    var step1 = distinctAry(ary);
+    var step2 = sortAry(step1);
+    console.log(step2);
+
+    //思考题：两个数组间的交差并补集?
+
+
+    //数组去重的第一个思想步骤：
+    //拿当前项和后面的所有项一个个的比，相同的从数组中删除即可
+    //    for (var i = 0; i < ary.length - 1; i++) {
+    //        var cur = ary[i];
+    //        for (var j = i + 1; j < ary.length; j++) {
+    //            if (cur == ary[j]) {
+    //                ary.splice(j, 1);
+    //                j--;
+    //            }
+    //        }
+    //    }
+
+    //     i=0 cur=12
+    //        j=1 12  12==12  删除  [12, 12, 23, 23, 23, 34, 34, 34];
+    //        j=0 j++ j=1 12 12==12 删除[12,23, 23, 23, 34, 34, 34]
+    //        j=0 j++ j=1 23 12!=23
+    //        j=2 23 12!=23
+    //     ....
+    //     i=1 cur=23
+    //        j=2 23 23==23 删除 j-- j=1 [12,23,23, 34, 34, 34]
+    //        j++ j=2 23 23==23 删除...
+
+    //console.log(ary);
+    //如果数组中的数太多了，循环次数太大，我们要想到更优的方法
+
+    //单循环:一个对象中的属性名不能重复的原理
+    //定义一个空对象，把数组中的每一项当做对象的属性名和属性中存进去(属性名和属性值是相同的)，但是每一次存储之前，都要先判断当前的这一项是否在对象中已经存在了,存在就不在存储了，把这一项删除，不存在我们才存储
+    //    var ary = [12, 12, 12, 23, 23, 23, 34, 34, 34];
+    //    var obj = {};
+    //    for (var i = 0; i < ary.length; i++) {
+    //        var cur = ary[i];
+    //        if (obj[cur] == cur) {
+    //            ary.splice(i, 1);
+    //            i--;
+    //            continue;
+    //        }
+    //        obj[cur] = cur;
+    //    }
+    //    console.log(ary);
+
+    //    obj[12]=12;
+    //    //如何判断一个对象中之前是否存在这一项? 我们获取这一项的属性值，如果这个值和我们数组中的这一项相同
+    //    if(obj[12]==12){
+    //        //删除
+    //    }
+    //    obj[23]=23;
+
+
+</script>
+</body>
+</html>

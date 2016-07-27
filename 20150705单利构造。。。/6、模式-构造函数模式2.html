@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //构造函数模式中this就是当前的实例
+
+    function Fn() {
+        //a和b是实例的私有属性
+        this.a = 100;
+        this.b = function () {
+            console.log(this.a);
+        }
+    }
+    var f1 = new Fn;
+    var f2 = new Fn;
+
+    //instanceof:检测某一个实例是否属于这个类，是的话返回true，不是的话返回false
+    //f1 instanceof Fn  ==>true
+    //f1 instanceof Object  ==>true  因为实例是对象数据类型的，而所有的对象数据类型都是Object这个内置类的一个实例
+
+    //console.log(f1.b == f2.b);//false  b是f1和f2两个实例的私有的属性，即使看上去一模一样，但是也是自己私有的，所以f1.b和f2.b不相等
+
+    //检测b是否为f1的一个属性
+    //in:检测某一个属性是不是这个对象的（既可以检查私有，也可以检查公有的）
+    //console.log("b" in f1);
+
+    //hasOwnProperty:检测某一个属性是否为这个对象的私有属性(只能检查私有的)
+    //f1.hasOwnProperty("b")  ==>true
+
+    //自己编写一个检测是否为某个对象公有属性的方法 hasPubProperty
+    function hasPubProperty(obj, attr) {
+//        var isAtr = attr in obj;
+//        var isOwnAtr = obj.hasOwnProperty(attr);
+//        var isPubAtr = false;
+//        if (isAtr == true && isOwnAtr == false) {
+//            isPubAtr = true;
+//        }
+//        return isPubAtr;
+        return (attr in obj) && !obj.hasOwnProperty(attr);
+    }
+
+
+    //f1.propertyIsEnumerable() 检测某一个属性是否为可枚举的
+
+
+    //var ary = [];
+    //ary是Array这个类的一个实例
+    //我们学习了数组中的14个方法
+    //ary.sort();//sort是Array这个类中的一个方法，所以他的实例才可以使用这个方法
+
+    //    function Array(){
+    //        this.sort=function(){
+    //
+    //        }
+    //    }
+    //    var ary1=new Array();
+    //    var ary2=new Array();
+    //    console.log(ary1.sort==ary2.sort);//false
+
+    //构造函数模式虽然解决了实例识别的问题，但是实例间的属性都是私有的，不能公有
+    //第四次变革：基于构造函数模式出来的原型链模式
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -75px 0 0 -75px;
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            opacity: 0.5;
+            border-radius: 50%;
+            box-shadow: 0 0 20px 1px #0050D0;
+            background: #FFE0E9;
+            background: radial-gradient(#FFE0E9, #c5dbf2, #ff3333);
+            /*-webkit-transition: all 1s linear 0s;
+            transition: all 1s linear 0s;*/
+        }
+
+        /* #div1:hover {
+             -webkit-transform: translate3D(100px,100px,0);
+             transform: translate3D(100px,100px,0);
+         }*/
+
+        .move {
+            -webkit-animation: mengMeng 2s linear 0s infinite;
+        }
+
+        @-webkit-keyframes mengMeng {
+            0%, 50%, 100% {
+                -webkit-transform: scale(1);
+            }
+            25%, 75% {
+                -webkit-transform: scale(2);
+            }
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="css/animate.css"/>
+</head>
+<body>
+<div id="div1" class=""></div>
+<script type="text/javascript">
+    var oDiv = document.querySelector("#div1");
+    oDiv.onclick = function () {
+        this.className = "animated bounce";
+        var that = this;
+        var timer = window.setTimeout(function () {
+            that.className = "";
+            window.clearTimeout(timer);
+        }, 1000);
+    }
+</script>
+<!--
+http://caniuse.com/ 检测属性兼容的
+
+background-size
+border-radius
+box-shadow
+text-shadow
+gradient:-webkit-linear-gradient、-webkit-radial-gradient
+
+css3动画系列的:
+transition：[property哪一个属性跟着运动，all是整体一起运动] [duration] [linear|ease|ease-in|...] [delay];
+transform：scale缩放、rotate旋转、skew倾斜、translate平移
+
+animation属于自定义动画，通过keyframes设置关键帧来实现我们需要的动画，并且animation是在元素的位置结构没有发生改变的情况下模拟实现的动画，而transition是真正改变了原有元素的位置和样式，所以我们通常用性能较好的animation来实现动画
+animation：[name] [duration] [linear|ease|ease-in|...] [delay] [count 写的infinite是无限次运动];
+
+animation-fill-mode:设置动画完成后保留在哪一贞的位置
+none：默认值。不设置对象动画之外的状态
+forwards：设置对象状态为动画结束时的状态
+backwards：设置对象状态为动画开始时的状态
+both：设置对象状态为动画结束或开始的状态
+
+css3新增加的盒模型：box-sizing、flex
+-->
+</body>
+</html>

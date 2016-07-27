@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>增加原型上的公有的属性方法</title>
+</head>
+<body>
+<script type="text/javascript">
+    //    function Fn() {
+    //        this.num = 100;
+    //    }
+    //    var pro = Fn.prototype;//把原型对应的堆内存的地址给我们的pro
+    //    pro.a = function () {
+    //    }
+
+    function Fn() {
+        this.num = 100;
+    }
+    //    Fn.prototype.b = function () {
+    //        console.log("b");
+    //    }
+    Fn.prototype = {
+        constructor: Fn,
+        a: function () {
+            console.log("a");
+        }
+    };
+    //    Fn.prototype.c = function () {
+    //        console.log("c");
+    //    }
+    var f = new Fn;
+
+    //console.log(f.constructor);//没加之前是Object 加了之后是Fn
+    //2、我们自己给Fn的prototype开辟的那个堆内存不会自带constructor属性(只有浏览器默认开辟的那个才有constructor)，这样如果我们用constructor，找到的是Object，所以：
+    //用这种方式增加公有的属性，需要手动添加constructor属性，手动指向当前函数本身
+
+
+    //f.a();
+    //f.b();//Error
+    //f.c();
+    //1、自己给Fn的prototype开辟的那个堆内存会覆盖之前浏览器自己默认开辟的那个，所以如果用这种办法来增加公有属性的话，在之前就不要给原型增加任何的属性，否则都会被替换掉(但是写在我们自己开辟的那个之后是没有问题的，例如我们的c) --->引用数据类型地址操作的机制
+
+    //在js中:
+    //1、把相同的代码放到同一个函数中，以后用的时候不需要重新的写了，只需要执行函数就可以--->类的封装
+    //2、一个函数通过传递参数的不一样实现了不同的功能，我们就说这个方法有多种的形态--->类的多态
+    //3、B这个类继承了A这个类中的所有的属性和方法(公有和私有的都有) --->类的继承
+    //封装、继承、多态 组成了我们的面向对象开发
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var name = "张静";
+    //    var age = 18;
+    //
+    //    var name = "蔡皓成";
+    //    var age = 48;
+
+    //单例模式
+    //很简单，就是一个对象
+    //1、把描述同一个事物特性的东西都放在一起，起到了分组的作用,例如：person1就把第一个人的特性都放在了同一组中，person1是我们的对象名，在这里我们通常把它称为"命名空间"(给开辟的空间起了个名字)
+    //2、我们用的时候，需要加上前缀，找到特定的命名空间下的某一个属性，例如：person2.age 就是找到person2这下面的age  这样一来不在担心变量冲突了
+
+    //真实的项目中，我们通常用单例模式来进行我们的模块化开发（一个页面按照不同的功能区域划分几个模块，团队间协作开发）
+    //拿百度的首页来说，比如我们分为5个模块：搜索、登录、换肤、新闻、天气,需要五个人协作开发
+
+    var util = {
+        check: function () {
+
+        }
+    };//util中写每一个模块都会用到的公共的方法
+
+    var searchRender = {
+        getText: function () {
+            util.check();
+        },
+        init: function () {
+
+        }
+    };
+
+    var loginRender = {
+        getText: function () {
+
+        },
+        init: function () {
+
+        }
+    };
+
+    //    var person1 = {
+    //        name: "张静",
+    //        age: 18,
+    //        attr: "beautiful"
+    //    };
+    //    var person2 = {
+    //        name: "蔡皓成",
+    //        age: 48,
+    //        attr: "ugly"
+    //    };
+
+    //    var oDiv={
+    //        id:"div1",
+    //        name:"",
+    //        className:"",
+    //        style:{
+    //            backgroundColor:""
+    //        }
+    //    };
+    //    oDiv.style.backgroundColor;
+
+
+    //单例模式虽然避免了我们的冲突，也起到了分组的作用，但是属于手工作业模式，效率比较低
+    //第一次变革：工厂模式--->实现批量的生产
+    //体现了函数的封装：把实现相同功能的代码放在同一个函数中，以后再用的话不需要再重新的写一遍了，直接的执行函数即可
+    //    function createJsPerson(name, age) {
+    //        var obj = {};
+    //        obj.name = name;
+    //        obj.age = age;
+    //        obj.writeCss = function () {
+    //            console.log("我叫做" + this.name + "，我会写css啦！");
+    //        }
+    //        obj.writeJs = function () {
+    //            console.log("我叫做" + this.name + "，我会写js啦！");
+    //        }
+    //        return obj;
+    //    }
+    //    var p1 = createJsPerson("海月", 25);
+    //    var p2 = createJsPerson("建超", 28);
+    //    var p3 = createJsPerson("海威", 17);
+    //    var p4 = createJsPerson("琳玉", 16);
+
+
+    //工厂模式虽然能解决批量生产的问题，但是不能区分品牌，不能进行产品的差异化(在js中我们把产品的差异化叫做实例识别)
+    //变革：我们引入了新的模式，构造函数模式来实现我们的实例识别
+
+</script>
+</body>
+</html>

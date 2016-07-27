@@ -1,0 +1,31 @@
+body,div,ul,li,span{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#wrap{
+    width: 900px;
+    /*height: 270px;*/
+    margin: 30px auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background: lavenderblush;
+}
+#wrap span{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+.c1{
+    background: orangered;
+}
+.c2{
+    background: indianred;
+}
+.c3{
+    background: blueviolet;
+}

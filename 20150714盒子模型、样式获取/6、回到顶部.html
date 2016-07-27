@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>回到顶部</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            height: 1000%;
+            background: -webkit-linear-gradient(top left, #FFE0E9, #20B2AA, #22b909);
+        }
+
+        #goTp {
+            display: none;
+            position: fixed;
+            right: 5px;
+            bottom: 50px;
+            width: 50px;
+            height: 50px;
+            background: red;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="goTp"></div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var goTp = document.getElementById("goTp");
+    var curH = utils.getWin("clientHeight");
+    console.log(curH);
+
+    function fn() {
+        var scT = utils.getWin("scrollTop");
+        if (scT >= curH) {
+            //如果当前页面卷去的高度>=一屏的高度，我们让回到顶部按钮显示
+            goTp.style.display = "block";
+        } else {
+            goTp.style.display = "none";
+        }
+    }
+    window.onscroll = fn;//window.onscroll当前页面滚动条滚动(页面滚动)事件
+
+    //不管当前处于什么位置，我们都让scrollTop变为0,即可实现回到顶部
+    goTp.onclick = function () {
+        window.onscroll = null;
+        this.style.display = "none";
+        move();
+    }
+    var timer = null;
+    function move() {
+        window.clearTimeout(timer);
+        if (document.body.scrollTop === 0) {
+            window.onscroll = fn;
+            return;
+        }
+        document.body.scrollTop -= 100;
+        timer = window.setTimeout(move, 10);
+    }
+    //不管当前处于什么位置，我们都让scrollTop变为0,即可实现回到顶部
+    //    goTp.onclick = function () {
+    //        var timer = window.setInterval(function () {
+    //            document.body.scrollTop -= 100;
+    //            if (document.body.scrollTop === 0) {
+    //                window.clearInterval(timer);
+    //            }
+    //        }, 10);
+    //    }
+</script>
+</body>
+</html>

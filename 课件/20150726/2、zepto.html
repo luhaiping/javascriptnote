@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            /*css3盒子模型*/
+            display: -webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            height: 100%;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            /*background: -webkit-linear-gradient(top left, #22b909, #ffff00 60%, #FFE0E9, #ffe470);*/
+            /*background: linear-gradient(top left, #22b909, #ffff00 60%, #FFE0E9, #ffe470);*/
+            background: -webkit-radial-gradient(#22b909, #ffff00, #FFE0E9 60%, #ffe470);
+            /*background: rgba(0, 0, 0, 0.8);*/
+            border-radius: 10px 50px;
+            box-shadow: 0 0 10px 5px #ffe470; /*第一个是inset是内阴影，不写是外阴影  x轴偏移  y轴偏移(x和y都是0 是四外发光效果)  模糊度(值越大越模糊) 阴影半径 阴影颜色*/
+            text-shadow: 5px 5px 0 black; /*x轴偏移 y轴偏移 阴影模糊度 阴影颜色*/
+
+            /*-webkit-transition: all 1s ease-in-out 0s;/!*运动的属性，通常写all,所有的一起运动  运动时间  运动方式 延迟时间*!/*/
+
+        }
+
+        .move {
+            -webkit-animation: cindy 1s linear 0s 1; /*动画名称 时间 曲线 延迟 多少次(infinite无限次)*/
+        }
+
+        @-webkit-keyframes cindy {
+            0% {
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+            }
+            50% {
+                width: 200px;
+                height: 200px;
+                line-height: 200px;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+            }
+        }
+
+        /*#div1:hover {*/
+        /*-webkit-transform: rotate(180deg) scale(1.5);/!*rotate旋转 scale缩放 translate偏移  skew倾斜*!/*/
+        /*}*/
+    </style>
+    <link type="text/css" rel="stylesheet" href="css/myAnimate.css"/>
+</head>
+<body>
+<div id="div1">Cindy很漂亮</div>
+<!--想学习css3，自己买一本 "图解css3"，自己回去看-->
+<!--
+//jQuery
+//Zepto 使用构造函数模式封装的类库，Zepto就是一个类，$()这个是选择器，通过选择器获取的内容是Zepto这个类的一个实例
+//Zepto的选择器没有jQuery强大，但是常用的基本都有，所以在使用Zepto的时候，一定要注意使用常用选择器(ID、元素、类名、通配符、集合、后代、属性....)
+//Zepto没有处理IE的兼容性，所以使用Zepto的时候，最好是webkit内核浏览器---专门处理移动端开发
+//Zepto中包含的方法没有jQuery多，只是jQuery中常用的一些方法有
+
+//Zepto动画模块只有animate动画，但是Zepto支持css3动画（
+    translate(X|Y|Z|3d)
+    rotate(X|Y|Z|3d)
+    scale(X|Y|Z)
+    matrix(3d)
+    perspective
+    skew(X|Y)
+）
+//Zepto中新提供了一个新模块Touch：tap点击、singleTap、doubleTap、longTap、swipe、swipeLeft、swipeRight、swipeUp、swipeDown
+
+//移动端专用的事件中包含了：touch(一个手指的操作)、gesture(多个手指操作)
+//移动端中目前比较流行的事件库：
+//swiper.js
+//touch.js  http://touch.code.baidu.com/
+//hammer.js http://hammerjs.github.io/
+//fastClick.js专门解决用click开发的时候300ms延迟问题的
+
+//移动端用click来实现我们的点击会存在问题：
+//1)会有300ms的延迟(最重要的问题)
+//2)触发特别的敏感
+//3)点击的时候，周围会有不同颜色的背景条
+
+-->
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+    //    $("#div1").singleTap(function () {
+    //        $(this).animate({
+    //            rotate: "180deg",
+    //            scale: "1.5"
+    //        }, 1000, "ease-in-out", function () {
+    //            $(this).css({
+    //                backgroundColor: "yellow"
+    //            });
+    //        });
+    //    });
+
+    //用js触发css3动画
+    //    $("#div1").singleTap(function () {
+    //        $(this).addClass("move");
+    //        var $that = $(this);
+    //        var timer = window.setTimeout(function () {
+    //            $that.removeClass("move");
+    //            window.clearTimeout(timer);
+    //        }, 1000);
+    //    });
+
+    $("#div1").singleTap(function () {
+        $(this).addClass("animated bounce");
+        var $that = $(this);
+        var timer = window.setTimeout(function () {
+            $that.removeClass("animated bounce");
+            window.clearTimeout(timer);
+        }, 1000);
+    });
+</script>
+</body>
+</html>

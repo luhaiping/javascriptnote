@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function Fn() {
+        this.a = 100;
+    }
+    Fn.prototype.b = 200;
+    var f = new Fn;
+
+    //所有的对象数据类型都是Object这个基类的一个实例
+    //所有的函数数据类型都是Function这个基类的一个实例
+
+    //所有的函数数据类型都天生自带两个属性：__proto__和prototype，__proto__指向所属类的原型，prototype是自己的原型
+    //所有的对象数据类型天生自带一个属性：__proto__，指向所属类的原型
+    //所有浏览器默认给prototype开辟的那个对象空间都有一个天生的constructor属性指向函数本身
+</script>
+</body>
+</html>

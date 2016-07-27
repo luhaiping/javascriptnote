@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Math数学函数</title>
+</head>
+<body>
+<script type="text/javascript">
+    //object:Object、Array、RegExp、Date、Math...
+    //Math:提供了很多操作数字的方法
+
+    //Math.abs();//取绝对值
+    //Math.ceil();//向上取整 12.3-->13
+    //Math.floor();//向下取整 12.8-->12
+    //Math.round();//四舍五入 12.8-->13  12.3-->12
+    //Math.max(12,23,13,24,34,15,23);//求最大值 34
+    //Math.min(12,23,13,24,34,15,23)//求最小值 12
+
+    //Math.random();//获取[0-1)之间的随机小数
+    //获取[n-m]之间的随机整数
+    //Math.round(Math.random() * (m - n) + n);
+    //Math.round(Math.random()*99+1); 1-100之间的随机整数
+
+    //写个方法：getRandom，你传递给我两个值n、m，我获取n-m之间的随机整数
+    //1)如果n、m有一个参数没有传，或这传递的不是数字，我们就返回[0-1)之间的随机小数
+    //2)如果n>m了，我们让两者交换值
+    function getRandom(n, m) {
+        n = Number(n);//将其他数据类型强制转化为number类型，这样做的目的是将n和m锁定在数字和NaN上
+        m = Number(m);
+        if (isNaN(n) || isNaN(m)) {//只要两个之间有一个不是有效的数字就返回[0-1)之间的随机小数
+            return Math.random();
+        }
+        //如果n>m两者交换位置
+        if (n > m) {
+            var temp = null;
+            temp = n;
+            n = m;
+            m = temp;
+        }
+        return Math.round(Math.random() * (m - n) + n);
+    }
+    var a = getRandom();//没有传值 n和m默认值是undefined
+    console.log(a);
+    var b = getRandom(344, 100);
+    console.log(b);
+</script>
+</body>
+</html>

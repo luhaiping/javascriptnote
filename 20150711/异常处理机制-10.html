@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+try{//试错
+	alert(a);//throw Error;
+	//alert(3);
+}catch(e){
+	//如果try里出现错误才会运行catch里的代码。如果try没有出错则这些代码不执行
+	//console.log(e);
+	alert(e);
+	throw new Error("没有困难创造困难");
+}finally{//最终必须要执行的
+	alert("无论如何也要执行!");
+}
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //"use strict";  //使用严格模式
+
+    //使用call和apply方法来改变我们的this
+    var num = 30;
+    var obj = {
+        num: 20,
+        fn: fn
+    };
+    function fn(val1, val2) {
+        console.log(this);
+    }
+    //fn.call("");
+    //fn.call();
+    //fn.apply(obj,[100,200]);
+    //让fn执行，然后让函数里面的this指向我们的obj
+
+    //call和apply
+    //1、都是首先让当前操作的这个函数执行，然后把函数中的this改变成我们第一个参数传递的那个值
+    //[function].call([this],parameter1,parameter2,parameter3...)
+    //[function].call([this],[parameter1,parameter2,parameter3...])
+    //2、区别只在于传递参数的时候，call是把传递的参数值，一个个传进去，apply是把要传的参数值放到一个数组中，然后一起传进去，但是只是写法不一样，效果还是给形参依次赋值
+
+    //1)如果执行的时候一个参数都没有写，默认this是window，例如：fn.call() fn中的this-->window
+    //obj.fn.call(); this-->window
+
+    //2)在非严格模式下，我们第一个参数写null或者undefined，this都是window，在严格模式下，你写啥this就是啥，严格模式下如果不写，默认this是undefined
+
+
+    //call和apply是定义在Function这个基类的原型上的，而所有的函数都是Function这个类的一个实例，所以所有的函数都可以使用我们的call和apply两个方法
+    //函数：所有的内置类都是函数,所有的function的都是函数
+
+    Function.prototype.myCall = function () {
+        var that = arguments[0];
+        if (typeof that == "undefined" || that == null) {
+            that = window;
+        }
+        //让函数中的this改变成我们的第一个参数
+        //让当前的函数执行
+        //this();//call方法中的this就是我们要执行的那个函数
+        var str = "~";
+        str += this.toString().replace(/this/g, "that");
+        str += "()";
+        eval(str);
+    }
+    function fn1() {
+        console.log(1);
+    }
+    function fn2() {
+        console.log(2);
+    }
+    //fn1.call.call.call.call(fn2);//2
+    //不管写多少个call,都是让最后一个call执行，call方法里面有这样的两步操作：让执行call这个方法的主体this执行，然后改变this这个方法中的this
+    //换句话说，也就是让call方法前面的”.“的前面的东西执行，这里相当于让我们的fn1.call执行,我们把fn1.call这个函数体拿到,fn1.call其实拿的也是我们Function.prototype中的call的定义，我们让他执行，改变里面的this是我们的fn2，也就是让fn2执行
+    //Function.prototype.call.call.call(fn1);//1
+
+
+    //fn1.call(fn2);//执行fn1，让fn1中的this变成fn2
+    //fn1.call.call(fn2);//两个及以上的call，其实就是让fn2执行
+    //Function.prototype.call(fn1);//让Function的原型对应的Empty函数执行，里面的this变成我们的fn1，没有任何的意义
+    //Function.prototype.call.call(fn1);//两个及以上的call，fn1执行
+</script>
+</body>
+</html>

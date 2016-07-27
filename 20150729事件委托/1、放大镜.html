@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #con {
+            position: relative;
+            margin: 50px auto 0;
+            width: 300px;
+            height: 300px;
+            background: url("img/bg.jpg") no-repeat;
+            background-size: 100%;
+        }
+
+        #box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            /*background: rgba(0, 0, 0, 0.5);*/
+            background: #22b909;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="con"></div>
+
+<script type="text/javascript">
+    var con = document.getElementById("con");
+    var conL = con.offsetLeft, conT = con.offsetTop;
+
+    con.onmouseenter = function (e) {
+        e = e || window.event;
+        var box = document.getElementById("box");
+        if (!box) {
+            box = document.createElement("div");
+            box.id = "box";
+            computedBox(e, box);
+            this.appendChild(box);
+        }
+    };
+
+    con.onmousemove = function (e) {
+        e = e || window.event;
+        var box = document.getElementById("box");
+        if (box) {
+            computedBox(e, box);
+        }
+    };
+
+    con.onmouseleave = function (e) {
+        e = e || window.event;
+        var box = document.getElementById("box");
+        if (box) {
+            this.removeChild(box);
+        }
+    };
+
+    function computedBox(e, box) {
+        //获取四个边界的值
+        var tarL = 0, tarR = con.offsetWidth - box.offsetWidth;
+        var tarT = 0, tarB = con.offsetHeight - box.offsetHeight;
+
+        //获取正常情况下我们box的位置left/top值
+        var l = e.clientX - conL - (box.offsetWidth / 2);
+        var t = e.clientY - conT - (box.offsetHeight / 2);
+
+        //判断边界--左右
+        if (l <= tarL) {
+            box.style.left = tarL + "px";
+        } else if (l >= tarR) {
+            box.style.left = tarR + "px";
+        } else {
+            box.style.left = l + "px";
+        }
+
+        //判断边界--上下
+        if (t <= tarT) {
+            box.style.top = tarT + "px";
+        } else if (t >= tarB) {
+            box.style.top = tarB + "px";
+        } else {
+            box.style.top = t + "px";
+        }
+    }
+
+
+</script>
+</body>
+</html>

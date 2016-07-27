@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>工厂模式</title>
+</head>
+<body>
+<script type="text/javascript">
+    //工厂模式-->实现批量生产
+    //就是一个函数，把实现一个功能的代码放在一个方法中，以后再用的时候，不需要再重新写这些代码了，直接的执行我们的函数就可以实现--->函数的封装
+    function createJsPerson(name, age) {
+        var obj = {};
+        obj.name = name;
+        obj.age = age;
+        obj.writeJs = function () {
+            console.log("我的名字是:" + this.name + "，我会写js啦！");
+        }
+        return obj;
+    }
+    var p1 = createJsPerson("申立莎", 18);
+    p1.writeJs();
+    var p2 = createJsPerson("张永帅", 28);
+    p2.writeJs();
+
+    //工厂模式虽然解决了批量生产的问题，但是不能进行我们的品牌区分,在js中我们把品牌区分-->实例识别
+    //第三次变革：构造函数模式
+</script>
+</body>
+</html>

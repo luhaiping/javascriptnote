@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-size: 28px;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 50%;
+            background: -webkit-linear-gradient(top left, #37C7D4, #faeb9e, #00b3ee, #22b909);
+            /*background: -webkit-radial-gradient(#37C7D4, #faeb9e, #00b3ee, #22b909);*/
+        }
+    </style>
+</head>
+<body>
+<div id="div1">0</div>
+<script type="text/javascript">
+    //需求：点击盒子实现数字累加
+
+    //第一种方案：使用全局变量
+    //一般项目中，为了避免全局变量的污染和冲突，都尽量不使用全局变量
+    //    var oDiv = document.getElementById("div1");
+    //    var count = 0;
+    //    oDiv.onclick = function () {
+    //        count++;//window下的count+1
+    //        oDiv.innerHTML = count;
+    //    }
+
+    //第二种：自定义属性来存储
+    //    var oDiv = document.getElementById("div1");
+    //    oDiv.count = 0;
+    //    oDiv.onclick = function () {
+    //        oDiv.count++;
+    //        oDiv.innerHTML = oDiv.count;
+    //    }
+
+    //第三种：innerHTML
+    //    var oDiv = document.getElementById("div1");
+    //    oDiv.onclick = function () {
+    //        oDiv.innerHTML = Number(oDiv.innerHTML) + 1;
+    //    }
+
+    //第四种：利用闭包的机制，把我们写的代码包起来，这样就不是全局变量了
+    //    ~function () {
+    //        var oDiv = document.getElementById("div1");
+    //        var count = 0;
+    //        oDiv.onclick = function () {
+    //            count++;
+    //            oDiv.innerHTML = count;
+    //        }
+    //    }();
+
+    //第五种思路：我们点击执行function的时候，遇到count，没有向上一级查找，但是我们不要找window，而是找一个类似于window一样：不销毁、有一个能够一直累加的count私有变量
+
+    var oDiv = document.getElementById("div1");
+    oDiv.onclick = function () {
+        var count = 0;
+        return function () {
+            count++;
+            oDiv.innerHTML = count;
+        }
+    }();
+    //oDiv.onclick=function(){count++;oDiv.innerHTML=count;}
+
+
+</script>
+</body>
+</html>

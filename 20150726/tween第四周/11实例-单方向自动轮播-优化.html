@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#outer{ width:500px; height:290px; margin:50px auto; position:relative; overflow:hidden;}
+#inner{ width:3000px; height:290px; line-height:290px; text-align:center; font-size:120px; position:absolute; top:0; left:0px; }
+#inner div{ float:left; width:500px; height:290px; background:orange;}
+#btn{ margin:0; padding:0; overflow:hidden; position:absolute; bottom:30px; right:50px; font-size:14px; height:40px; width:220px;
+}
+#btn li{ width:30px; height:30px; float:left; background:white; border-radius:50%; font-weight:bold; margin:5px; list-style:none; font-size:16px; text-align:center; line-height:30px; cursor:pointer; -webkit-user-select:none;}
+#btn li.current{ background:#F63; font-weight:bold;}
+</style>
+</head>
+
+<body>
+<div id="outer">
+	<div id="inner">
+    	<div>一</div>
+        <div style="background:blue;">二</div>
+        <div style="background:green;">三</div>
+        <div style="background:red;">四</div>
+        <div style="background:pink;">五</div>
+        <div>六</div>
+    </div>
+    <ul id="btn"><li class="current">1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>
+</div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+var oLis=document.getElementById("btn").getElementsByTagName("li");
+var oInner=document.getElementById("inner");
+for(var i=0;i<oLis.length;i++){
+	oLis.item(i).n=i;
+	oLis.item(i).onclick=function(){
+		animate(oInner,{left:this.n*-500},600);
+		currentFrame(this.n);
+		step=this.n;
+		clearInterval(autoTimer);
+		//clearTimeout
+		//window.setInterval(autoMove,3000);
+		//点击事件触发的时候，停五秒然后自动播放，播放的间隔时间是两秒
+		autoTimer=window.setTimeout(function(){
+			autoTimer=window.setInterval(autoMove,2000);
+			},3000);
+		
+	}
+}
+
+var step=0;//当前所在的位置
+function autoMove(){
+	step++;
+	if(step>5){
+		oInner.style.left=0;//切到第一张上来
+		step=1;
+	}	
+	animate(oInner,{left:step*-500},600);
+	currentFrame(step);	
+}
+var autoTimer=window.setInterval(autoMove,2000);
+function currentFrame(step){
+	for(var i=0;i<oLis.length;i++){
+		oLis[i].className=null;
+	}
+	if(step==5){step=0;	}
+	oLis[step].className='current'
+	
+}
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>canvas</title>
+<style type="text/css">
+	canvas{border:1px dashed #000;}
+</style>
+</head>
+<body>
+	<canvas id="canvas1" width="500" height="300"></canvas>
+    <script type="text/javascript">
+    	var canvas=document.getElementById("canvas1");
+		var context=canvas.getContext("2d");
+		context.moveTo(100,40);
+		context.lineTo(400,40);
+		context.lineWidth=5;
+		context.strokeStyle="#F3F";
+		context.lineCap="round";
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(100,80);
+		context.lineTo(400,120);
+		context.lineWidth=10;
+		context.strokeStyle="#30F";
+		context.lineCap="butt";
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(100,120);
+		context.lineTo(400,80);
+		context.lineWidth=10;
+		context.strokeStyle="#9C6";
+		context.lineCap="square";
+		context.stroke();
+		
+    </script>
+</body>
+</html>

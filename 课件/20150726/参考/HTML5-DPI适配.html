@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>title</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/**针对页面上所有含有data-src属性的img标签进行屏幕像素比率适配*/
+    	function adaptDevicePixelRatio(){
+	  		var images=document.querySelectorAll("img");	
+       		if(images){
+				for(var i=0;i<images.length;i++){
+					var theImg=images[i];
+					if(theImg.getAttribute("data-src")){
+						var trueSrc=theImg.getAttribute("data-src");
+						theImg.src=getAdaptedImgSrc(trueSrc);		
+					}
+				}
+			}
+		}
+		/**
+		*根据当前屏幕的像素比来变换图片文件的文件名 
+		*@param src1x 1倍图片的文件名或者URL均可 
+		*@return 根据屏幕的像素比变换后的文件名。如果是2倍像素的高清屏幕，那么就会返回带有@2x字样的文件名       
+		* 例如，输入 images/a.jpg，如果是2倍像素的屏幕，那么就会返回images/a@2x.jpg 
+		*/
+		function getAdaptedImgSrc(src1x) {
+			if(!src1x) return null;
+			if(!window.devicePixelRatio) return src1x;
+			var dpr=window.devicePixelRatio;
+			if(dpr>1){
+				var dotPos=src1x.lastIndexOf(".");
+				if(dotPos==-1){
+					return src1x;
+				}else{
+					return Util.format("%s@2x%s",src1x.substring(0,dotPos), src1x.substring(dotPos));
+				}
+			}else{
+				return src1x;
+			}
+		}
+		
+		var Util={
+			format:function(sformat){
+	    		if(typeof sformat=="undefined" || sformat==null) return "";
+	    		var s="PREFIX ".concat(sformat);
+	    		var parts=s.split("%s");
+	    		var rets=s;
+	    		if(parts!=null && parts.length>1){
+	        		rets=parts[0];
+	        		for(var i=1;i<parts.length;i++){
+						if(i<arguments.length){
+							rets=rets.concat(arguments[i]);
+						}else{
+							rets=rets.concat("%s");
+						}
+						rets=rets.concat(parts[i]);
+					}
+	    		}
+	    		return rets.substring(7);
+			}
+		}
+    </script>
+</body>
+</html>

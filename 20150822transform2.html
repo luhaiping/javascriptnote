@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .stage{
+            background: url(images/bg-grid.jpg) no-repeat;
+            width: 367px;
+            height: 297px;
+            position: relative;
+
+        }
+        .stage img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 142px;
+            height: 200px;
+            margin:-100px  0 0 -71px;
+
+        }
+        .stage img:nth-child(1){
+            opacity: 0.5;
+        }
+        .stage img:nth-child(2){
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);/*兼容谷歌浏览器*/
+            -moz-traform:rotate(45deg);/*兼容火狐浏览器*/
+            -ms-transform:rotate(45deg)/*兼容ie浏览器*/
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <img src="images/pic2.jpg" >
+        <img src="images/pic2.jpg" >
+    </div>
+</body>
+</html>

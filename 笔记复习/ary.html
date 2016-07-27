@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+    var ary = [124, 123, 121];
+    ary.push(123);
+    // ary.pop();
+    //ary.unshift("nihao");
+    ary.shift();
+    ary.splice();
+    //ary.splice(1,0,"luhaiping");
+    //ary.splice(1,1,"luhaiping");
+    console.log(ary);
+
+    //var arrays=ary.slice(0);
+    //console.log(arrays);
+
+    //var ary2=["新","东","方"];
+    //var ary3=ary2.concat(ary);
+    // var ary4=ary3.join(".");
+    var ary5 = ary.sort(function (a, b) {
+        return b - a;
+    })
+    console.log(ary5);
+
+
+    ary.push();
+    ary.pop();
+    ary.unshift();
+    ary.shift();
+    ary.splice();
+    ary.slice();
+    ary.toString();
+    ary.join();
+    ary.sort();
+    ary.indexOf;
+    ary.map;
+    // ary.forEach();
+
+
+    var str = "rewrwe";
+    console.log(str.toLowerCase());
+    console.log(str.toUpperCase());
+    window.onload = function () {
+        console.log("1");
+    };
+    window.onload = function () {
+        console.log("2");
+    }
+
+
+    function t() {
+        alert("t")
+    }
+    function b() {
+        alert("b")
+    }
+    function c() {
+        alert("c")
+    }
+    function addLoadEvent(func) {
+        var oldonload = window.onload;
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        } else {
+            window.onload = function () {
+                oldonload();
+                func();
+            }
+        }
+    }
+
+    /* addLoadEvent(t);
+     addLoadEvent(b);
+     addLoadEvent(c);*/
+
+
+    window.addEventListener("load", function () {
+        console.log("diyici");
+    }, false);
+    window.addEventListener("load", function () {
+        console.log("dierci");
+    }, false);
+    function Hand() {
+        var test = 0;
+        this.setFlag = function () {
+            test = 1;
+        };
+        this.displayFalg = function () {
+            console.log(test);
+        }
+        return this;
+    }
+    var h1 = Hand();
+    console.log(h1.setFlag);
+
+
+    ary.push();
+    ary.pop();
+    ary.unshift();
+    ary.shift;
+    ary.splice();
+    ary.slice();
+    ary.join("|");
+    ary.toString();
+    ary.concat();
+    ary.sort(function (a, b) {
+        return a - b;
+    })
+    ary.reverse();
+
+
+    var str = "sdfDSFSDsdfhello";
+    var res = str.replace(/h/g, function () {
+        return "m";
+    })
+    console.log(res);
+
+    /* Math.abs();
+     Math.ceil();
+     Math.floor();
+     Math.round();
+     Math.max();
+     Math.min();*/
+    console.log(Math.random());
+
+
+    var fn = function () {
+        console.log("1");
+    }
+    fn();
+
+    ary.push();
+    ary.push();
+    ary.pop();
+    ary.pop();
+    ary.unshift();
+    ary.unshift();
+    ary.shift();
+    ary.shift();
+    ary.splice();
+    ary.splice();
+    ary.slice();
+    ary.slice();
+    ary.join();
+    ary.toString();
+    ary.sort();
+    ary.reverse;
+    ary.concat;
+
+
+    str.charAt();
+    str.indexOf();
+    str.replace();
+    str.toLowerCase();
+    str.toUpperCase();
+
+
+    Math.abs();
+    Math.ceil();
+    Math.floor();
+    Math.round();
+    Math.max();
+    Math.min();
+    Math.random();
+    var str = "2015-12-12 12:23:23";
+    var nowTime = new Date(str);
+    nowTime.getFullYear();
+    nowTime.getMonth();
+    nowTime.getDate();
+    nowTime.getDay();
+    nowTime.getHours();
+    nowTime.getMinutes();
+    nowTime.getSeconds();
+    nowTime.getMilliseconds()
+    console.log(nowTime);
+
+
+</script>
+
+</body>
+</html>

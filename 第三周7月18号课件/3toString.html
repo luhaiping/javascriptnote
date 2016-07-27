@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<div id="div1"></div>
+<a id="a1" href="http://www.zhufengpeixun.cn">珠峰培训</a>
+</body>
+</html>
+<script>
+//toString是干嘛的？相当于每一个对象的“名片”；通用数据交流交换的一个接口（途径）
+var n=19;
+n.toString(16);//表示把n转化为16进制的数字字符串
+
+var obj={};
+alert(obj);
+//1、alert方法需要一个字符串类型的参数，如果传的参数不是指定的类型，则会做“自动类型转换”，隐式调用toString方法
+//如果是对象类型的数据，执行的toString方法，会输出[object 构造函数名称]这样的字符串
+alert(document);
+alert(document.body);
+alert(div1);
+//以上都是toSring的默认原则
+alert("超链接的toString是这样的:"+a1);
+
+var a=[1,2,3];
+alert(a);
+//超链接对应的类上的toString被重写了，Array类上的toString也被重写了，所以就不再遵循默认的原则了
+//2、那如果还想让它输出默认的方式怎么办呢？
+Object.prototype.toString.call(a1);
+
+//null和undefined上的toString方法
+//null和undefined上没有任何方法，因为它们俩在JS中，只起标识的作用.把这两个值上的所有的方法和属性给屏蔽了。
+document.parentNode;
+document.parentnode
+Object.prototype.toString.call(null);
+"[object Null]"
+
+null ;//
+undefined
+typeof null 
+null instanceof Object
+
+
+Object.prototype.toString.call(undefined);
+
+//toString判断一个数据是不是数组有什么关系呢？
+</script>

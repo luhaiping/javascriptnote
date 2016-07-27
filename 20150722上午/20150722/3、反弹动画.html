@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            background: #22b909;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript" src="js/utils.min.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    var curT = utils.getCss(oDiv, "top"), curH = oDiv.offsetHeight;
+    var tarT = curT - curH / 2;
+    var tarB = curT + curH / 2;
+    var step = 1;
+    function move() {
+        window.clearTimeout(oDiv.timer);
+        var curT = utils.getCss(oDiv, "top");
+        if (step > 0) {//向下
+            if (curT + step >= tarB) {
+                utils.setCss(oDiv, "top", tarB);
+                step *= -1;
+            } else {
+                utils.setCss(oDiv, "top", curT + step);
+            }
+        } else {
+            if (curT + step <= tarT) {
+                utils.setCss(oDiv, "top", tarT);
+                step *= -1;
+            } else {
+                utils.setCss(oDiv, "top", curT + step);
+            }
+        }
+        oDiv.timer = window.setTimeout(move, 0);
+    }
+    move();
+</script>
+</body>
+</html>

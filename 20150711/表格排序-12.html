@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+thead th{ cursor:pointer; -webkit-user-select:none; text-align:center; }
+</style>
+</head>
+
+<body>
+<table width="600" align="center" border="1">
+  <caption>
+    成绩单
+  </caption>
+  <thead>
+  <tr>
+    <th scope="col">姓名</th>
+    <th scope="col">数学</th>
+    <th scope="col">语文</th>
+    <th scope="col">英语</th>
+  </tr>
+  
+  </thead>
+  <tbody>
+  <tr>
+    <td>小张</td>
+    <td>76</td>
+    <td>88</td>
+    <td>87</td>
+  </tr>
+  <tr>
+    <td>小李</td>
+    <td>90</td>
+    <td>90</td>
+    <td>91</td>
+  </tr>
+  <tr>
+    <td>小王</td>
+    <td>81</td>
+    <td>70</td>
+    <td>65</td>
+  </tr>
+  <tr>
+    <td>小林</td>
+    <td>56</td>
+    <td>95</td>
+    <td>88</td>
+  </tr>
+  <tr>
+    <td>小耿</td>
+    <td>40</td>
+    <td>62</td>
+    <td>99</td>
+  </tr>
+  <tr>
+    <td>小孙</td>
+    <td>77</td>
+    <td>88</td>
+    <td>99</td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
+<script src="DOM.js"></script>
+<script>
+var oTbody=document.getElementsByTagName("table").item(0).tBodies.item(0);
+var rows=oTbody.rows;
+//rows[i].cells[1]第i行的第2列
+var aRows=DOM.listToArray(rows);
+aRows.sort(function(a,b){//对数组排序
+	return a.cells[1].innerHTML-b.cells[1].innerHTML;	
+
+});
+//根据排序的内容更新网页上的DOM结构
+for(var i=0;i<aRows.length;i++){
+	oTbody.appendChild(aRows[i]);	
+}
+</script>

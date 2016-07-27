@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+div{ width:200px; height:150px; margin:0px 100px; background:black;}
+#div2{ float:right; position:absolute; top:500px; left:500px;}
+</style>
+
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3" style="width:auto; position:relative; ">
+	layout层级，
+	<p id="p1" style="width:300px; border-left:dashed 150px orange; height:100px; background:gray; float:right; position:relative; ">
+    <span id="span1" style="width:50px; height:50px; margin-left:150px; background:red; display:block;">我是span1</span>
+    </p>
+</div>
+</body>
+</html>
+<script>
+var div2=document.getElementById("div2");
+div2.offsetTop;
+div2.offsetLeft;
+//默认情况下的偏移量，都是相对于浏览器的
+div2.offsetParent;//偏移参照物
+//layout的概念 z-index 相对定位和绝对定位的元素，会产生一个新的层级，每一个新的层，都是相对于下面的元素来说，是offsetParent
+function offset(ele){//计算出ele元素距离浏览器最左和最上边的偏移量来
+	var l=ele.offsetLeft;
+	var t=ele.offsetTop;
+	var p=ele.offsetParent;
+	while(p){
+		//通过用户代理属性判断是不是IE8浏览器
+		if(window.navigator.userAgent.indexOf("MSIE 8")>-1){
+			//如果是IE8则不需要加上边框的宽		
+			l+=p.offsetLeft;
+			t+=p.offsetTop;		
+		}else{
+			l+=p.offsetLeft+p.clientLeft;
+			t+=p.offsetTop+p.clientTop;//加边框的宽
+		}
+		p=p.offsetParent;
+	}
+	return {left:l,top:t}
+	/*var obj={};
+	obl.left=l;
+	obj.top=t;
+	return obj;*/
+	
+}
+</script>

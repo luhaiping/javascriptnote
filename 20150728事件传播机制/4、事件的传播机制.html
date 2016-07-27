@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #outer {
+            margin: 20px auto;
+            width: 300px;
+            height: 300px;
+            background: #22b909;
+            cursor: pointer;
+        }
+
+        #inner {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            background: #ffff00;
+            cursor: pointer;
+        }
+
+        #center {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            background: #FFE0E9;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <div id="center"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    //事件传播：当一个元素的某一个事件类型(例如：click)被触发的时候，当前元素上面级别的所有元素的相同事件类型都会被触发。例如：点击center的时候，即使没有给center的click绑定方法，但是触发了click事件，inner、outer、body、document、window的click事件都会被触发--->冒泡传播
+    //浏览器不一样：谷歌火狐body、document、window都是可以触发的，IE9没有document，IE8及以下没有document和window的
+
+    var outer = document.getElementById("outer");
+    var inner = document.getElementById("inner");
+    var center = document.getElementById("center");
+
+    //给元素在标准浏览器中绑定DOM2级事件，三个参数：事件类型(不用加on)、给事件绑定的方法，事件触发的时候执行这个方法、true/false，true是代表在捕获阶段发生,false代表在冒泡阶段发生
+    center.addEventListener("click", function () {
+        console.log("center--冒");
+    }, false);
+
+    inner.addEventListener("click", function () {
+        console.log("inner--冒");
+//        while(1){
+//
+//        }
+    }, false);
+
+    outer.addEventListener("click", function () {
+        console.log("outer--冒");
+    }, false);
+
+    outer.addEventListener("click", function () {
+        console.log("outer--捕");
+    }, true);
+
+    document.body.addEventListener("click", function () {
+        console.log("body--捕");
+    }, true);
+
+    document.addEventListener("click", function () {
+        console.log("document--冒");
+    }, false);
+
+
+    //    outer.onclick = function () {
+    //        console.log("outer");
+    //    }
+    //
+    //    inner.onclick = function () {
+    //        console.log("inner");
+    //    }
+    //
+    //    center.onclick = function (e) {
+    //        e = e || window.event;
+    //        console.log("center");
+    //        //e.stopPropagation();//阻止事件的冒泡传播
+    //        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+    //    }
+    //
+    //    document.body.onclick = function () {
+    //        console.log("body");
+    //    }
+    //
+    //    document.onclick = function () {
+    //        console.log("document");
+    //    }
+    //
+    //    window.onclick = function () {
+    //        console.log("window");
+    //    }
+</script>
+</body>
+</html>

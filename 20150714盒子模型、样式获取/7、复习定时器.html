@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+</head>
+<body>
+<script type="text/javascript">
+    //window.setInterval([function],[interval])
+    //设置一个定时器，到达指定的时间(interval 毫秒)，执行我们的操作(function)，但是定时器并不停止，以后每隔这么长时间，都从新执行一遍function
+
+    //window.setTimeout([function],[interval])
+    //设置一个定时器，到达指定的时间(interval 毫秒)，执行我们的操作(function)，定时器就停止运行了
+
+    //定时器是有返回值的，返回值是一个数字，代表当前是第几个定时器 [和我们去银行办业务一样，我们领取的排队号相当于定时器的返回值，代表我是第几个办业务的人，并且定时器和办理业务一样，及时之间的人已经办完业务了，我领取的号也是基于原有上排的]
+
+    //设置一个定时器，100毫秒后执行我们的function
+    //    var timer = window.setTimeout(function () {
+    //
+    //    }, 100);
+    //    window.clearTimeout(timer);
+    //    var timer2 = window.setTimeout(function () {
+    //
+    //    }, 100);
+    //    console.log(timer2);//2 虽然第一个请了，但是我是第二个设置的定时器
+
+    //    var count = 0;
+    //    var timer = window.setInterval(function () {
+    //        count++;
+    //        console.log(count);
+    //    }, 1000);
+
+    //使用setTimeout来模拟我们的setInterval的持久化执行
+    //原理：设置一个定时器到达时间执行方法，方法执行完成，我们在重新设置一个定时器，到达时间重新执行这个方法...--->递归模式:自己执行完成在重新调用自己执行
+    //    var count = 0, timer = null;
+    //    function move() {
+    //        window.clearTimeout(timer);//了解setTimeout递归实现的原理后我们发现，每一次在创建新的定时器之前，先把上一次没用的那个定时器销毁掉，这样有助于性能的优化
+    //        count++;
+    //        console.log(count);
+    //        timer = window.setTimeout(move, 1000);
+    //    }
+    //    timer = window.setTimeout(move, 1000);
+
+
+    //关于定时器的异步加载原理
+    //同步：上一件事情没有完成，下一件事情是不能处理的，需要等上一件完成才能处理
+    //异步：上一件事情即使没有完成，下一件事情已经开始执行了
+    //例如：
+    //张静回家烧水，需要20分钟才可以烧开，张静在着20分钟内，啥都不做，一直看着烧水，水烧完了才去看书--->同步
+    //张静回家烧水，需要20分钟才可以烧开，但是张静没有继续等着，先去看书了，等看完书发现水烧开了，在去冲咖啡--->异步
+
+    //所有的定时器都是异步的：在定时器等待期间，下面的js代码需要继续执行的
+    //在定时器中等待时间设为0，并不是立即执行，每一个浏览器都有一个默认的最小等待时间 [参考：谷歌下是5-6毫秒 IE下10毫秒左右]
+    //    var num = 10;
+    //    window.setTimeout(function () {
+    //        num++;
+    //        console.log(num);//11
+    //    }, 0);
+    //    console.log(num);//10
+    //当定时器在5-6毫秒的等待时间内，继续执行了外面的输出，所以先出输出10，当到达时间后，在执行++操作，输出11
+
+    //js是单线程的，有一个任务在线程上工作的时候，下一个任务可以等着，但是不能工作，在定时器中，设置一个定时器，在等待过程中，代码继续执行，但是只有等下面的当代码都执行完成(不管你定时器有没有到时间)，才会返回头看定时器到时间了吗，到了时间则执行
+    //    var num = 10;
+    //    window.setTimeout(function () {
+    //        num++;
+    //        console.log(num);//11
+    //    }, 0);
+    //    for (var i = 0; i < 1000000000; i++) {
+    //
+    //    }
+    //    console.log(num);//10
+    //先输出10，在输出11
+    //定时器等待时间=设定的等待时间和下面代码执行的时间中的最大的那个
+</script>
+</body>
+</html>

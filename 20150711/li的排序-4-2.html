@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+</head>
+
+<body>
+<ul>
+	<li>78</li>
+    <li>73</li>
+    <li>69</li>
+    <li>88</li>
+    <li>54</li>
+    <li>70</li>
+    <li>48</li>
+    
+</ul>
+	
+    
+   
+   
+</body>
+</html>
+<script src="../script/DOM.js"></script>
+<script>
+var eles=document.getElementsByTagName("li");
+/*try{//把DOM集合或其它类数组转变为数组方法
+	var a=[].slice.call(eles,0);//slice里的this不是JavaScript对象
+//如果出错，则用for的笨方式，如果没错则还是能call的方法
+}catch(e){
+	var a=[];
+	for(var i=0;i<eles.length;i++){
+		a.push(eles[i]);	
+	}
+}*/
+//var a=Array.prototype.slice.apply(eles,[0]);
+var a=DOM.listToArray(eles);
+a.sort(function(a,b){
+	return a.innerHTML-b.innerHTML;	
+});
+
+var parent=a[0].parentNode;
+for(var i=0;i<a.length;i++){
+	parent.appendChild(a[i]);	
+}
+//IEwin98,winXP//DOM activeX dll
+</script>

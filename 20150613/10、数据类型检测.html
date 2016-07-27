@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        //js中浏览器提供给我们四种检测数据类型的方式
+        //1、typeof是一个检测数据类型的运算符
+        //typeof 要检测的值  返回值：首先是一个字符串，然后字符串中包含了我们的数据类型，"number"、"string"、"boolean"、"undefined"、"object"、"function"
+        //typeof null==>"object"
+        //typeof的局限性：
+        //不能具体的细分我们object对象数据类型中:Array和RegExp等，检测数组或者正则返回的都是"object"
+        //console.log(typeof 12);//"number"
+
+        console.log(typeof typeof typeof typeof null);
+        //typeof null==>"object"
+        //typeof "object"==>"string"
+        //typeof "string"==>"string"
+        //检测数据累类型如果出现，两个及以上的typeof，最终的结果就是"string"
+
+    </script>
+</body>
+</html>

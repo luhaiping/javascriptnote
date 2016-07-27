@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>function</title>
+</head>
+<body>
+<script type="text/javascript">
+    //function在我们的项目中非常的重要
+    //function:函数、一个功能或者一个方法
+    //js中的function分为两部分:定义、执行
+
+    //fn是函数名 ()放的是形参  {}是实现这一个功能的代码-->函数体
+    //function fn(){}
+
+    //fn(); 函数名()就是执行函数，在执行的时候()中放的是函数执行传递的形参的值
+
+    //一个函数只定义，没有执行的话，这个函数本身是没有任何的意义的
+
+
+    //实现一个功能：求任意两个数的和
+    function sum(num1, num2) {//()中定义的形参相当于变量，var num1,var num2;
+        var total = 0;
+        total = num1 + num2;
+        console.log(total);
+    }
+    //执行功能:
+    sum(100, 200);
+    sum(200, 300);
+
+
+    //1、定义一个函数，首先开一个新的空间地址xxxfff000，然后把函数体中的js代码当做字符串存起来
+    //2、当函数执行的时候，会形成一个新的环境，供我们函数体中的js代码执行，并且形成了一个保护层，保护函数里面的变量不受外界影响,我们把新形成的这个环境叫做私有的作用域，而保护里面变量不受外界干扰的这种机制叫做闭包！
+
+    //http://pan.baidu.com/s/1pJuVLX5 第一周 15、数据类型-function 这个视频中把函数的机制、运行的原理、形参及作用、arguments及应用(任意数求和)、return返回值的应用、匿名函数的应用
+</script>
+</body>
+</html>

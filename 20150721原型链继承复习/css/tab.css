@@ -1,0 +1,54 @@
+body, div, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+    font-size: 14px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.tab {
+    margin: 30px auto 0;
+    width: 500px;
+}
+
+.tab.w600 {
+    width: 600px;
+}
+
+.tab ul {
+    position: relative;
+    top: 1px;
+}
+
+.tab ul li {
+    float: left;
+    margin-right: 15px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #CDE074;
+    cursor: pointer;
+}
+
+.tab ul li.select {
+    border-bottom: 1px solid #ffe470;
+    background: #ffe470;
+}
+
+.tab div {
+    display: none;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    border: 1px solid #CDE074;
+    background: #ffe470;
+    clear: both;
+}
+
+.tab div.select {
+    display: block;
+}

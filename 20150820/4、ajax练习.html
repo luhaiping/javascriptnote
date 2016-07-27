@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function zhaoying(data) {
+        console.log(data);
+        var os1 = document.getElementById("os1");
+        if (os1) {
+            document.body.removeChild(os1);
+        }
+    }
+    var url = "http://sportswebapi.qq.com/match/index?columnId=100001&deviceId=B8C75D73CF65&startTime=20150819&endTime=20150905&direction=2&AppName=kanbisai&AppOS=ios&AppVersion=1.3&from=kbs_web&callback=zhaoying&random=" + Math.random();
+    var os = document.createElement("script");
+    os.id = "os1";
+    os.type = "text/javascript";
+    os.src = url;
+    document.body.appendChild(os);
+</script>
+
+<script type="text/javascript">
+    //1、创建ajax对象
+    var xhr = null;
+    if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest;
+    } else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        //xhr = new ActiveXObject("Msxml2.XMLHTTP");
+        //xhr = new ActiveXObject("Msxml3.XMLHTTP");
+    }
+
+    //2、open([请求方式],[url],[async])
+    //请求方式: get、post、put、delete...
+    //get:可以做缓存、可以拼接在url上、没有请求的主体、相对来说较快一些；不安全、大小有限制(谷歌8k、火狐7k、IE2k);
+    //post:安全、没有大小的限制；不能做缓存、跨域请求不可以用post；
+    //url:请求的地址，可以把需要发送给服务器的内容，通过"问号传参"的方式传递过去(get请求)
+    //async:默认是true-->异步请求  false-->同步请求
+    xhr.open("get", "data.txt", true);
+
+    //3、设置请求监听
+    //网络状态码:200请求成功,202服务器接受了请求但尚未进行处理,301永久重定向,302临时重定向,304请求的是缓存的数据,303 307服务器临时重定向,403没有权限，禁止访问服务器,404没有找到请求的地址,417资源请求过大,500服务器内部出现异常...
+    //请求状态码:0(UNSENT未发送请求) 1(OPENED已经打开连接) 2(HEADERS_RECEIVED接收服务器返回的头部信息) 3(LOADING正在接收主体内容) 4(DONE接收成功)
+
+    //设置请求头类型和编码格式
+    xhr.setRequestHeader("Content-Type", "text/html;charset=utf-8");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var text = xhr.responseText;
+            //responseText:请求回来的是文本(字符串)
+            //responseXML:请求回来的是XML文件
+            //xhr.getResponseHeader([string])获取请求的响应头信息
+            var ary = window.JSON ? JSON.parse(text) : eval("(" + text + ")");
+            var head = xhr.getResponseHeader("Date");//获取服务器的时间
+            console.log(ary);
+        }
+    };
+
+    //4、发送请求
+    xhr.send();
+</script>
+</body>
+</html>
